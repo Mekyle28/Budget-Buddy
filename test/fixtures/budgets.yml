@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  budget_amount: 1
+  fact_amount: 1
+
+two:
+  category: MyString
+  budget_amount: 1
+  fact_amount: 1
