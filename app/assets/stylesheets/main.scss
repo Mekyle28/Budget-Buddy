@@ -1,0 +1,40 @@
+
+
+.main-page {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(37, 37, 37);
+
+  .main-title {
+    padding: 1.5rem;
+  }
+
+  .budget-progress {
+    font-size: x-large;
+
+    .progress {
+      height: 22px;
+      width: 280px;
+    }
+
+    .progress-bar {
+      height:22px;
+    }
+
+    tr {
+      border-radius: 0.5em;
+      border-bottom: 4px solid rgb(161, 162, 163);
+
+      td {
+        padding: 1rem;
+      }  
+    }
+    
+
+
+}  
+}
+
+
