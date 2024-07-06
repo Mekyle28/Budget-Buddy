@@ -8,6 +8,10 @@
   }
   .transaction:nth-of-type(odd) {
     background-color: rgb(220, 220, 220);
+    border-radius: 10px;
+  }
+  .transaction:nth-of-type(even) {
+    background-color: #f8f9fa;
     border-radius: 5px;
   }
   .container {
@@ -16,4 +20,12 @@
     margin: auto;
     margin-top: 1em;
   }
+  
 }
+
+.transactions-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
