@@ -1,0 +1,7 @@
+Budgeting App
+
+The budgeting app allows users to track their expenses, create budgets, and monitor their spending to ensure they stay on track with their family budget.
+
+People who work hard for their money and are finicially concious who want to keep track of their spending.
+
+Eugene, Mackenzie, Cameron
