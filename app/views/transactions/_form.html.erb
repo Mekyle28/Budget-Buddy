@@ -57,13 +57,12 @@
         <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name), { include_blank: true } %>
       </div>
     </div>
-
+    
     <div class="row">
       <div class="col">
+        <%= link_to "Back", [:transactions], class:"btn btn-primary" %>
       </div>
-      <div>
-      <%= link_to "Back", [:transactions], class:"btn btn-primary" %>
-      </div>
+
       <div class="col my-auto">
         <%= form.submit "Save", class: "btn btn-success" %>
       </div>

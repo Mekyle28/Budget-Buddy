@@ -20,6 +20,10 @@
   .row:nth-of-type(odd) {
     background-color: rgb(220, 220, 220);
   }
+  .row:nth-of-type(even) {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+  }
 }
 
 .form-header {
