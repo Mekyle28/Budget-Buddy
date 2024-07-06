@@ -1,0 +1,23 @@
+Core: 
+
+I as a user should be able to create a monthly budget by setting spending for catergories
+I as a user should be able to see my estimated budget as a total of all catergories
+I as a user should be able to update the budget
+I as a user should be able to input new transactions and set them to a category and account
+I as a user should be able to CRU transactions (debit and ** credit)
+I as a user should be able to CRU an account 
+I as a user should be able to view previous months budget
+I as a user should be able to see an overview of my budget info ** create a chart / graph to display info
+
+Stretch:
+
+** I as a user should be able to filter transactions by account 
+** I as a user should be able to filter transactions by category
+** I as a user should be able to set up reoccuring payments that auto fill in a new monthly budget
+** I as a user should be able to split a single transaction across multiple catergories
+** I as a user should be able to set a balance and see how that balance changes based on transactions
+** I as a user should be able to filter transactions by date range
+
+Nice to Have / Future:
+
+create budgets for other purposes, ie trips, projects
