@@ -2,34 +2,17 @@
 <section class="main-page">
 <h1 class="main-title">JUNE 2024</h1>
 
-
 <table class="budget-progress">
+  
   <tr>
-    <td><strong>Car</strong></td>
-    <td>
-      <div class = "progress" >
-      <div class ="progress-bar" style = "width:80%"></div>
-    </td>
-    <td>$80/$100</td>
+    <td><strong>Categories</strong></td>
+    <td><strong></strong></td>
+    <td><strong></strong></td>
   </tr>
 
-  <tr>
-    <td><strong>Entertainment</strong></td>
-    <td>
-      <div class = "progress">
-      <div class ="progress-bar" style = "width:10%"></div>
-    </td>
-    <td>$20/$200</td>
-  </tr>
-
-  <tr>
-    <td><strong>rent</strong></td>
-    <td>
-      <div class = "progress">
-      <div class ="progress-bar" style = "width:120%"></div>
-    </td>
-    <td>$2000/$2000</td>
-  </tr>
+  <% @budget_categories.each do |category| %>
+    <%= render 'category', name: category.category.name, budget: category[:budget_amount]/100, fact: category[:fact_amount]/100, precentage: (category[:budget_amount]/category[:fact_amount])*100 %>
+  <% end %> 
 
 </table>
 
