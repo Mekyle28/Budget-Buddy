@@ -28,12 +28,12 @@
 
   <div>
     <%= form.label :category, style: "display: block" %>
-    <%= form.select :category, [*@cat_names] %>
+    <%= form.select :category_id, options_from_collection_for_select(Category.all.order(:name), :id, :name), { include_blank: true } %>
   </div>
 
   <div>
-    <%= form.label :account_id, style: "display: block" %>
-    <%= form.text_field :account_id %>
+    <%= form.label :account, style: "display: block" %>
+    <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name), { include_blank: true } %>
   </div>
 
   <div>

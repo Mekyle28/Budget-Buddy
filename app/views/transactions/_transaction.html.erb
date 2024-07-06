@@ -9,7 +9,7 @@
     </div>
 
     <div class="col my-auto">
-      $<%= transaction.amount / 100.00 %>
+      <%= number_to_currency(transaction.amount / 100.0) %>
     </div>
 
     <div class="col my-auto">
@@ -17,11 +17,11 @@
     </div>
 
     <div class="col my-auto">
-      <%= transaction.account_id %>
+      <%= transaction.account.name %>
     </div>
 
     <div class="col-1 my-auto">
-      <%= link_to "Edit", transaction, class: "btn btn-outline-primary" %>
+      <%= link_to "Edit", edit_transaction_path(transaction), class:"btn btn-outline-primary" %>
     </div>
 
   </div>
