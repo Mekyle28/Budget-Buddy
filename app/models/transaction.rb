@@ -1,5 +1,7 @@
+# app/models/transaction.rb
 class Transaction < ApplicationRecord
   belongs_to :account
+  belongs_to :category
 
   after_save :update_account_balance
 
