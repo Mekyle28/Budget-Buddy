@@ -1,42 +1,71 @@
-<%= form_with(model: transaction) do |form| %>
-  <% if transaction.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+<div class="transaction-form">
+  <%= form_with(model: transaction) do |form| %>
+    <% if transaction.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
 
-      <ul>
-        <% transaction.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% transaction.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col my-auto">
+        <%= form.label :date %>
+      </div>
+      <div class="col my-auto">
+        <%= form.date_field :date %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col my-auto">
+        <%= form.label :merchant, style: "display: block" %>
+      </div>
+      <div class="col my-auto">
+        <%= form.text_field :merchant %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col my-auto">
+        <%= form.label :amount, style: "display: block" %>
+      </div>
+      <div class="col my-auto">
+        <%= form.number_field :amount %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col my-auto">
+        <%= form.label :category, style: "display: block" %>
+      </div>
+      <div class="col my-auto">
+        <%= form.select :category_id, options_from_collection_for_select(Category.all.order(:name), :id, :name), { include_blank: true } %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col my-auto">
+        <%= form.label :account, style: "display: block" %>
+      </div>
+      <div class="col my-auto">
+        <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name), { include_blank: true } %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col my-auto">
+        <%= form.submit %>
+      </div>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date %>
-  </div>
-
-  <div>
-    <%= form.label :merchant, style: "display: block" %>
-    <%= form.text_field :merchant %>
-  </div>
-
-  <div>
-    <%= form.label :amount, style: "display: block" %>
-    <%= form.number_field :amount %>
-  </div>
-
-  <div>
-    <%= form.label :category, style: "display: block" %>
-    <%= form.select :category_id, options_from_collection_for_select(Category.all.order(:name), :id, :name), { include_blank: true } %>
-  </div>
-
-  <div>
-    <%= form.label :account, style: "display: block" %>
-    <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name), { include_blank: true } %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+  </div>  
+</div>
