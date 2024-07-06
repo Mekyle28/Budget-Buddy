@@ -12,8 +12,6 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/new
   def new
-    @categories = Category.all
-    @cat_names = @categories.map { |category| category.name }
     @transaction = Transaction.new
   end
 
