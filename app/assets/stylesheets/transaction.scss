@@ -16,9 +16,12 @@
     padding: .5em 0;
     margin: auto;
     border-radius: 5px;
-    
   }
   .row:nth-of-type(odd) {
     background-color: rgb(220, 220, 220);
   }
+}
+
+.form-top {
+  margin-top: 1em;
 }
