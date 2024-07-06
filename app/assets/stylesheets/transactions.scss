@@ -5,10 +5,10 @@
   
   .row {
     padding: 0.25em 0;
-    border-radius: 5px;
   }
   .transaction:nth-of-type(odd) {
     background-color: rgb(220, 220, 220);
+    border-radius: 5px;
   }
   .container {
     padding: 0;

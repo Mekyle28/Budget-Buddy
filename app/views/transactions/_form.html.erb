@@ -15,7 +15,7 @@
   <div class="container">
     <div class="row">
       <div class="col my-auto">
-        <%= form.label :date %>
+        <%= form.label :date %>:
       </div>
       <div class="col my-auto">
         <%= form.date_field :date %>
@@ -24,7 +24,7 @@
 
     <div class="row">
       <div class="col my-auto">
-        <%= form.label :merchant, style: "display: block" %>
+        <%= form.label :merchant %>:
       </div>
       <div class="col my-auto">
         <%= form.text_field :merchant %>
@@ -33,7 +33,7 @@
 
     <div class="row">
       <div class="col my-auto">
-        <%= form.label :amount, style: "display: block" %>
+        <%= form.label :amount %>:
       </div>
       <div class="col my-auto">
         <%= form.number_field :amount %>
@@ -42,7 +42,7 @@
 
     <div class="row">
       <div class="col my-auto">
-        <%= form.label :category, style: "display: block" %>
+        <%= form.label :category %>:
       </div>
       <div class="col my-auto">
         <%= form.select :category_id, options_from_collection_for_select(Category.all.order(:name), :id, :name), { include_blank: true } %>
@@ -51,7 +51,7 @@
 
     <div class="row">
       <div class="col my-auto">
-        <%= form.label :account, style: "display: block" %>
+        <%= form.label :account %>:
       </div>
       <div class="col my-auto">
         <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name), { include_blank: true } %>
@@ -62,7 +62,7 @@
       <div class="col">
       </div>
       <div class="col my-auto">
-        <%= form.submit %>
+        <%= form.submit "Save", class: "btn btn-success" %>
       </div>
     </div>
   <% end %>
