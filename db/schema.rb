@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_06_021255) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_06_050211) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.string "account_type"
@@ -27,8 +27,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_021255) do
     t.datetime "updated_at", null: false
     t.integer "category_id", null: false
     t.integer "user_id", null: false
-    t.integer "expected_spending"
-    t.integer "actual_spending"
     t.index ["category_id"], name: "index_budgets_on_category_id"
     t.index ["user_id"], name: "index_budgets_on_user_id"
   end
