@@ -23,19 +23,3 @@ html {
 body {
   margin: 0;
 }
-
- .nav-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: gray;
-  border-bottom: 1px solid;
-  .app-nav {
-    display: inherit;
-  }
-  .nav-link {
-    text-decoration: none;
-    color: black;
-    padding: 0.5em;
-  }
- }
