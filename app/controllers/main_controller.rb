@@ -1,5 +1,6 @@
 class MainController < ApplicationController
   def index
-    @budgets = Budget.all
+    @budget_categories = Budget.includes(:category).all
   end
+
 end
