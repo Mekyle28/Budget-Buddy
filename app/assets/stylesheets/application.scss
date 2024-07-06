@@ -23,3 +23,23 @@ html {
 body {
   margin: 0;
 }
+
+main {
+  margin: 0 5vw;
+}
+
+.app-nav {
+  display: flex;
+  flex-direction: row;
+  ul {
+    display: flex;
+    flex-direction: row;
+    padding: 0 1em;
+    li {
+      padding: 0.5em;
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
