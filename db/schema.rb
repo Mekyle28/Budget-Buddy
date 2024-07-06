@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_05_212208) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_06_021255) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.string "account_type"
@@ -25,6 +25,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_05_212208) do
     t.integer "fact_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id", null: false
+    t.integer "user_id", null: false
+    t.integer "expected_spending"
+    t.integer "actual_spending"
+    t.index ["category_id"], name: "index_budgets_on_category_id"
+    t.index ["user_id"], name: "index_budgets_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -35,8 +47,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_05_212208) do
     t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id", null: false
     t.index ["account_id"], name: "index_transactions_on_account_id"
+    t.index ["category_id"], name: "index_transactions_on_category_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  add_foreign_key "budgets", "categories"
+  add_foreign_key "budgets", "users"
   add_foreign_key "transactions", "accounts"
+  add_foreign_key "transactions", "categories"
 end
