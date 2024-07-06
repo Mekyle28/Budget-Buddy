@@ -1,3 +1,4 @@
+# app/views/budgets/show.html.erb
 <div id="<%= dom_id budget %>">
   <p>
     <strong>Category:</strong>
@@ -6,11 +7,11 @@
 
   <p>
     <strong>Budget amount:</strong>
-    <%= number_to_currency(budget.budget_amount / 100.0) %>
+    <%= humanized_money_with_symbol(budget.budget_amount) %>
   </p>
 
   <p>
     <strong>Fact amount:</strong>
-    <%= number_to_currency(budget.fact_amount / 100.0) %>
+    <%= humanized_money_with_symbol(budget.fact_amount) %>
   </p>
 </div>

@@ -1,15 +1,4 @@
 <div class="form-top">
   <div class="row">
 
-    <div class="col-4 my-auto">
-      <%= link_to "Transactions", [:transactions], class:"btn btn-outline-primary" %>
-    </div>
-
-    <div class="col">
-      <h1>New transaction:</h1>
-    </div>
-
-  </div>
-</div>
-
 <%= render "form", transaction: @transaction %>

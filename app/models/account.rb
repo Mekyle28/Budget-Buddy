@@ -2,11 +2,7 @@
 class Account < ApplicationRecord
   has_many :transactions, dependent: :destroy
 
-  def current_balance_bd
-    current_balance / 100.0
-  end
+  validates :current_balance_cents, numericality: { greater_than_or_equal_to: 0 }
 
-  def current_balance_bd=(amount)
-    self.current_balance = (amount.to_f * 100).to_i
-  end
+  monetize :current_balance_cents, as: :current_balance
 end
