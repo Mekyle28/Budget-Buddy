@@ -1,7 +1,7 @@
 <section class="transaction">
   <div class="row">
     <div class="col my-auto">
-      <%= transaction.date.strftime("%d/%m/%Y") %>
+      <%= transaction.date %>
     </div>
 
     <div class="col my-auto">
@@ -9,7 +9,7 @@
     </div>
 
     <div class="col my-auto">
-      <%= number_to_currency(transaction.amount / 100.0) %>
+      <%= number_to_currency(transaction.amount) %>
     </div>
 
     <div class="col my-auto">

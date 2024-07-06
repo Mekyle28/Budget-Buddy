@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_06_050211) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_06_184348) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.string "account_type"
-    t.integer "current_balance"
+    t.integer "current_balance_cents", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "budgets", force: :cascade do |t|
     t.string "category"
-    t.integer "budget_amount"
-    t.integer "fact_amount"
+    t.integer "budget_amount_cents", default: 0
+    t.integer "fact_amount_cents", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_050211) do
   create_table "transactions", force: :cascade do |t|
     t.date "date"
     t.string "merchant"
-    t.integer "amount"
+    t.integer "amount_cents", default: 0
     t.string "category"
     t.integer "account_id", null: false
     t.datetime "created_at", null: false

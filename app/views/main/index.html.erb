@@ -1,19 +1,19 @@
-
 <section class="main-page">
-<h1 class="main-title">JUNE 2024</h1>
+  <h1 class="main-title">JUNE 2024</h1>
 
-<table class="budget-progress">
-  
-  <tr>
-    <td><strong>Categories</strong></td>
-    <td><strong></strong></td>
-    <td><strong></strong></td>
-  </tr>
+  <table class="budget-progress">
+    <tr>
+      <td><strong>Categories</strong></td>
+      <td><strong></strong></td>
+      <td><strong></strong></td>
+    </tr>
 
-  <% @budget_categories.each do |category| %>
-    <%= render 'category', name: category.category.name, budget: category[:budget_amount]/100, fact: category[:fact_amount]/100, precentage: (category[:budget_amount]/category[:fact_amount])*100 %>
-  <% end %> 
-
-</table>
-
+    <% @budget_categories.each do |category| %>
+      <% budget_amount = category.budget_amount.to_f %>
+      <% fact_amount = category.fact_amount.to_f %>
+      <% percentage = (fact_amount != 0) ? (budget_amount / fact_amount) * 100 : 0.0 %>
+      
+      <%= render 'category', name: category.category.name, budget: budget_amount, fact: fact_amount, percentage: percentage %>
+    <% end %>
+  </table>
 </section>

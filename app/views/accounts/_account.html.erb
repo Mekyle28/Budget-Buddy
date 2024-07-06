@@ -1,3 +1,4 @@
+
 <div id="<%= dom_id account %>">
   <p>
     <strong>Name:</strong>
@@ -11,7 +12,6 @@
 
   <p>
     <strong>Current balance:</strong>
-    <%= account.current_balance %>
+    <%= humanized_money_with_symbol(account.current_balance) %>
   </p>
-
 </div>

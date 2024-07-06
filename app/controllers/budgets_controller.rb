@@ -3,7 +3,13 @@ class BudgetsController < ApplicationController
 
   # GET /budgets or /budgets.json
   def index
-    @budgets = Budget.all
+    @budget_categories = Budget.all.map do |budget|
+      {
+        category: budget.category,
+        budget_amount: budget.budget_amount.to_f,
+        fact_amount: budget.fact_amount.to_f
+      }
+    end
   end
 
   # GET /budgets/1 or /budgets/1.json

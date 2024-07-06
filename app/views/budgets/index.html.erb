@@ -3,10 +3,11 @@
 <h1>Budgets</h1>
 
 <div id="budgets">
-  <% @budgets.each do |budget| %>
-    <%= render budget %>
+  <% @budget_categories.each do |category| %>
     <p>
-      <%= link_to "Show this budget", budget %>
+      <strong>Category:</strong> <%= category[:category] %><br>
+      <strong>Budget Amount:</strong> $<%= number_with_precision(category[:budget_amount], precision: 0) %><br>
+      <strong>Fact Amount:</strong> $<%= number_with_precision(category[:fact_amount], precision: 0) %><br>
     </p>
   <% end %>
 </div>
