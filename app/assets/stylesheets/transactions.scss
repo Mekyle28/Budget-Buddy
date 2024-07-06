@@ -1,0 +1,10 @@
+.transactions {
+  
+  
+  .row {
+    padding: 0.25em 0;
+  }
+  .transaction:nth-of-type(odd) {
+    background-color: rgb(220, 220, 220);
+  }
+}

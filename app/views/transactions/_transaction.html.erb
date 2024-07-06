@@ -1,27 +1,28 @@
-<div id="<%= dom_id transaction %>">
-  <p>
-    <strong>Date:</strong>
-    <%= transaction.date %>
-  </p>
+<section class="transaction">
+  <div class="row">
+    <div class="col">
+      <%= transaction.created_at.strftime("%d/%m/%Y") %>
+    </div>
 
-  <p>
-    <strong>Merchant:</strong>
-    <%= transaction.merchant %>
-  </p>
+    <div class="col">
+      <%= transaction.merchant %>
+    </div>
 
-  <p>
-    <strong>Amount:</strong>
-    <%= transaction.amount %>
-  </p>
+    <div class="col">
+      $<%= transaction.amount / 100.00 %>
+    </div>
 
-  <p>
-    <strong>Category:</strong>
-    <%= transaction.category %>
-  </p>
+    <div class="col">
+      <%= transaction.category.name %>
+    </div>
 
-  <p>
-    <strong>Account:</strong>
-    <%= transaction.account_id %>
-  </p>
+    <div class="col">
+      <%= transaction.account_id %>
+    </div>
 
-</div>
+    <div class="col-1">
+      <%= link_to "Edit", transaction %>
+    </div>
+
+  </div>
+</section>
