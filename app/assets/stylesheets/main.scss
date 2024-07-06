@@ -8,24 +8,24 @@
   color: rgb(37, 37, 37);
 
   .main-title {
-    padding: 1.5rem;
+    padding: 2.5rem;
   }
 
   .budget-progress {
-    font-size: x-large;
+    font-size: larger;
 
     .progress {
-      height: 22px;
-      width: 280px;
+      height: 20px;
+      width: 320px;
     }
 
     .progress-bar {
-      height:22px;
+      height:20px;
     }
 
     tr {
       border-radius: 0.5em;
-      border-bottom: 4px solid rgb(161, 162, 163);
+      border-bottom: 3px solid rgb(161, 162, 163);
 
       td {
         padding: 1rem;
