@@ -5,6 +5,8 @@ class Transaction < ApplicationRecord
 
   after_save :update_account_balance
 
+  validates :amount, numericality: { greater_than_or_equal_to: 0 }
+
   private
 
   def update_account_balance

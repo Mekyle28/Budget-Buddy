@@ -1,27 +1,28 @@
-<div id="<%= dom_id transaction %>">
-  <p>
-    <strong>Date:</strong>
-    <%= transaction.date %>
-  </p>
+<section class="transaction">
+  <div class="row">
+    <div class="col my-auto">
+      <%= transaction.date.strftime("%d/%m/%Y") %>
+    </div>
 
-  <p>
-    <strong>Merchant:</strong>
-    <%= transaction.merchant %>
-  </p>
+    <div class="col my-auto">
+      <%= transaction.merchant %>
+    </div>
 
-  <p>
-    <strong>Amount:</strong>
-    <%= transaction.amount %>
-  </p>
+    <div class="col my-auto">
+      <%= number_to_currency(transaction.amount / 100.0) %>
+    </div>
 
-  <p>
-    <strong>Category:</strong>
-    <%= transaction.category %>
-  </p>
+    <div class="col my-auto">
+      <%= transaction.category.name %>
+    </div>
 
-  <p>
-    <strong>Account:</strong>
-    <%= transaction.account_id %>
-  </p>
+    <div class="col my-auto">
+      <%= transaction.account.name %>
+    </div>
 
-</div>
+    <div class="col-1 my-auto">
+      <%= link_to "Edit", edit_transaction_path(transaction), class:"btn btn-outline-primary" %>
+    </div>
+
+  </div>
+</section>
