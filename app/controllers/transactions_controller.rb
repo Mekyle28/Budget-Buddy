@@ -12,6 +12,8 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/new
   def new
+    @categories = Category.all
+    @cat_names = @categories.map { |category| category.name }
     @transaction = Transaction.new
   end
 
@@ -65,6 +67,6 @@ class TransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.require(:transaction).permit(:date, :merchant, :amount, :category, :account_id)
+      params.require(:transaction).permit(:date, :merchant, :amount, :category, :account_id, :category_id)
     end
 end
