@@ -1,26 +1,26 @@
 <section class="transaction">
   <div class="row">
-    <div class="col">
+    <div class="col my-auto">
       <%= transaction.date.strftime("%d/%m/%Y") %>
     </div>
 
-    <div class="col">
+    <div class="col my-auto">
       <%= transaction.merchant %>
     </div>
 
-    <div class="col">
+    <div class="col my-auto">
       $<%= transaction.amount / 100.00 %>
     </div>
 
-    <div class="col">
+    <div class="col my-auto">
       <%= transaction.category.name %>
     </div>
 
-    <div class="col">
+    <div class="col my-auto">
       <%= transaction.account_id %>
     </div>
 
-    <div class="col-1">
+    <div class="col-1 my-auto">
       <%= link_to "Edit", transaction, class: "btn btn-outline-primary" %>
     </div>
 
