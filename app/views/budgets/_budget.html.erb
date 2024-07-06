@@ -1,17 +1,16 @@
 <div id="<%= dom_id budget %>">
   <p>
     <strong>Category:</strong>
-    <%= budget.category %>
+    <%= budget.category.name %>
   </p>
 
   <p>
     <strong>Budget amount:</strong>
-    <%= budget.budget_amount %>
+    <%= number_to_currency(budget.budget_amount / 100.0) %>
   </p>
 
   <p>
     <strong>Fact amount:</strong>
-    <%= budget.fact_amount %>
+    <%= number_to_currency(budget.fact_amount / 100.0) %>
   </p>
-
 </div>
