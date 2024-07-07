@@ -4,9 +4,9 @@
 
 <div class="row">
   <div class="col-4 my-auto">
-
   </div>
 </div>
+
 <div class="row">
   <div class="col-lg-3">
     <div class="budgets">
@@ -32,40 +32,43 @@
   </div>
 
   <div class="col-lg-9">
-  <div class="budgets">
-    <div class="container text-center">
-      <div class="row">
-        <div class="col my-auto"><strong>Category:</strong></div>
-        <div class="col my-auto"><strong>Budget Amount:</strong></div>
-        <div class="col my-auto"><strong>Fact Amount:</strong></div>
-      </div>
-      <% @budget_categories.each do |category| %>
-        <%= render 'budget_category', category: category %>
-      <% end %>
-      
-      <!-- Form for creating a new budget category -->
-      <%= form_with(model: Budget.new, url: budgets_path, local: true) do |form| %>
+    <div class="budgets">
+      <div class="container text-center">
         <div class="row">
-          <div class="col">
-            <%= form.text_field :category, class: "form-control", placeholder: "Category" %>
-          </div>
-          <div class="col">
-            <%= form.number_field :budget_amount, class: "form-control", placeholder: "Budget Amount" %>
-          </div>
-          <div class="col my-auto">
-            <!-- Fact Amount will be calculated based on transactions -->
-            <%= form.submit "Submit", class: "btn btn-primary" %>
-          </div>
+          <div class="col my-auto"><strong>Category:</strong></div>
+          <div class="col my-auto"><strong>Budget Amount:</strong></div>
+          <div class="col my-auto"><strong>Fact Amount:</strong></div>
         </div>
-      <% end %>
+
+        <% @budget_categories.each do |category| %>
+          <%= render 'budget_category', category: category %>
+        <% end %>
+
+        <%= form_with(model: @budget, url: budgets_path, local: true) do |form| %>
+          <% if @budget && @budget.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@budget.errors.count, "error") %> prohibited this budget from being saved:</h2>
+              <ul>
+                <% @budget.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="row">
+            <div class="col">
+              <%= form.text_field :category_name, class: "form-control", placeholder: "Category" %>
+            </div>
+            <div class="col">
+              <%= form.number_field :budget_amount_cents, class: "form-control", placeholder: "Budget Amount" %>
+            </div>
+            <div class="col my-auto">
+              <%= form.submit "Submit", class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-
-</div>
-
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>">
-    <%= value %>
-  </div>
-<% end %>
