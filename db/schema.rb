@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_234315) do
 
   create_table "budgets", force: :cascade do |t|
     t.integer "category_id", null: false
-    t.integer "user_id", null: false
+    t.integer "user_id", null: true # This line was modified to allow null values
     t.integer "budget_amount_cents", default: 0
     t.integer "fact_amount_cents", default: 0
     t.datetime "created_at", null: false

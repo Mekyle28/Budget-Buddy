@@ -19,7 +19,7 @@ class BudgetsTest < ApplicationSystemTestCase
     fill_in "Fact amount", with: @budget.fact_amount
     click_on "Create Budget"
 
-    assert_text "Budget was successfully created"
+    assert_text "Category added"
     click_on "Back"
   end
 

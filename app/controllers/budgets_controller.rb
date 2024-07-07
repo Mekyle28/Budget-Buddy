@@ -10,6 +10,7 @@ class BudgetsController < ApplicationController
         fact_amount: budget.fact_amount.to_f
       }
     end
+    @budget = Budget.new
   end
 
   # GET /budgets/1 or /budgets/1.json
@@ -31,15 +32,17 @@ class BudgetsController < ApplicationController
 
     @budget = Budget.new(
       category: category,
-      budget_amount_cents: budget_params[:budget_amount_cents]
+      budget_amount_cents: params[:budget][:budget_amount_cents].to_i * 100,
+      fact_amount_cents: 0,
+      user_id: nil
     )
 
     respond_to do |format|
       if @budget.save
-        format.html { redirect_to budgets_url, notice: "Budget was successfully created." }
+        format.html { redirect_to budgets_url, notice: "Category added." }
         format.json { render :show, status: :created, location: @budget }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :index, status: :unprocessable_entity }
         format.json { render json: @budget.errors, status: :unprocessable_entity }
       end
     end
