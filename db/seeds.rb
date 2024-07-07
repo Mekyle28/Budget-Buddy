@@ -1,17 +1,36 @@
+# db/seeds.rb
+
 # Clear existing data
-Account.destroy_all
-Budget.destroy_all
-Transaction.destroy_all
 Category.destroy_all
+Account.destroy_all
+Transaction.destroy_all
+Budget.destroy_all
 User.destroy_all
 
-# Create Users
-users = User.create([
-  { email: 'user1@example.com', password: 'password' },
-  { email: 'user2@example.com', password: 'password' }
+# Seed Categories
+categories = Category.create([
+  { name: 'Groceries' },
+  { name: 'Entertainment' },
+  { name: 'Utilities' },
+  { name: 'Rent' },
+  { name: 'Transportation' },
+  { name: 'Insurance' },
+  { name: 'Healthcare' },
+  { name: 'Savings' },
+  { name: 'Debt Repayment' },
+  { name: 'Education' },
+  { name: 'Personal Care' },
+  { name: 'Subscriptions' },
+  { name: 'Gifts' },
+  { name: 'Donations' },
+  { name: 'Investments' },
+  { name: 'Vacation' },
+  { name: 'Miscellaneous' },
+  { name: 'Dining Out' },
+  { name: 'Clothing' }
 ])
 
-# Create Accounts
+# Seed Accounts
 accounts = Account.create([
   { name: 'CHEQUING', account_type: 'DEBIT', current_balance_cents: 1000000 },
   { name: 'VISA', account_type: 'CREDIT', current_balance_cents: 500000 },
@@ -19,198 +38,56 @@ accounts = Account.create([
   { name: 'SAVINGS', account_type: 'SAVINGS', current_balance_cents: 1500000 }
 ])
 
-# Create Categories
-categories = Category.create([
-  { id: 1, name: 'Groceries' },
-  { id: 2, name: 'Entertainment' },
-  { id: 3, name: 'Utilities' },
-  { id: 4, name: 'Rent' },
-  { id: 5, name: 'Transportation' },
-  { id: 6, name: 'Insurance' },
-  { id: 7, name: 'Healthcare' },
-  { id: 8, name: 'Savings' },
-  { id: 9, name: 'Debt Repayment' },
-  { id: 10, name: 'Education' },
-  { id: 11, name: 'Personal Care' },
-  { id: 12, name: 'Subscriptions' },
-  { id: 13, name: 'Gifts' },
-  { id: 14, name: 'Donations' },
-  { id: 15, name: 'Investments' },
-  { id: 16, name: 'Vacation' },
-  { id: 17, name: 'Miscellaneous' },
-  { id: 18, name: 'Dining Out' },
-  { id: 19, name: 'Clothing' }
-])
+# Seed Transactions
+start_date = Date.new(2024, 6, 1)
+end_date = Date.today
 
-# Create at least 20 Budgets
-budgets = Budget.create([
-  { category: categories[0], user: users[0], budget_amount_cents: 20000, fact_amount_cents: 15000 },
-  { category: categories[1], user: users[1], budget_amount_cents: 10000, fact_amount_cents: 5000 },
-  { category: categories[2], user: users[0], budget_amount_cents: 30000, fact_amount_cents: 25000 },
-  { category: categories[3], user: users[1], budget_amount_cents: 50000, fact_amount_cents: 45000 },
-  { category: categories[4], user: users[0], budget_amount_cents: 40000, fact_amount_cents: 30000 },
-  { category: categories[5], user: users[1], budget_amount_cents: 15000, fact_amount_cents: 12000 },
-  { category: categories[6], user: users[0], budget_amount_cents: 25000, fact_amount_cents: 20000 },
-  { category: categories[7], user: users[1], budget_amount_cents: 30000, fact_amount_cents: 28000 },
-  { category: categories[8], user: users[0], budget_amount_cents: 20000, fact_amount_cents: 18000 },
-  { category: categories[9], user: users[1], budget_amount_cents: 35000, fact_amount_cents: 32000 },
-  { category: categories[10], user: users[0], budget_amount_cents: 18000, fact_amount_cents: 15000 },
-  { category: categories[11], user: users[1], budget_amount_cents: 22000, fact_amount_cents: 20000 },
-  { category: categories[12], user: users[0], budget_amount_cents: 25000, fact_amount_cents: 23000 },
-  { category: categories[13], user: users[1], budget_amount_cents: 40000, fact_amount_cents: 38000 },
-  { category: categories[14], user: users[0], budget_amount_cents: 30000, fact_amount_cents: 29000 },
-  { category: categories[15], user: users[1], budget_amount_cents: 45000, fact_amount_cents: 42000 },
-  { category: categories[16], user: users[0], budget_amount_cents: 28000, fact_amount_cents: 27000 },
-  { category: categories[17], user: users[1], budget_amount_cents: 35000, fact_amount_cents: 33000 },
-  { category: categories[18], user: users[0], budget_amount_cents: 27000, fact_amount_cents: 25000 },
-  { category: categories[19], user: users[1], budget_amount_cents: 38000, fact_amount_cents: 36000 }
-])
+# Generate 100 transactions with random amounts and dates
+100.times do
+  date = rand(start_date..end_date)
+  amount_cents = rand(1000..50000)  # Random amount between $10 and $500
+  merchant = ["Wal-Mart", "VICTORIA'S SECRET", "TD INSURANCE", "LONGO'S", "STARSKY FINE FOODS", 
+              "META PAYROLL", "UBER* EATS", "UBER* RIDE", "INTERNET BILL PAY", "PIONEER STN", 
+              "Amazon.CA", "PEEL DISTRICT SCHOOL BOARD", "CINEPLEX ENTERTAINMENT", "PRESTO MOBL", 
+              "E-TRANSFER", "Subway 23972", "DEPOSIT CANADA", "IKEA BURLINGTON", "PAYBRIGHT"].sample
 
-# Sample transaction data
-transactions = [
-  { date: '3/23/2024', merchant: "Wal-Mart", amount_cents: 7119, category_id: 1, account_id: 1 },
-  { date: '3/23/2024', merchant: "LCBO/RAO #0494", amount_cents: 995, category_id: 2, account_id: 2 },
-  { date: '3/23/2024', merchant: "VICTORIA'S SECRET STORE", amount_cents: 19769, category_id: 19, account_id: 3 },
-  { date: '3/23/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 4 },
-  { date: '3/22/2024', merchant: "PREAUTHORIZED DEBIT TD INSURANCE", amount_cents: 26703, category_id: 6, account_id: 1 },
-  { date: '3/22/2024', merchant: "LONGO'S # 13", amount_cents: 7827, category_id: 1, account_id: 2 },
-  { date: '3/22/2024', merchant: "PAY TSA Payroll", amount_cents: 132534, category_id: 9, account_id: 3 },
-  { date: '3/21/2024', merchant: "STARSKY FINE FOODS", amount_cents: 7715, category_id: 1, account_id: 4 },
-  { date: '3/21/2024', merchant: "Subway 23972", amount_cents: 1242, category_id: 1, account_id: 1 },
-  { date: '3/21/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 2 },
-  { date: '3/20/2024', merchant: "LCBO/RAO #0494", amount_cents: 2750, category_id: 2, account_id: 3 },
-  { date: '3/20/2024', merchant: "HOSPITAL FOR SICK CHILDRE", amount_cents: 2000, category_id: 17, account_id: 4 },
-  { date: '3/20/2024', merchant: "UBER* EATS", amount_cents: 1889, category_id: 1, account_id: 1 },
-  { date: '3/20/2024', merchant: "INTERNET BILL PAY", amount_cents: 9640, category_id: 3, account_id: 2 },
-  { date: '3/20/2024', merchant: "DEPOSIT CANADA", amount_cents: 104601, category_id: 7, account_id: 3 },
-  { date: '3/19/2024', merchant: "Wal-Mart", amount_cents: 378, category_id: 1, account_id: 4 },
-  { date: '3/19/2024', merchant: "PIONEER STN #112", amount_cents: 8881, category_id: 5, account_id: 1 },
-  { date: '3/19/2024', merchant: "Amazon.ca*RH75O4JT2", amount_cents: 7378, category_id: 12, account_id: 2 },
-  { date: '3/18/2024', merchant: "INSTALLMENT PLAN INTEREST", amount_cents: 430, category_id: 16, account_id: 3 },
-  { date: '3/18/2024', merchant: "INSTALLMENT PLAN INTEREST", amount_cents: 2352, category_id: 17, account_id: 4 },
-  { date: '3/18/2024', merchant: "PEEL DISTRICT SCHOOL BOAR", amount_cents: 2000, category_id: 18, account_id: 1 },
-  { date: '3/18/2024', merchant: "CINEPLEX ENTERTAINMENT", amount_cents: 3275, category_id: 2, account_id: 2 },
-  { date: '3/18/2024', merchant: "STARSKY FINE FOODS", amount_cents: 5286, category_id: 1, account_id: 3 },
-  { date: '3/18/2024', merchant: "TERRA FOODMART", amount_cents: 987, category_id: 1, account_id: 4 },
-  { date: '3/18/2024', merchant: "PREAUTHORIZED DEBIT POWERSTREAM ENE", amount_cents: 9217, category_id: 3, account_id: 1 },
-  { date: '3/17/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 2 },
-  { date: '3/17/2024', merchant: "IKEA BURLINGTON", amount_cents: 2142, category_id: 17, account_id: 3 },
-  { date: '3/17/2024', merchant: "VALUE VILLAGE", amount_cents: 2371, category_id: 19, account_id: 4 },
-  { date: '3/17/2024', merchant: "IKEA BURLINGTON", amount_cents: 1129, category_id: 1, account_id: 1 },
-  { date: '3/17/2024', merchant: "Wal-Mart", amount_cents: 5459, category_id: 1, account_id: 2 },
-  { date: '3/16/2024', merchant: "PAYBRIGHT", amount_cents: 7871, category_id: 3, account_id: 3 },
-  { date: '3/15/2024', merchant: "STARSKY FINE FOODS", amount_cents: 11912, category_id: 1, account_id: 4 },
-  { date: '3/15/2024', merchant: "PREAUTHORIZED DEBIT SA CONSOLIDATED", amount_cents: 4340, category_id: 11, account_id: 1 },
-  { date: '3/15/2024', merchant: "PAY XXXXXXX3903 FUNDTHROUGH", amount_cents: 329780, category_id: 9, account_id: 2 },
-  { date: '3/14/2024', merchant: "CINEPLEX ENTERTAINMENT", amount_cents: 3275, category_id: 2, account_id: 3 },
-  { date: '3/14/2024', merchant: "UBER CANADA/UBERTRIP", amount_cents: 1523, category_id: 2, account_id: 4 },
-  { date: '3/14/2024', merchant: "PRESTO MOBL", amount_cents: 2000, category_id: 5, account_id: 1 },
-  { date: '3/14/2024', merchant: "UBER CANADA/UBEREATS", amount_cents: 985, category_id: 1, account_id: 2 },
-  { date: '3/14/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 3 },
-  { date: '3/13/2024', merchant: "COME & SEE FOUNDATION", amount_cents: 10300, category_id: 13, account_id: 4 },
-  { date: '3/13/2024', merchant: "APPLE.COM/BILL", amount_cents: 451, category_id: 3, account_id: 1 },
-  { date: '3/12/2024', merchant: "Wal-Mart", amount_cents: 1890, category_id: 1, account_id: 2 },
-  { date: '3/12/2024', merchant: "Wal-Mart", amount_cents: 381, category_id: 1, account_id: 3 },
-  { date: '3/12/2024', merchant: "E-TRANSFER", amount_cents: 11000, category_id: 16, account_id: 4 },
-  { date: '3/11/2024', merchant: "OP market buy", amount_cents: 15638, category_id: 15, account_id: 1 },
-  { date: '3/11/2024', merchant: "MATIC market buy", amount_cents: 1000, category_id: 15, account_id: 2 },
-  { date: '3/10/2024', merchant: "LCBO/RAO #0494", amount_cents: 2750, category_id: 2, account_id: 3 },
-  { date: '3/10/2024', merchant: "Subway 23972", amount_cents: 1242, category_id: 1, account_id: 4 },
-  { date: '3/10/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 1 },
-  { date: '3/09/2024', merchant: "PREAUTHORIZED DEBIT TD INSURANCE", amount_cents: 26703, category_id: 6, account_id: 2 },
-  { date: '3/09/2024', merchant: "LONGO'S # 13", amount_cents: 7827, category_id: 1, account_id: 3 },
-  { date: '3/09/2024', merchant: "PAY TSA Payroll", amount_cents: 132534, category_id: 9, account_id: 4 },
-  { date: '3/08/2024', merchant: "STARSKY FINE FOODS", amount_cents: 7715, category_id: 1, account_id: 1 },
-  { date: '3/08/2024', merchant: "Subway 23972", amount_cents: 1242, category_id: 1, account_id: 2 },
-  { date: '3/08/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 3 },
-  { date: '3/07/2024', merchant: "LCBO/RAO #0494", amount_cents: 2750, category_id: 2, account_id: 4 },
-  { date: '3/07/2024', merchant: "HOSPITAL FOR SICK CHILDRE", amount_cents: 2000, category_id: 17, account_id: 1 },
-  { date: '3/07/2024', merchant: "UBER* EATS", amount_cents: 1889, category_id: 1, account_id: 2 },
-  { date: '3/07/2024', merchant: "INTERNET BILL PAY", amount_cents: 9640, category_id: 3, account_id: 3 },
-  { date: '3/06/2024', merchant: "DEPOSIT CANADA", amount_cents: 104601, category_id: 7, account_id: 4 },
-  { date: '3/06/2024', merchant: "Wal-Mart", amount_cents: 378, category_id: 1, account_id: 1 },
-  { date: '3/06/2024', merchant: "PIONEER STN #112", amount_cents: 8881, category_id: 5, account_id: 2 },
-  { date: '3/06/2024', merchant: "Amazon.ca*RH75O4JT2", amount_cents: 7378, category_id: 12, account_id: 3 },
-  { date: '3/05/2024', merchant: "INSTALLMENT PLAN INTEREST", amount_cents: 430, category_id: 16, account_id: 4 },
-  { date: '3/05/2024', merchant: "INSTALLMENT PLAN INTEREST", amount_cents: 2352, category_id: 17, account_id: 1 },
-  { date: '3/05/2024', merchant: "PEEL DISTRICT SCHOOL BOAR", amount_cents: 2000, category_id: 18, account_id: 2 },
-  { date: '3/05/2024', merchant: "CINEPLEX ENTERTAINMENT", amount_cents: 3275, category_id: 2, account_id: 3 },
-  { date: '3/05/2024', merchant: "STARSKY FINE FOODS", amount_cents: 5286, category_id: 1, account_id: 4 },
-  { date: '3/04/2024', merchant: "TERRA FOODMART", amount_cents: 987, category_id: 1, account_id: 1 },
-  { date: '3/04/2024', merchant: "PREAUTHORIZED DEBIT POWERSTREAM ENE", amount_cents: 9217, category_id: 3, account_id: 2 },
-  { date: '3/04/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 3 },
-  { date: '3/03/2024', merchant: "IKEA BURLINGTON", amount_cents: 2142, category_id: 17, account_id: 4 },
-  { date: '3/03/2024', merchant: "VALUE VILLAGE", amount_cents: 2371, category_id: 19, account_id: 1 },
-  { date: '3/03/2024', merchant: "IKEA BURLINGTON", amount_cents: 1129, category_id: 1, account_id: 2 },
-  { date: '3/02/2024', merchant: "Wal-Mart", amount_cents: 5459, category_id: 1, account_id: 3 },
-  { date: '3/02/2024', merchant: "PAYBRIGHT", amount_cents: 7871, category_id: 3, account_id: 4 },
-  { date: '3/02/2024', merchant: "STARSKY FINE FOODS", amount_cents: 11912, category_id: 1, account_id: 1 },
-  { date: '3/01/2024', merchant: "PREAUTHORIZED DEBIT SA CONSOLIDATED", amount_cents: 4340, category_id: 11, account_id: 2 },
-  { date: '3/01/2024', merchant: "PAY XXXXXXX3903 FUNDTHROUGH", amount_cents: 329780, category_id: 9, account_id: 3 },
-  { date: '2/29/2024', merchant: "CINEPLEX ENTERTAINMENT", amount_cents: 3275, category_id: 2, account_id: 4 },
-  { date: '2/29/2024', merchant: "UBER CANADA/UBERTRIP", amount_cents: 1523, category_id: 2, account_id: 1 },
-  { date: '2/29/2024', merchant: "PRESTO MOBL", amount_cents: 2000, category_id: 5, account_id: 2 },
-  { date: '2/28/2024', merchant: "UBER CANADA/UBEREATS", amount_cents: 985, category_id: 1, account_id: 3 },
-  { date: '2/28/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 4 },
-  { date: '2/27/2024', merchant: "COME & SEE FOUNDATION", amount_cents: 10300, category_id: 13, account_id: 1 },
-  { date: '2/27/2024', merchant: "APPLE.COM/BILL", amount_cents: 451, category_id: 3, account_id: 2 },
-  { date: '2/26/2024', merchant: "Wal-Mart", amount_cents: 1890, category_id: 1, account_id: 3 },
-  { date: '2/26/2024', merchant: "Wal-Mart", amount_cents: 381, category_id: 1, account_id: 4 },
-  { date: '2/26/2024', merchant: "E-TRANSFER", amount_cents: 11000, category_id: 16, account_id: 1 },
-  { date: '2/25/2024', merchant: "OP market buy", amount_cents: 15638, category_id: 15, account_id: 2 },
-  { date: '2/25/2024', merchant: "MATIC market buy", amount_cents: 1000, category_id: 15, account_id: 3 },
-  { date: '2/24/2024', merchant: "LCBO/RAO #0494", amount_cents: 2750, category_id: 2, account_id: 4 },
-  { date: '2/24/2024', merchant: "Subway 23972", amount_cents: 1242, category_id: 1, account_id: 1 },
-  { date: '2/24/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 2 },
-  { date: '2/23/2024', merchant: "PREAUTHORIZED DEBIT TD INSURANCE", amount_cents: 26703, category_id: 6, account_id: 3 },
-  { date: '2/23/2024', merchant: "LONGO'S # 13", amount_cents: 7827, category_id: 1, account_id: 4 },
-  { date: '2/23/2024', merchant: "PAY TSA Payroll", amount_cents: 132534, category_id: 9, account_id: 1 },
-  { date: '2/22/2024', merchant: "STARSKY FINE FOODS", amount_cents: 7715, category_id: 1, account_id: 2 },
-  { date: '2/22/2024', merchant: "Subway 23972", amount_cents: 1242, category_id: 1, account_id: 3 },
-  { date: '2/22/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 4 },
-  { date: '2/21/2024', merchant: "LCBO/RAO #0494", amount_cents: 2750, category_id: 2, account_id: 1 },
-  { date: '2/21/2024', merchant: "HOSPITAL FOR SICK CHILDRE", amount_cents: 2000, category_id: 17, account_id: 2 },
-  { date: '2/21/2024', merchant: "UBER* EATS", amount_cents: 1889, category_id: 1, account_id: 3 },
-  { date: '2/21/2024', merchant: "INTERNET BILL PAY", amount_cents: 9640, category_id: 3, account_id: 4 },
-  { date: '2/20/2024', merchant: "DEPOSIT CANADA", amount_cents: 104601, category_id: 7, account_id: 1 },
-  { date: '2/20/2024', merchant: "Wal-Mart", amount_cents: 378, category_id: 1, account_id: 2 },
-  { date: '2/20/2024', merchant: "PIONEER STN #112", amount_cents: 8881, category_id: 5, account_id: 3 },
-  { date: '2/20/2024', merchant: "Amazon.ca*RH75O4JT2", amount_cents: 7378, category_id: 12, account_id: 4 },
-  { date: '2/19/2024', merchant: "INSTALLMENT PLAN INTEREST", amount_cents: 430, category_id: 16, account_id: 1 },
-  { date: '2/19/2024', merchant: "INSTALLMENT PLAN INTEREST", amount_cents: 2352, category_id: 17, account_id: 2 },
-  { date: '2/19/2024', merchant: "PEEL DISTRICT SCHOOL BOAR", amount_cents: 2000, category_id: 18, account_id: 3 },
-  { date: '2/19/2024', merchant: "CINEPLEX ENTERTAINMENT", amount_cents: 3275, category_id: 2, account_id: 4 },
-  { date: '2/19/2024', merchant: "STARSKY FINE FOODS", amount_cents: 5286, category_id: 1, account_id: 1 },
-  { date: '2/18/2024', merchant: "TERRA FOODMART", amount_cents: 987, category_id: 1, account_id: 2 },
-  { date: '2/18/2024', merchant: "PREAUTHORIZED DEBIT POWERSTREAM ENE", amount_cents: 9217, category_id: 3, account_id: 3 },
-  { date: '2/18/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 4 },
-  { date: '2/17/2024', merchant: "IKEA BURLINGTON", amount_cents: 2142, category_id: 17, account_id: 1 },
-  { date: '2/17/2024', merchant: "VALUE VILLAGE", amount_cents: 2371, category_id: 19, account_id: 2 },
-  { date: '2/17/2024', merchant: "IKEA BURLINGTON", amount_cents: 1129, category_id: 1, account_id: 3 },
-  { date: '2/16/2024', merchant: "Wal-Mart", amount_cents: 5459, category_id: 1, account_id: 4 },
-  { date: '2/16/2024', merchant: "PAYBRIGHT", amount_cents: 7871, category_id: 3, account_id: 1 },
-  { date: '2/16/2024', merchant: "STARSKY FINE FOODS", amount_cents: 11912, category_id: 1, account_id: 2 },
-  { date: '2/15/2024', merchant: "PREAUTHORIZED DEBIT SA CONSOLIDATED", amount_cents: 4340, category_id: 11, account_id: 3 },
-  { date: '2/15/2024', merchant: "PAY XXXXXXX3903 FUNDTHROUGH", amount_cents: 329780, category_id: 9, account_id: 4 },
-  { date: '2/14/2024', merchant: "CINEPLEX ENTERTAINMENT", amount_cents: 3275, category_id: 2, account_id: 1 },
-  { date: '2/14/2024', merchant: "UBER CANADA/UBERTRIP", amount_cents: 1523, category_id: 2, account_id: 2 },
-  { date: '2/14/2024', merchant: "PRESTO MOBL", amount_cents: 2000, category_id: 5, account_id: 3 },
-  { date: '2/14/2024', merchant: "UBER CANADA/UBEREATS", amount_cents: 985, category_id: 1, account_id: 4 },
-  { date: '2/14/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 1 },
-  { date: '2/13/2024', merchant: "COME & SEE FOUNDATION", amount_cents: 10300, category_id: 13, account_id: 2 },
-  { date: '2/13/2024', merchant: "APPLE.COM/BILL", amount_cents: 451, category_id: 3, account_id: 3 },
-  { date: '2/12/2024', merchant: "Wal-Mart", amount_cents: 1890, category_id: 1, account_id: 4 },
-  { date: '2/12/2024', merchant: "Wal-Mart", amount_cents: 381, category_id: 1, account_id: 1 },
-  { date: '2/12/2024', merchant: "E-TRANSFER", amount_cents: 11000, category_id: 16, account_id: 2 },
-  { date: '2/11/2024', merchant: "OP market buy", amount_cents: 15638, category_id: 15, account_id: 3 },
-  { date: '2/11/2024', merchant: "MATIC market buy", amount_cents: 1000, category_id: 15, account_id: 4 },
-  { date: '2/10/2024', merchant: "LCBO/RAO #0494", amount_cents: 2750, category_id: 2, account_id: 1 },
-  { date: '2/10/2024', merchant: "Subway 23972", amount_cents: 1242, category_id: 1, account_id: 2 },
-  { date: '2/10/2024', merchant: "OLG 1 800 387 0098", amount_cents: 600, category_id: 17, account_id: 3 },
-  { date: '2/09/2024', merchant: "PREAUTHORIZED DEBIT TD INSURANCE", amount_cents: 26703, category_id: 6, account_id: 4 },
-  { date: '2/09/2024', merchant: "LONGO'S # 13", amount_cents: 7827, category_id: 1, account_id: 1 },
-  { date: '2/09/2024', merchant: "PAY TSA Payroll", amount_cents: 132534, category_id: 9, account_id: 2 }]
+  category_id = rand(1..categories.count)
+  account_id = rand(1..accounts.count)
 
-  Transaction.create!(transactions)
+  Transaction.create!(
+    date: date,
+    merchant: merchant,
+    amount_cents: amount_cents,
+    category_id: category_id,
+    account_id: account_id
+  )
+end
 
-puts 'Data seeded successfully!'
+# Seed Budgets for all categories
+User.create(email: 'user@example.com', password_digest: 'encrypted_password')
+
+user_id = User.first.id
+
+Budget.create(category_id: 1, user_id: user_id, budget_amount_cents: 100000, fact_amount_cents: 80000)
+Budget.create(category_id: 2, user_id: user_id, budget_amount_cents: 20000, fact_amount_cents: 10000)
+Budget.create(category_id: 3, user_id: user_id, budget_amount_cents: 35000, fact_amount_cents: 28000)
+Budget.create(category_id: 4, user_id: user_id, budget_amount_cents: 290000, fact_amount_cents: 290000)
+Budget.create(category_id: 5, user_id: user_id, budget_amount_cents: 28000, fact_amount_cents: 18000)
+Budget.create(category_id: 6, user_id: user_id, budget_amount_cents: 34800, fact_amount_cents: 24500)
+Budget.create(category_id: 7, user_id: user_id, budget_amount_cents: 7000, fact_amount_cents: 3000)
+Budget.create(category_id: 8, user_id: user_id, budget_amount_cents: 100000, fact_amount_cents: 80000)
+Budget.create(category_id: 9, user_id: user_id, budget_amount_cents: 45000, fact_amount_cents: 25000)
+Budget.create(category_id: 10, user_id: user_id, budget_amount_cents: 20000, fact_amount_cents: 10000)
+Budget.create(category_id: 11, user_id: user_id, budget_amount_cents: 9000, fact_amount_cents: 3500)
+Budget.create(category_id: 12, user_id: user_id, budget_amount_cents: 6000, fact_amount_cents: 4500)
+Budget.create(category_id: 13, user_id: user_id, budget_amount_cents: 10000, fact_amount_cents: 8000)
+Budget.create(category_id: 14, user_id: user_id, budget_amount_cents: 10000, fact_amount_cents: 9000)
+Budget.create(category_id: 15, user_id: user_id, budget_amount_cents: 20000, fact_amount_cents: 19000)
+Budget.create(category_id: 16, user_id: user_id, budget_amount_cents: 40000, fact_amount_cents: 29000)
+Budget.create(category_id: 17, user_id: user_id, budget_amount_cents: 15000, fact_amount_cents: 19000)
+Budget.create(category_id: 18, user_id: user_id, budget_amount_cents: 18000, fact_amount_cents: 10000)
+Budget.create(category_id: 19, user_id: user_id, budget_amount_cents: 20000, fact_amount_cents: 19000)
+
+
+
+puts "Seeding completed successfully!"

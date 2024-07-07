@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_06_184348) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_06_234315) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.string "account_type"
@@ -20,13 +20,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_184348) do
   end
 
   create_table "budgets", force: :cascade do |t|
-    t.string "category"
+    t.integer "category_id", null: false
+    t.integer "user_id", null: true # This line was modified to allow null values
     t.integer "budget_amount_cents", default: 0
     t.integer "fact_amount_cents", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id", null: false
-    t.integer "user_id", null: false
     t.index ["category_id"], name: "index_budgets_on_category_id"
     t.index ["user_id"], name: "index_budgets_on_user_id"
   end
@@ -40,12 +39,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_184348) do
   create_table "transactions", force: :cascade do |t|
     t.date "date"
     t.string "merchant"
+    t.integer "category_id", null: false
     t.integer "amount_cents", default: 0
-    t.string "category"
     t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id", null: false
     t.index ["account_id"], name: "index_transactions_on_account_id"
     t.index ["category_id"], name: "index_transactions_on_category_id"
   end
