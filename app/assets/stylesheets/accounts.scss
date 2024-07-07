@@ -8,18 +8,32 @@
     align-items: center;
     justify-content: space-around;
     padding: 2rem;
+
+    .new-account-button {
+      position: absolute;
+      top: 115px;
+      right:50px;
+    }
   }
 
   .display-accounts {
     padding: 3rem;
     display: flex;
     align-items: center;
-    .accounts {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
+    justify-content: center;
+
+    .accounts-container {
+      display: inline-block;
+      
+      .accounts {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 20px;
+      }  
     }
+    
   }
 }
 
