@@ -4,15 +4,14 @@ class TransactionsController < ApplicationController
   # GET /transactions or /transactions.json
   def index
     if params[:search].present?
-      # where("name like ?", "%#{params[:search]}%").first
       amount_in_cents = "@"
       if params[:search].to_money.fractional > 0
         amount_in_cents = params[:search].to_money.fractional
       end
         @transactions = 
           Transaction.joins(:category, :account)
-            .where("categories.name LIKE ? OR accounts.name LIKE ? OR amount_cents LIKE ? OR merchant LIKE ?",
-             "%#{params[:search]}%", "%#{params[:search]}%", "%#{amount_in_cents}%", "%#{params[:search]}%")
+          .where("categories.name LIKE :search OR accounts.name LIKE :search OR merchant LIKE :search OR amount_cents >= :amount_in_cents",
+          search: "%#{params[:search]}%", amount_in_cents: amount_in_cents)
             .order(date: :desc)
         puts "*** SQL QUERY: " + @transactions.to_sql
     else
