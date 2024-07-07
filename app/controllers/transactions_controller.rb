@@ -27,6 +27,9 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
+    @category = Category.where(id: @transaction.category_id)
+    puts "*** @category: " 
+    p @category
   end
 
   # POST /transactions or /transactions.json

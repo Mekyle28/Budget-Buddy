@@ -45,7 +45,8 @@
         <%= form.label :category %>:
       </div>
       <div class="col my-auto">
-        <%= form.select :category_id, options_from_collection_for_select(Category.all.order(:name), :id, :name), { include_blank: true }, {selected: Category.find(transaction.category_id).name} %>
+        <%= form.select :category_id, options_from_collection_for_select(Category.all.order(:name), :id, :name, @transaction.category_id), { include_blank: true }
+        %>
       </div>
     </div>
 
@@ -54,7 +55,7 @@
         <%= form.label :account %>:
       </div>
       <div class="col my-auto">
-        <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name), { include_blank: true } %>
+        <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name, @transaction.account_id), { include_blank: true } %>
       </div>
     </div>
     
