@@ -1,14 +1,16 @@
 <p style="color: green"><%= notice %></p>
+<article class="accounts-page">
+  <div class="accounts-title">
+    <h1>Accounts</h1>
+      <%= link_to "New account", new_account_path, class:"btn btn-outline-primary" %>
+    </div>
+  <section class="display-accounts">
+    <div id="accounts" class="accounts">
+      <% @accounts.each do |account| %>
+        <%= render account %>
+      <% end %>
+    </div>
+  </section>
+</article>
 
-<h1>Accounts</h1>
 
-<div id="accounts">
-  <% @accounts.each do |account| %>
-    <%= render account %>
-    <p>
-      <%= link_to "Show this account", account %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New account", new_account_path %>
