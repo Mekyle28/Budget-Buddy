@@ -1,6 +1,6 @@
 class Budget < ApplicationRecord
   belongs_to :category
-  belongs_to :user
+  belongs_to :user, optional: true
 
   validates_numericality_of :budget_amount_cents, greater_than_or_equal_to: 0
   validates_numericality_of :fact_amount_cents, greater_than_or_equal_to: 0
