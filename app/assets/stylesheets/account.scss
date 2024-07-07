@@ -1,0 +1,44 @@
+.account {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 0.5em;
+  border: 6px solid rgb(161, 162, 163);
+  text-align: center;
+  font-size: x-large;
+  padding: 1rem;
+  width: 18rem;
+  height: 15rem;
+  margin: 2rem;
+
+  .account-name {
+    margin-bottom: 0.3rem;
+  }
+}
+
+.account-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.account-info {
+  display:flex;
+  flex-direction: row;
+
+  .side-bar {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.5em;
+    border: 3px solid rgb(161, 162, 163);
+    font-size: x-large;
+    width: 20%;
+
+    .side-bar-account {
+
+    }
+  }
+}
