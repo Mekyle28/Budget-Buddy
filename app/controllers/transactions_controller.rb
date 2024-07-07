@@ -1,13 +1,21 @@
 class TransactionsController < ApplicationController
-  before_action :set_transaction, only: %i[ show edit update destroy ]
+  before_action :set_transaction, only: %i[ edit update destroy ]
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = Transaction.all.order(date: :desc)
-  end
-
-  # GET /transactions/1 or /transactions/1.json
-  def show
+    if params[:search].present?
+      # where("name like ?", "%#{params[:search]}%").first
+      amount_in_cents = "@"
+      if params[:search].to_money.fractional > 0
+        amount_in_cents = params[:search].to_money.fractional
+      end
+        @transactions = 
+          Transaction.joins(:category, :account)
+            .where("categories.name LIKE ? OR accounts.name LIKE ? OR amount_cents LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{amount_in_cents}%")
+            .order(date: :desc)
+    else
+      @transactions = Transaction.all.order(date: :desc)
+    end
   end
 
   # GET /transactions/new
@@ -67,4 +75,5 @@ class TransactionsController < ApplicationController
     def transaction_params
       params.require(:transaction).permit(:date, :merchant, :amount, :category, :account_id, :category_id)
     end
+
 end

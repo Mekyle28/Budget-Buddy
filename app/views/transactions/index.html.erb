@@ -10,9 +10,9 @@
     <%= link_to "New transaction", new_transaction_path, class:"btn btn-outline-success" %>
   </div>
   <div class="">
-    <%= form_with url: "/search", method: :get do |form| %>
-    <%= form.text_field :search, placeholder:"Search" %>
-    <%= form.submit "Search", class:"btn btn-success" %>
+    <%= form_with(url: transactions_path, method: :get) do %>
+    <%= text_field_tag :search, params[:search], placeholder:"Search" %>
+    <%= submit_tag "Search", class:"btn btn-success" %>
     <% end %>
   </div>  
 </div>
@@ -27,8 +27,12 @@
       <div class="col my-auto">Account:</div>
       <div class="col-1 my-auto">Edit:</div>
     </div>
-    <% @transactions.each do |transaction| %>
-      <%= render transaction %>
+    <% if @transactions.present? %>
+      <% @transactions.each do |transaction| %>
+        <%= render transaction %>
+      <% end %>
+    <% else %>
+      No transactions found
     <% end %>
   </div>
 </div>
