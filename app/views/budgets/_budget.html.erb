@@ -1,17 +1,17 @@
-# app/views/budgets/show.html.erb
-<div id="<%= dom_id budget %>">
-  <p>
-    <strong>Category:</strong>
-    <%= budget.category.name %>
-  </p>
+<section class="budget">
 
-  <p>
-    <strong>Budget amount:</strong>
-    <%= humanized_money_with_symbol(budget.budget_amount) %>
-  </p>
+<div class="row">
+  <div class="col my-auto">
+    <%= budget.category %>
+  </div>
 
-  <p>
-    <strong>Fact amount:</strong>
-    <%= humanized_money_with_symbol(budget.fact_amount) %>
-  </p>
+  <div class="col my-auto">
+    <%= budget.budget_amount %>
+  </div>
+
+  <div class="col my-auto">
+    <%= budget.fact_amount %>
+  </div>
 </div>
+
+</section>

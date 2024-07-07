@@ -1,11 +1,11 @@
 class BudgetsController < ApplicationController
-  before_action :set_budget, only: %i[ show edit update destroy ]
+  before_action :set_budget, only: %i[show edit update destroy]
 
   # GET /budgets or /budgets.json
   def index
-    @budget_categories = Budget.all.map do |budget|
+    @budget_categories = Budget.includes(:category).all.map do |budget|
       {
-        category: budget.category,
+        category: budget.category.name,
         budget_amount: budget.budget_amount.to_f,
         fact_amount: budget.fact_amount.to_f
       }
@@ -27,11 +27,16 @@ class BudgetsController < ApplicationController
 
   # POST /budgets or /budgets.json
   def create
-    @budget = Budget.new(budget_params)
+    category = Category.find_or_create_by(name: budget_params[:category_name])
+
+    @budget = Budget.new(
+      category: category,
+      budget_amount_cents: budget_params[:budget_amount_cents]
+    )
 
     respond_to do |format|
       if @budget.save
-        format.html { redirect_to budget_url(@budget), notice: "Budget was successfully created." }
+        format.html { redirect_to budgets_url, notice: "Budget was successfully created." }
         format.json { render :show, status: :created, location: @budget }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -55,8 +60,7 @@ class BudgetsController < ApplicationController
 
   # DELETE /budgets/1 or /budgets/1.json
   def destroy
-    @budget.destroy!
-
+    @budget.destroy
     respond_to do |format|
       format.html { redirect_to budgets_url, notice: "Budget was successfully destroyed." }
       format.json { head :no_content }
@@ -64,13 +68,14 @@ class BudgetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_budget
-      @budget = Budget.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def budget_params
-      params.require(:budget).permit(:category, :budget_amount, :fact_amount)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_budget
+    @budget = Budget.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def budget_params
+    params.require(:budget).permit(:category_name, :budget_amount_cents)
+  end
 end

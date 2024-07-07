@@ -1,0 +1,19 @@
+.budgets {
+  border: 2px solid;
+  border-radius: 10px;
+  margin-top: 1em;
+  
+  .row {
+    padding: 0.25em 0;
+  }
+  .budget:nth-of-type(odd) {
+    background-color: rgb(220, 220, 220);
+    border-radius: 5px;
+  }
+  .container {
+    padding: 0;
+    width: 95%;
+    margin: auto;
+    margin-top: 1em;
+  }
+}
