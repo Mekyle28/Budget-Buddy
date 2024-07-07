@@ -11,8 +11,10 @@ class TransactionsController < ApplicationController
       end
         @transactions = 
           Transaction.joins(:category, :account)
-            .where("categories.name LIKE ? OR accounts.name LIKE ? OR amount_cents LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{amount_in_cents}%")
+            .where("categories.name LIKE ? OR accounts.name LIKE ? OR amount_cents LIKE ? OR merchant LIKE ?",
+             "%#{params[:search]}%", "%#{params[:search]}%", "%#{amount_in_cents}%", "%#{params[:search]}%")
             .order(date: :desc)
+        puts "*** SQL QUERY: " + @transactions.to_sql
     else
       @transactions = Transaction.all.order(date: :desc)
     end

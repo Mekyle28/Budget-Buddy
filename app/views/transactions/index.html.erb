@@ -3,18 +3,24 @@
 <h1>Transactions</h1>
 
 <div class="transactions-nav">
-  <div class="">
+  <div>
     <strong>
       Add a new transaction:
     </strong>
     <%= link_to "New transaction", new_transaction_path, class:"btn btn-outline-success" %>
   </div>
-  <div class="">
+  <div class="transactions-nav">
     <%= form_with(url: transactions_path, method: :get) do %>
     <%= text_field_tag :search, params[:search], placeholder:"Search" %>
     <%= submit_tag "Search", class:"btn btn-success" %>
     <% end %>
-  </div>  
+  
+    <% if params[:search].present? %>
+      <%= link_to "Clear", [:transactions], class:"btn btn-warning" %>
+    <% end %>
+
+  </div>
+
 </div>
 
 <div class="transactions">
