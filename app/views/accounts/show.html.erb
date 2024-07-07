@@ -2,14 +2,14 @@
 
 <div class="account-title">
   <h1><strong>Visa</strong> - Credit</h1S>
-  <%= link_to "Edit this account", edit_account_path(@account), class:"btn btn-outline-primary" %>
+  <span class="edit-account"><%= link_to "Edit account", edit_account_path(@account), class:"btn btn-outline-primary" %></span>
 </div>
 
 <section class="account-info">
 
   <div class="side-bar">
     <div class="accounts-menu">
-      <div class="side-bar-account">Accounts</div>
+      <h3 class="side-bar-account">Accounts</h3>
       <div class="side-bar-account">Savigns</div>
       <div class="side-bar-account">VISA</div>
       <div class="side-bar-account">MC</div>
@@ -19,11 +19,13 @@
 
   <atricle class="account-contents">
     <div>
-      <h2 class="account-title">
-      
+      <h2 class="account-balance"><strong>Balance:</strong> $832.54</h2>
+      <h2><strong>Transactions:</strong></h2>
+      <div>
+      transactios
+      </div>
 
     </div>
-
   </article>
 
 </section>

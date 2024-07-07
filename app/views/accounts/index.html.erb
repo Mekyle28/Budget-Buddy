@@ -2,13 +2,17 @@
 <article class="accounts-page">
   <div class="accounts-title">
     <h1>Accounts</h1>
+    <span class="new-account-button">
       <%= link_to "New account", new_account_path, class:"btn btn-outline-primary" %>
-    </div>
+    </span>
+  </div>
   <section class="display-accounts">
-    <div id="accounts" class="accounts">
-      <% @accounts.each do |account| %>
-        <%= render account %>
-      <% end %>
+    <div class="accounts-container">
+      <span id="accounts" class="accounts">
+        <% @accounts.each do |account| %>
+          <%= render account %>
+        <% end %>
+      </span>
     </div>
   </section>
 </article>
