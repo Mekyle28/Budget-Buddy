@@ -1,11 +1,10 @@
 <div class="transaction-form">
-  <%= form_with(model: transaction) do |form| %>
+  <%= form_with(model: transaction, class: "needs-validation") do |form| %>
     <% if transaction.errors.any? %>
+    <% p transaction.errors %>
       <div class="error-message">
-        <div class="error-header">
-          <h3><%= pluralize(transaction.errors.count, "error") %> occured preventing save:</h3>
-        </div>
         <div class="error-messages">
+          <p><strong>Please fill in the required fields:</strong></p>
           <ul>
             <% transaction.errors.each do |error| %>
               <li><%= error.full_message %></li>
@@ -21,7 +20,7 @@
         <%= form.label :date %>
       </div>
       <div class="col my-auto">
-        <%= form.date_field :date, class:"form-control" %>
+        <%= form.date_field :date, class: form.object.errors[:date].any? ? "form-control error" : "form-control" %>
       </div>
     </div>
 
@@ -30,7 +29,7 @@
         <%= form.label :merchant %>
       </div>
       <div class="col my-auto">
-        <%= form.text_field :merchant, class:"form-control" %>
+        <%= form.text_field :merchant, class: form.object.errors[:merchant].any? ? "form-control error" : "form-control" %>
       </div>
     </div>
 
@@ -39,16 +38,16 @@
         <%= form.label :amount %>
       </div>
       <div class="col my-auto">
-        <%= form.number_field :amount, step: 0.01, class:"form-control" %>
+        <%= form.number_field :amount, step: 0.01, class: form.object.errors[:amount].any? ? "form-control error" : "form-control" %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col my-auto">
+      <div class="col my-auto"> 
         <%= form.label :category %>
       </div>
       <div class="col my-auto">
-        <%= form.select :category_id, options_from_collection_for_select(Category.all.order(:name), :id, :name, @transaction.category_id), { include_blank: true }, class:"form-control form-select" %>
+        <%= form.select :category_id, options_from_collection_for_select(Category.all.order(:name), :id, :name, @transaction.category_id), { prompt: "Select a category" }, class: form.object.errors[:category].any? ? 'form-control form-select error' : "form-control form-select" %>
       </div>
     </div>
 
@@ -57,7 +56,7 @@
         <%= form.label :account %>
       </div>
       <div class="col my-auto">
-        <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name, @transaction.account_id), { include_blank: true }, class:"form-control form-select" %>
+        <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name, @transaction.account_id), { prompt: "Select an account" }, class: form.object.errors[:account].any? ? 'form-control form-select error' : "form-control form-select" %>
       </div>
     </div>
     
