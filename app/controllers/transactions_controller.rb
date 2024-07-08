@@ -10,10 +10,9 @@ class TransactionsController < ApplicationController
       end
         @transactions = 
           Transaction.joins(:category, :account)
-          .where("categories.name LIKE :search OR accounts.name LIKE :search OR merchant LIKE :search OR amount_cents >= :amount_in_cents",
-          search: "%#{params[:search]}%", amount_in_cents: amount_in_cents)
+            .where("categories.name LIKE :search OR accounts.name LIKE :search OR merchant LIKE :search OR amount_cents >= :amount_in_cents",
+            search: "%#{params[:search]}%", amount_in_cents: amount_in_cents)
             .order(date: :desc)
-        puts "*** SQL QUERY: " + @transactions.to_sql
     else
       @transactions = Transaction.all.order(date: :desc)
     end
@@ -27,8 +26,6 @@ class TransactionsController < ApplicationController
   # GET /transactions/1/edit
   def edit
     @category = Category.where(id: @transaction.category_id)
-    puts "*** @category: " 
-    p @category
   end
 
   # POST /transactions or /transactions.json
