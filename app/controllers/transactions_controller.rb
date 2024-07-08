@@ -25,7 +25,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to [:transactions], notice: "Transaction was successfully created." }
+        format.html { redirect_to transactions_path, notice: "Transaction was successfully created." }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to [:transactions], notice: "Transaction was successfully updated." }
+        format.html { redirect_to transactions_path, notice: "Transaction was successfully updated." }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -58,13 +58,12 @@ class TransactionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_transaction
-      @transaction = Transaction.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def transaction_params
-      params.require(:transaction).permit(:date, :merchant, :amount, :category, :account_id, :category_id)
-    end
+  def set_transaction
+    @transaction = Transaction.find(params[:id])
+  end
+
+  def transaction_params
+    params.require(:transaction).permit(:date, :merchant, :amount, :category_id, :account_id)
+  end
 end
