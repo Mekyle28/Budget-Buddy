@@ -1,5 +1,5 @@
 <section class="main-page">
-  <h1 class="main-title">JUNE 2024</h1>
+  <h1 class="main-title"></h1>
 
   <table class="budget-progress">
     <tr>
@@ -11,9 +11,8 @@
     <% @budget_categories.each do |category| %>
       <% budget_amount = category.budget_amount.to_f %>
       <% fact_amount = category.fact_amount.to_f %>
-      <% percentage = (fact_amount != 0) ? (budget_amount / fact_amount) * 100 : 0.0 %>
-      
-      <%= render 'category', name: category.category.name, budget: budget_amount, fact: fact_amount, percentage: percentage %>
+            
+      <%= render 'category', name: category.category.name, budget: budget_amount, fact: fact_amount %>
     <% end %>
   </table>
 </section>
