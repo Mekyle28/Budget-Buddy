@@ -51,8 +51,9 @@
     border-radius: 0.5em;
     border: 3px solid rgb(69, 69, 70);
     font-size: x-large;
-    width: 20%;
-    min-height: 25rem;
+    width: 15%;
+    max-height: 25rem;
+    
 
     .side-bar-account {
       border-radius: 0.15em;
@@ -60,6 +61,7 @@
       text-align: center;
       padding:.5rem;
       margin: 0.5rem;
+      color: black;
     }
   }
 
@@ -67,8 +69,22 @@
     display: flex;
     flex-direction: column;
     padding-left: 8rem;
+    width: 77%;
     .account-balance {
       padding-bottom: 2.5rem;
     }
+    .account-transactions {
+      font-size: x-large;
+      tr {
+        border-radius: 0.5em;
+        border-bottom: 3px solid rgb(161, 162, 163);
+
+        td {
+          padding: 1rem;
+        }  
+      }  
+    }
   }
 }
+
+  
