@@ -1,0 +1,19 @@
+
+
+<tr >
+<td>
+  <%= charge.date %>
+</td>
+<td>
+  <%= charge.merchant %>
+</td>
+<td>
+  <%= number_to_currency(charge.amount) %>
+</td>
+<td>
+  <%= charge.category.name %>
+</td>
+<td>
+  <%= link_to "Edit", edit_transaction_path(charge), class: "btn btn-outline-primary" %>
+</td>
+</tr>

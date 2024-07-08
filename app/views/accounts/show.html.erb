@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="account-title">
-  <h1><strong>Visa</strong> - Credit</h1S>
+  <h1><strong><%= @account.name %></strong> - <%= @account.account_type %></h1S>
   <span class="edit-account"><%= link_to "Edit account", edit_account_path(@account), class:"btn btn-outline-primary" %></span>
 </div>
 
@@ -10,21 +10,38 @@
   <div class="side-bar">
     <div class="accounts-menu">
       <h3 class="side-bar-account">Accounts</h3>
-      <div class="side-bar-account">Savigns</div>
-      <div class="side-bar-account">VISA</div>
-      <div class="side-bar-account">MC</div>
-      <div class="side-bar-account">VISA</div>
+      <% @accounts.each do |account| %>
+        <%= link_to account_path(account), class: "no-underline" do %>
+        <div class="side-bar-account"><%= account.name %></div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
   <atricle class="account-contents">
     <div>
-      <h2 class="account-balance"><strong>Balance:</strong> $832.54</h2>
+      <h2 class="account-balance"><strong>Balance:</strong> <%= number_to_currency(@account.current_balance_cents/100) %></h2>
       <h2><strong>Transactions:</strong></h2>
       <div>
-      transactios
-      </div>
 
+        <table class="account-transactions">
+          
+          <tr>
+            <td><strong>Date</strong></td>
+            <td><strong>Merchant</strong></td>
+            <td><strong>Amount</strong></td>
+            <td><strong>Category</strong></td>
+            <td><strong>Edit</strong></td>
+          </tr>
+        
+
+          <% @account_transactions.each do |charge| %>
+            <%= render partial: 'charge', locals: { charge: charge } %>
+          <% end %>
+
+        </table>
+        
+      </div>
     </div>
   </article>
 
