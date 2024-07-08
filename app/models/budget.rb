@@ -7,4 +7,9 @@ class Budget < ApplicationRecord
 
   monetize :budget_amount_cents, as: :budget_amount
   monetize :fact_amount_cents, as: :fact_amount
+
+  def update_fact_amount(transaction_amount)
+    self.fact_amount_cents += transaction_amount
+    save
+  end
 end

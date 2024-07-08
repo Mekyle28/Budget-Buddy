@@ -33,8 +33,7 @@ class BudgetsController < ApplicationController
     @budget = Budget.new(
       category: category,
       budget_amount_cents: params[:budget][:budget_amount_cents].to_i * 100,
-      fact_amount_cents: 0,
-      user_id: nil
+      fact_amount_cents: 0
     )
 
     respond_to do |format|
@@ -72,12 +71,10 @@ class BudgetsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_budget
     @budget = Budget.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def budget_params
     params.require(:budget).permit(:category_name, :budget_amount_cents)
   end
