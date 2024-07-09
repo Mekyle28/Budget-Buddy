@@ -15,7 +15,7 @@ class Transaction < ApplicationRecord
   private
 
   def update_account_balance
-    account.update(current_balance_cents: account.transactions.sum(:amount_cents))
+    account.update(current_balance_cents: account.current_balance_cents - amount_cents)
   end
 
   def update_budget_fact_amount

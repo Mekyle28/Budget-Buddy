@@ -15,8 +15,10 @@
     <%= render 'layouts/top_nav' %>
     
     <main>
+      <%= turbo_frame_tag "modal" %>
       <%= yield %>
     </main>
 
+  
   </body>
 </html>

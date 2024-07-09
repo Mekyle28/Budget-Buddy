@@ -3,29 +3,14 @@
 <h1>Budgets</h1>
 
 <div class="row">
-  <div class="col-4 my-auto">
-  </div>
-</div>
-
-<div class="row">
   <div class="col-lg-3">
     <div class="budgets">
       <div class="container text-left">
         <div class="col my-auto">
           <p> ARCHIVE: </p>
-          <p> June 2024 </p>
-          <p> May 2024 </p>
-          <p> April 2024 </p>
-          <p> March 2024 </p>
-          <p> February 2024 </p>
-          <p> January 2024 </p>
-          <p> December 2023 </p>
-          <p> November 2023 </p>
-          <p> October 2023 </p>
-          <p> September 2023 </p>
-          <p> August 2023 </p>
-          <p> July 2023 </p>
-          <p> June 2023 </p>
+          <% @archive_months.each do |month| %>
+            <%= link_to month.strftime('%B %Y'), budgets_path(archive_month: month), class: 'btn btn-link d-block mb-2' %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -38,10 +23,24 @@
           <div class="col my-auto"><strong>Category:</strong></div>
           <div class="col my-auto"><strong>Budget Amount:</strong></div>
           <div class="col my-auto"><strong>Fact Amount:</strong></div>
+          <% unless @budget_categories.empty? %>
+            <% unless @budget_categories.first[:archive_month] %>
+              <div class="col my-auto"><strong>Actions:</strong></div>
+            <% end %>
+          <% end %>
         </div>
 
         <% @budget_categories.each do |category| %>
-          <%= render 'budget_category', category: category %>
+          <div class="row">
+            <div class="col my-auto"><%= category[:category] %></div>
+            <div class="col my-auto">$<%= number_with_precision(category[:budget_amount], precision: 0) %></div>
+            <div class="col my-auto">$<%= number_with_precision(category[:fact_amount], precision: 0) %></div>
+            <% unless category[:archive_month] %>
+              <div class="col my-auto">
+                <%= link_to 'Edit', edit_budget_path(category[:budget_id]), data: { turbo_frame: "modal"}, class: 'btn btn-secondary btn-sm' %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
 
         <%= form_with(model: @budget, url: budgets_path, local: true) do |form| %>
@@ -56,18 +55,22 @@
             </div>
           <% end %>
 
-          <div class="row">
-            <div class="col">
-              <%= form.text_field :category_name, class: "form-control", placeholder: "Category" %>
-            </div>
-            <div class="col">
-              <%= form.number_field :budget_amount_cents, class: "form-control", placeholder: "Budget Amount" %>
-            </div>
-            <div class="col my-auto">
-              <%= form.submit "Submit", class: "btn btn-primary" %>
-            </div>
-          </div>
-        <% end %>
+          <% unless @budget_categories.empty? %>
+            <% unless @budget_categories.first[:archive_month] %>
+              <div class="row">
+                <div class="col">
+                  <%= form.text_field :category_name, class: "form-control", placeholder: "Category" %>
+                </div>
+                <div class="col">
+                  <%= form.number_field :budget_amount_cents, value: @budget.budget_amount_cents, class: "form-control", placeholder: "Budget Amount" %>
+                </div>
+                <div class="col my-auto">
+                  <%= form.submit "Submit", class: "btn btn-primary" %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %> <!-- Ensure this 'form_with' block is properly closed -->
       </div>
     </div>
   </div>

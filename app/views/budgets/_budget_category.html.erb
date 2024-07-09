@@ -3,9 +3,16 @@
     <%= category[:category] %>
   </div>
   <div class="col my-auto">
-    $<%= number_with_precision(category[:budget_amount], precision: 0) %>
+    <%= category[:budget_amount].format %>
   </div>
   <div class="col my-auto">
-    $<%= number_with_precision(category[:fact_amount], precision: 0) %>
+    <%= category[:fact_amount].format %>
+  </div>
+  <div class="col my-auto">
+    <% if category[:budget_id] %>
+     <% unless category[:archive_month] %>
+      <%= link_to 'Edit', edit_budget_path(category[:budget_id]), class: 'btn btn-secondary' %>
+    <% end %>
+    <% end %>
   </div>
 </div>
