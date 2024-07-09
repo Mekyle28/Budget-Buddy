@@ -5,6 +5,9 @@ class Transaction < ApplicationRecord
   after_save :update_account_balance
   after_create :update_budget_fact_amount
 
+  validates :date, presence: true
+  validates :merchant, presence: true
+  validates :amount, numericality: { greater_than: 0 }
   validates :amount_cents, numericality: { greater_than_or_equal_to: 0 }
 
   monetize :amount_cents, as: :amount

@@ -1,69 +1,91 @@
 <div class="transaction-form">
   <%= form_with(model: transaction) do |form| %>
+    
     <% if transaction.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
-
-        <ul>
-          <% transaction.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
+    <% p transaction.errors %>
+      <div class="error-message">
+          <p><strong>Please fill in the required fields:</strong></p>
+          <!---
+          <ul>
+            <% transaction.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+          --->
       </div>
     <% end %>
 
   <div class="container">
     <div class="row">
       <div class="col my-auto">
-        <%= form.label :date %>:
+        <%= form.label :date %>
       </div>
       <div class="col my-auto">
-        <%= form.date_field :date %>
+        <% if form.object.errors[:date].any? %>
+          <div class="field-error">Please select a date</div>
+        <% end %>
+        <%= form.date_field :date, class: form.object.errors[:date].any? ? "form-control error" : "form-control" %>
       </div>
     </div>
 
     <div class="row">
       <div class="col my-auto">
-        <%= form.label :merchant %>:
+        <%= form.label :merchant %>
       </div>
       <div class="col my-auto">
-        <%= form.text_field :merchant %>
+        <% if form.object.errors[:merchant].any? %>
+          <div class="field-error">Please enter a merchant</div>
+        <% end %>
+        <%= form.text_field :merchant, list: 'merchant-list', class: form.object.errors[:merchant].any? ? "form-control error" : "form-control" %>
+        <datalist id="merchant-list">
+          <% Transaction.select(:merchant).distinct.order(:merchant).each do |transaction| %>
+            <option value="<%= transaction.merchant %>"></option>
+          <% end %>
+        </datalist>
       </div>
     </div>
 
     <div class="row">
       <div class="col my-auto">
-        <%= form.label :amount %>:
+        <%= form.label :amount %>
       </div>
       <div class="col my-auto">
-        <%= form.number_field :amount, step: 0.01 %>
+        <% if form.object.errors[:amount].any? %>
+          <div class="field-error">Please enter an amount</div>
+        <% end %>
+        <%= form.number_field :amount, step: 0.01, class: form.object.errors[:amount].any? ? "form-control error" : "form-control" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col my-auto"> 
+        <%= form.label :category %>
+      </div>
+      <div class="col my-auto">
+        <% if form.object.errors[:category].any? %>
+          <div class="field-error">Please select a category</div>
+        <% end %>
+        <%= form.select :category_id, options_from_collection_for_select(Category.all.order(:name), :id, :name, @transaction.category_id), { prompt: "Select a category" }, class: form.object.errors[:category].any? ? 'form-control form-select error' : "form-control form-select" %>
       </div>
     </div>
 
     <div class="row">
       <div class="col my-auto">
-        <%= form.label :category %>:
+        <%= form.label :account %>
       </div>
       <div class="col my-auto">
-        <%= form.select :category_id, options_from_collection_for_select(Category.all.order(:name), :id, :name), { include_blank: true } %>
+        <% if form.object.errors[:account].any? %>
+          <div class="field-error">Please select an account</div>
+        <% end %>
+        <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name, @transaction.account_id), { prompt: "Select an account" }, class: form.object.errors[:account].any? ? 'form-control form-select error' : "form-control form-select" %>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col my-auto">
-        <%= form.label :account %>:
-      </div>
-      <div class="col my-auto">
-        <%= form.select :account_id, options_from_collection_for_select(Account.all.order(:name), :id, :name), { include_blank: true } %>
-      </div>
-    </div>
-
+    
     <div class="row">
       <div class="col">
+        <%= link_to "Back", [:transactions], class:"btn btn-primary" %>
       </div>
-      <div>
-      <%= link_to "Back", [:transactions], class:"btn btn-primary" %>
-      </div>
+
       <div class="col my-auto">
         <%= form.submit "Save", class: "btn btn-success" %>
       </div>

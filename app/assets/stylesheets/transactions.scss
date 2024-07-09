@@ -2,13 +2,18 @@
   border: 2px solid;
   border-radius: 10px;
   margin-top: 1em;
+  padding-bottom: 1em;
   
   .row {
     padding: 0.25em 0;
   }
   .transaction:nth-of-type(odd) {
     background-color: rgb(220, 220, 220);
-    border-radius: 5px;
+    border-radius: 10px;
+  }
+  .transaction:nth-of-type(even) {
+    background-color: #f8f9fa;
+    border-radius: 10px;
   }
   .container {
     padding: 0;
@@ -16,4 +21,15 @@
     margin: auto;
     margin-top: 1em;
   }
+  
 }
+
+.transactions-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .btn {
+      margin: .5em;
+    }
+  }
