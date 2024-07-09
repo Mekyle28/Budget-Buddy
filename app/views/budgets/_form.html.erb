@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-field">
     <%= form.label :category, "Category", style: "display: block" %>
     <h3><%= budget.category.name %></h3>
   </div>
 
-  <div>
+  <div class="form-field">
     <%= form.label :budget_amount, "Budget Amount", style: "display: block" %>
     <%= form.number_field :budget_amount_cents, value: budget.budget_amount.to_f, step: 0.01 %>
   </div>
 
-  <div>
+  <div class="form-button">
     <%= form.submit %>
   </div>
 <% end %>
