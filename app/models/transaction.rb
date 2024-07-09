@@ -13,15 +13,10 @@ class Transaction < ApplicationRecord
   private
 
   def update_account_balance
-    puts "Updating account balance for transaction: #{self.id}"
-    puts "Transaction type: #{transaction_type}"
-    puts "Amount cents: #{amount_cents}"
     
     if transaction_type == 'income'
-      puts "Updating balance for income transaction"
       account.update!(current_balance_cents: account.current_balance_cents + amount_cents)
     elsif transaction_type == 'expense'
-      puts "Updating balance for expense transaction"
       account.update!(current_balance_cents: account.current_balance_cents - amount_cents)
     end
   end

@@ -22,6 +22,7 @@ class TransactionsController < ApplicationController
   # POST /transactions or /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
+    puts "Transaction params: #{transaction_params.inspect}"
 
     respond_to do |format|
       if @transaction.save
@@ -64,6 +65,6 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_params
-    params.require(:transaction).permit(:date, :merchant, :amount, :category_id, :account_id)
+    params.require(:transaction).permit(:date, :merchant, :amount, :category_id, :account_id, :transaction_type)
   end
 end
