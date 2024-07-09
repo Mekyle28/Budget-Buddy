@@ -87,25 +87,44 @@
   }
 }
 
-.error-message {
+.account-form {
+  width: 40vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1.5em;
-  margin-bottom: 0;
-  border: 2px solid red;
-  padding: 0.5em;
-  padding-bottom: 0;
-  border-radius: 10px;
-  background-color: rgb(255, 181, 181);
-}
-
-.error {
-  border: 1px solid red;
-}
-.field-error {
-  color: red;
-  font-size: medium;
+  form {
+    margin: auto;
+    width: 35vw;
+    border: 2px solid;
+    border-radius: 10px;
+  }
+  .container {
+    padding: 1em;
+  }
+  .row {
+    padding: .5em 0;
+    margin: auto;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+  }
+  .error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5em;
+    margin-bottom: 0;
+    border: 2px solid red;
+    padding: 0.5em;
+    padding-bottom: 0;
+    border-radius: 10px;
+    background-color: rgb(255, 181, 181);
+  }
+  .error {
+    border: 1px solid red;
+  }
+  .field-error {
+    color: red;
+  }
 }
 
   

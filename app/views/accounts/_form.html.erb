@@ -1,35 +1,60 @@
-<%= form_with(model: account) do |form| %>
-  <% if account.errors.any? %>
-    <div class="error-message">
-          <p><strong>Please fill in the required fields:</strong></p>
+<div class="account-form">
+  <%= form_with(model: account) do |form| %>
+    <% if account.errors.any? %>
+      <div class="error-message">
+            <p><strong>Please fill in the required fields:</strong></p>
+        </div>
+    <% end %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col my-auto">
+          <%= form.label :name, style: "display: block" %>
+        </div> 
+        <div class="col my-auto">
+          <% if form.object.errors[:name].any? %>
+            <div class="field-error">Please enter a account name.</div>
+          <% end %>
+          <%= form.text_field :name, 
+          class: form.object.errors[:name].any? ? "form-control error" : "form-control" %>
+        </div>
       </div>
+    
+      <div class="row">
+        <div class="col my-auto">
+          <%= form.label :account_type, style: "display: block" %>
+        </div>
+        <div class="col my-auto">
+          <% if form.object.errors[:account_type].any? %>
+            <div class="field-error">Please enter an account type.</div>
+          <% end %>
+          <%= form.text_field :account_type, 
+          class: form.object.errors[:account_type].any? ? "form-control error" : "form-control" %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col my-auto">
+          <%= form.label :current_balance, style: "display: block" %>
+        </div>
+        <div class="col my-auto">
+          <% if form.object.errors[:current_balance].any? %>
+            <div class="field-error">Please enter a valid balance.</div>
+          <% end %>
+          <%= form.number_field :current_balance, 
+          class: form.object.errors[:current_balance].any? ? "form-control error" : "form-control" %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col">
+        </div>
+        <div class="col my-auto">
+          <%= form.submit "Save", class: "btn btn-success" %>
+        </div>
+      </div>
+    </div>
   <% end %>
+</div>
 
-  <div class="form-field">
-    <%= form.label :name, style: "display: block" %>
-    <% if form.object.errors[:name].any? %>
-      <div class="field-error">Please enter a account name.</div>
-    <% end %>
-    <%= form.text_field :name, class: form.object.errors[:name].any? ? "form-field error" : "form-field" %>
-  </div>
 
-  <div class="form-field">
-    <%= form.label :account_type, style: "display: block" %>
-    <% if form.object.errors[:account_type].any? %>
-      <div class="field-error">Please enter an account type.</div>
-    <% end %>
-    <%= form.text_field :account_type, class: form.object.errors[:account_type].any? ? "form-field error" : "form-field" %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :current_balance, style: "display: block" %>
-    <% if form.object.errors[:current_balance].any? %>
-      <div class="field-error">Please enter a valid balance.</div>
-    <% end %>
-    <%= form.number_field :current_balance, class: form.object.errors[:current_balance].any? ? "form-field error" : "form-field" %>
-  </div>
-
-  <div class="form-button">
-    <%= form.submit %>
-  </div>
-<% end %>
