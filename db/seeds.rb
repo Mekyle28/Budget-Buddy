@@ -27,7 +27,7 @@ categories = Category.create([
   { name: 'Miscellaneous', include_in_budget: true },
   { name: 'Dining Out', include_in_budget: true },
   { name: 'Clothing', include_in_budget: true },
-  { name: 'Pacheck', include_in_budget: false },
+  { name: 'Paycheck', include_in_budget: false },
   { name: 'Benefit', include_in_budget: false },
   { name: 'Refund', include_in_budget: false },
   { name: 'Credit Card Payment', include_in_budget: false }
@@ -36,9 +36,9 @@ categories = Category.create([
 # Seed Accounts
 accounts = Account.create([
   { name: 'CHEQUING', account_type: 'DEBIT', current_balance_cents: 150000 },
-  { name: 'VISA', account_type: 'CREDIT', current_balance_cents: 150000 },
-  { name: 'MC', account_type: 'CREDIT', current_balance_cents: 150000 },
-  { name: 'SAVINGS', account_type: 'SAVINGS', current_balance_cents: 150000 }
+  { name: 'VISA', account_type: 'CREDIT', current_balance_cents: 0 },
+  { name: 'MC', account_type: 'CREDIT', current_balance_cents: 0 },
+  { name: 'SAVINGS', account_type: 'SAVINGS', current_balance_cents: 300000 }
 ])
 
 # Seed Transactions
