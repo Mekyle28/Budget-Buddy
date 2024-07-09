@@ -36,7 +36,7 @@
         <% if form.object.errors[:merchant].any? %>
           <div class="field-error">Please enter a merchant</div>
         <% end %>
-        <%= form.text_field :merchant, list: 'merchant-list', class: form.object.errors[:merchant].any? ? "form-control error" : "form-control form-select" %>
+        <%= form.text_field :merchant, list: 'merchant-list', class: form.object.errors[:merchant].any? ? "form-control error" : "form-control" %>
         <datalist id="merchant-list">
           <% Transaction.select(:merchant).distinct.order(:merchant).each do |transaction| %>
             <option value="<%= transaction.merchant %>"></option>
