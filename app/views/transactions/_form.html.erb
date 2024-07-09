@@ -1,5 +1,5 @@
 <div class="transaction-form">
-  <%= form_with(model: transaction, class: "needs-validation") do |form| %>
+  <%= form_with(model: transaction) do |form| %>
     
     <% if transaction.errors.any? %>
     <% p transaction.errors %>
@@ -36,7 +36,12 @@
         <% if form.object.errors[:merchant].any? %>
           <div class="field-error">Please enter a merchant</div>
         <% end %>
-        <%= form.text_field :merchant, class: form.object.errors[:merchant].any? ? "form-control error" : "form-control" %>
+        <%= form.text_field :merchant, list: 'merchant-list', class: form.object.errors[:merchant].any? ? "form-control error" : "form-control form-select" %>
+        <datalist id="merchant-list">
+          <% Transaction.select(:merchant).distinct.order(:merchant).each do |transaction| %>
+            <option value="<%= transaction.merchant %>"></option>
+          <% end %>
+        </datalist>
       </div>
     </div>
 

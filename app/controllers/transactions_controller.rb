@@ -10,11 +10,11 @@ class TransactionsController < ApplicationController
       end
         @transactions = 
           Transaction.joins(:category, :account)
-            .where("categories.name LIKE :search OR accounts.name LIKE :search OR merchant LIKE :search OR amount_cents >= :amount_in_cents",
-            search: "%#{params[:search]}%", amount_in_cents: amount_in_cents)
+            .where("categories.name LIKE :search OR accounts.name LIKE :search OR merchant LIKE :search OR amount_cents LIKE :amount_in_cents",
+            search: "%#{params[:search]}%", amount_in_cents: amount_in_cents).limit(50)
             .order(date: :desc)
     else
-      @transactions = Transaction.all.order(date: :desc)
+      @transactions = Transaction.all.order(date: :desc).limit(50)
     end
   end
 
