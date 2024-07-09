@@ -58,6 +58,15 @@
       </div>
     </div>
 
+        <div class="row">
+      <div class="col my-auto">
+        <%= form.label :transaction_type %>:
+      </div>
+      <div class="col my-auto">
+        <%= form.select :transaction_type, options_for_select([['Expense', 'expense'], ['Income', 'income']], transaction.transaction_type) %>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col">
       </div>

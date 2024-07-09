@@ -9,33 +9,36 @@ User.destroy_all
 
 # Seed Categories
 categories = Category.create([
-  { name: 'Groceries' },
-  { name: 'Entertainment' },
-  { name: 'Utilities' },
-  { name: 'Rent' },
-  { name: 'Transportation' },
-  { name: 'Insurance' },
-  { name: 'Healthcare' },
-  { name: 'Savings' },
-  { name: 'Debt Repayment' },
-  { name: 'Education' },
-  { name: 'Personal Care' },
-  { name: 'Subscriptions' },
-  { name: 'Gifts' },
-  { name: 'Donations' },
-  { name: 'Investments' },
-  { name: 'Vacation' },
-  { name: 'Miscellaneous' },
-  { name: 'Dining Out' },
-  { name: 'Clothing' }
+  { name: 'Groceries', include_in_budget: true },
+  { name: 'Entertainment', include_in_budget: true },
+  { name: 'Utilities', include_in_budget: true },
+  { name: 'Rent', include_in_budget: true },
+  { name: 'Transportation', include_in_budget: true },
+  { name: 'Insurance', include_in_budget: true },
+  { name: 'Healthcare', include_in_budget: true },
+  { name: 'Savings', include_in_budget: true },
+  { name: 'Education', include_in_budget: true },
+  { name: 'Personal Care', include_in_budget: true },
+  { name: 'Subscriptions', include_in_budget: true },
+  { name: 'Gifts', include_in_budget: true },
+  { name: 'Donations', include_in_budget: true },
+  { name: 'Investments', include_in_budget: true },
+  { name: 'Vacation', include_in_budget: true },
+  { name: 'Miscellaneous', include_in_budget: true },
+  { name: 'Dining Out', include_in_budget: true },
+  { name: 'Clothing', include_in_budget: true },
+  { name: 'Pacheck', include_in_budget: false },
+  { name: 'Benefit', include_in_budget: false },
+  { name: 'Refund', include_in_budget: false },
+  { name: 'Credit Card Payment', include_in_budget: false }
 ])
 
 # Seed Accounts
 accounts = Account.create([
-  { name: 'CHEQUING', account_type: 'DEBIT', current_balance_cents: 1000000 },
-  { name: 'VISA', account_type: 'CREDIT', current_balance_cents: 500000 },
-  { name: 'MC', account_type: 'CREDIT', current_balance_cents: 2500000 },
-  { name: 'SAVINGS', account_type: 'SAVINGS', current_balance_cents: 1500000 }
+  { name: 'CHEQUING', account_type: 'DEBIT', current_balance_cents: 150000 },
+  { name: 'VISA', account_type: 'CREDIT', current_balance_cents: 150000 },
+  { name: 'MC', account_type: 'CREDIT', current_balance_cents: 150000 },
+  { name: 'SAVINGS', account_type: 'SAVINGS', current_balance_cents: 150000 }
 ])
 
 # Seed Transactions
@@ -52,15 +55,25 @@ end_date = Date.today
               "E-TRANSFER", "Subway 23972", "DEPOSIT CANADA", "IKEA BURLINGTON", "PAYBRIGHT"].sample
 
   category_id = rand(1..categories.count)
-  account_id = rand(1..accounts.count)
+  chosen_account = accounts.sample
+  transaction_type = ['expense', 'income'].sample
 
   Transaction.create!(
     date: date,
     merchant: merchant,
     amount_cents: amount_cents,
     category_id: category_id,
-    account_id: account_id
+    account_id: chosen_account.id,
+    transaction_type: transaction_type
   )
+
+  if transaction_type == 'expense'
+    chosen_account.current_balance_cents -= amount_cents
+  else
+    chosen_account.current_balance_cents += amount_cents
+  end
+
+  chosen_account.save!
 end
 
 # Seed Budgets for all categories
@@ -93,7 +106,6 @@ Budget.create([
 ])
 
 puts "Seeding current month budgets completed successfully!"
-
 
 # Seed Archived Budgets
 archived_months = (1..12).map { |i| current_month.prev_month(i) }
