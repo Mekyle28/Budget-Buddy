@@ -4,8 +4,12 @@
     <strong><%= account.name %></strong>
   </div>
 
-  <div class="balance">
+<div class="balance">
+  <% if account.credit? %>
+    <%= humanized_money_with_symbol(account.current_balance.abs) %>
+  <% else %>
     <%= humanized_money_with_symbol(account.current_balance) %>
-  </div>
+  <% end %>
 </div>
-<% end%>
+</div>
+<% end %>
