@@ -1,10 +1,21 @@
-<h1>Editing budget</h1>
+<%= turbo_frame_tag "modal" do %>
+  <div class="bob">
 
-<%= render "form", budget: @budget %>
+    <div>
+    <%= link_to "X", "#", data: { controller: "modals", action: "modals#close" }, class: "cancel-button" %>
+    </div>
 
-<br>
+    <h1>Editing budget</h1>
 
-<div>
-  <%= link_to "Show this budget", @budget %> |
-  <%= link_to "Back to budgets", budgets_path %>
-</div>
+    <%= render "form", budget: @budget %>
+
+    <br>
+
+    <div>
+      <%= link_to "Show this budget", @budget %> |
+      <%= link_to "Back to budgets", budgets_path %>
+    </div>
+  </div>
+
+<% end %> 
+    
