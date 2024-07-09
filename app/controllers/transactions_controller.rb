@@ -22,7 +22,6 @@ class TransactionsController < ApplicationController
   # POST /transactions or /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
-    puts "Transaction params: #{transaction_params.inspect}"
 
     respond_to do |format|
       if @transaction.save
