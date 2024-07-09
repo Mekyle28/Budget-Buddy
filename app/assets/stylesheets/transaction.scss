@@ -35,25 +35,6 @@
     border-radius: 10px;
     background-color: rgb(255, 181, 181);
   }
-  // select:invalid {
-  //   background-color: ivory;
-  //   border: none;
-  //   outline: 2px solid red;
-  //   border-radius: 5px;
-  // }
-  // .row .select ~ .field_with_errors {
-  //   border: 1px solid red;
-  // }
-
-  select:not(:default):invalid {
-    border-color: red;
-  }
-  
-  .form-control:valid + .submit-btn {
-    background-color: green;
-    border-color: green;
-    color: white;
-  }
   .error {
     border: 1px solid red;
   }
