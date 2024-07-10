@@ -1,16 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Budgets</h1>
-
+<%= link_to "New category", new_budget_path, data: { turbo_frame: "modal"}, class:"btn btn-outline-success" %>
 <div class="row">
   <div class="col-lg-3">
     <div class="budgets">
       <div class="container text-left">
         <div class="col my-auto">
           <p> ARCHIVE: </p>
-          <% @archive_months.each do |month| %>
-            <%= link_to month.strftime('%B %Y'), budgets_path(archive_month: month), class: 'btn btn-link d-block mb-2' %>
-          <% end %>
+            <% @archive_months.each do |month| %>
+              <%= link_to month.strftime('%B %Y'), budgets_path(archive_month: month), class: 'btn btn-link d-block mb-2' %>
+            <% end %>
         </div>
       </div>
     </div>
@@ -42,11 +42,12 @@
             <% end %>
           </div>
         <% end %>
-
-        <%= form_with(model: @budget, url: budgets_path, local: true) do |form| %>
-          <% if @budget && @budget.errors.any? %>
+        <!--
+        <%= form_with(model: [@category, @budget], url: budgets_path, local: true) do |form| %>
+          <% if @budget.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@budget.errors.count, "error") %> prohibited this budget from being saved:</h2>
+
               <ul>
                 <% @budget.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
@@ -59,10 +60,13 @@
             <% unless @budget_categories.first[:archive_month] %>
               <div class="row">
                 <div class="col">
-                  <%= form.text_field :category_name, class: "form-control", placeholder: "Category" %>
+                  <%= form.label :category %>
                 </div>
                 <div class="col">
-                  <%= form.number_field :budget_amount_cents, value: @budget.budget_amount_cents, class: "form-control", placeholder: "Budget Amount" %>
+                  <%= form.text_field :category_name, class: @budget.errors[:category_name].any? ? 'form-control error' : "form-control", placeholder: "Category" %>
+                </div>
+                <div class="col">
+                  <%= form.number_field :budget_amount_cents, value: @budget.budget_amount_cents, class: form.object.errors[:account].any? ? 'form-control error' : "form-control", placeholder: "Budget Amount" %>
                 </div>
                 <div class="col my-auto">
                   <%= form.submit "Submit", class: "btn btn-primary" %>
@@ -70,7 +74,8 @@
               </div>
             <% end %>
           <% end %>
-        <% end %> <!-- Ensure this 'form_with' block is properly closed -->
+        <% end %> 
+        --->
       </div>
     </div>
   </div>

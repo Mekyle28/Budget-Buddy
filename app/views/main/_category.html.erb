@@ -1,9 +1,30 @@
-<tr>
-  <td><strong><%= name %></strong></td>
+<div>
+<tr >
+  <td> <strong><%= name %></strong></td>
   <td>
     <div class="progress">
-      <div class="progress-bar" style="width: <%= fact == 0 ? '0%' : "#{(fact.to_f / budget) * 100}%" %>; <%= fact > budget ? 'background-color: #FFDF00;' : 'background-color: #0d6efd;' %>"> </div>
+      <div class="progress-bar" 
+        style="width: <%= fact == 0 ? '0%' : "#{(fact.to_f / budget) * 100}%" %>;
+        <%= fact > budget ? 'background-color: #FFDF00;' : 'background-color: #0d6efd;' %>">
+      </div>
     </div>
   </td>
   <td>$<%= number_with_precision(fact, precision: 0) %> / $<%= number_with_precision(budget, precision: 0) %></td>
 </tr>
+
+<tr hidden>
+
+  <td colspan="3">
+    <table>
+      <tr>
+        <td><strong>Date</strong></td>
+        <td><strong>Merchant</strong></td>
+        <td><strong>Amount</strong></td>
+        <td><strong>Account</strong></td>
+        <!--<td><strong>Edit</strong></td> -->
+      </tr>
+    </table>
+
+  </td>
+</tr>
+</div>

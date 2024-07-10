@@ -1,11 +1,11 @@
 .transaction-form {
-  width: 100%;
+  width: 40vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   form {
     margin: auto;
-    width: auto;
+    width: 35vw;
     border: 2px solid;
     border-radius: 10px;
   }
@@ -34,25 +34,6 @@
     padding-bottom: 0;
     border-radius: 10px;
     background-color: rgb(255, 181, 181);
-  }
-  // select:invalid {
-  //   background-color: ivory;
-  //   border: none;
-  //   outline: 2px solid red;
-  //   border-radius: 5px;
-  // }
-  // .row .select ~ .field_with_errors {
-  //   border: 1px solid red;
-  // }
-
-  select:not(:default):invalid {
-    border-color: red;
-  }
-  
-  .form-control:valid + .submit-btn {
-    background-color: green;
-    border-color: green;
-    color: white;
   }
   .error {
     border: 1px solid red;
