@@ -1,5 +1,14 @@
-<div class="form-header">
-  <h1>Edit Transaction:</h1>
-</div>
+<%= turbo_frame_tag "modal" do %>
+  <div class="bob">
+    <div>
+      <%= link_to "X", "#", data: { controller: "modals", action: "modals#close" }, class: "cancel-button" %>
+    </div>
 
-<%= render "form", transaction: @transaction %>
+    <div class="form-header">
+      <h1>Edit Transaction:</h1>
+    </div>
+
+    <%= render "form", transaction: @transaction %>
+
+  </div>
+<% end %>
