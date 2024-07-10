@@ -23,16 +23,35 @@ class AccountsController < ApplicationController
   end
 
   # POST /accounts or /accounts.json
+  # def create
+  #   @account = Account.new(account_params)
+
+  #   respond_to do |format|
+  #     if @account.save
+  #       format.html { redirect_to account_url(@account), notice: "Account was successfully created." }
+  #       format.json { render :show, status: :created, location: @account }
+  #     else
+  #       format.html { render :new, status: :unprocessable_entity }
+  #       format.json { render json: @account.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
   def create
     @account = Account.new(account_params)
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to account_url(@account), notice: "Account was successfully created." }
-        format.json { render :show, status: :created, location: @account }
+        format.html { redirect_to accounts_url, notice: "Account was successfully created." }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.append('accounts', partial: 'accounts/account', locals: { account: @account }),
+            turbo_stream.remove('modal')
+          ]
+        end
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
+        format.html { render :new }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', partial: 'accounts/new', locals: { account: @account }) }
       end
     end
   end
