@@ -49,20 +49,16 @@ class BudgetsController < ApplicationController
   # GET /budgets/1/edit
   def edit
     @category = Category.find(@budget.category_id)
+    p @category
   end
 
   # POST /budgets or /budgets.json
   def create
     new_category_name = budget_params[:category_name] == "" ? nil : budget_params[:category_name]
-    # @category = @budget.category.new
-
     @category = Category.new(name: new_category_name, include_in_budget: true)
-    puts "***"
-    p @category
 
     respond_to do |format|
       if @category.valid?
-        puts "*** category save"
         @budget = @category.budgets.find_or_initialize_by(category: @category, current_month: true)
         @budget.assign_attributes(budget_params.except(:category_name).merge(category_id: @category.id, budget_amount_cents: budget_params[:budget_amount].to_i * 100,
         fact_amount_cents: 0, current_month: true))
@@ -87,9 +83,9 @@ class BudgetsController < ApplicationController
   # PATCH/PUT /budgets/1 or /budgets/1.json
   def update
     respond_to do |format|
-      @budget.assign_attributes(budget_params.except(:category_name).merge(category_id: @category.id, budget_amount_cents: budget_params[:budget_amount].to_i * 100,
-      fact_amount_cents: 0, current_month: true))
-      if @budget.update
+      @category = Category.find(@budget.category_id)
+      @category.update(name: budget_params[:category_name])
+      if @budget.update(budget_amount_cents: budget_params[:budget_amount].to_i * 100)
         format.html { redirect_to budgets_url, notice: "Budget category was successfully updated." }
         format.json { render :show, status: :ok, location: @budget }
       else
