@@ -11,6 +11,10 @@ class Account < ApplicationRecord
 
   validate :current_balance_validity
 
+  def savings?
+    account_type == 'SAVINGS'
+  end
+
   def debit?
     account_type == 'DEBIT'
   end
@@ -28,7 +32,7 @@ class Account < ApplicationRecord
   private
 
   def current_balance_validity
-    if debit? && current_balance.negative?
+    if (debit? || savings?) && current_balance.negative?
       errors.add(:current_balance, "cannot be negative for debit accounts")
     end
   end
