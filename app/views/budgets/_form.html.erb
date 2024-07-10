@@ -18,7 +18,7 @@
 
   <div class="form-field">
     <%= form.label :budget_amount, "Budget Amount", style: "display: block" %>
-    <%= form.number_field :budget_amount_cents, value: budget.budget_amount.to_f, step: 0.01 %>
+    <%= form.number_field :budget_amount, value: budget.budget_amount.to_f, step: 0.01 %>
   </div>
 
   <div class="form-button">
