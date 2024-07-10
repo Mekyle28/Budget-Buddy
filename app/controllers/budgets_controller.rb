@@ -43,27 +43,43 @@ class BudgetsController < ApplicationController
   # GET /budgets/new
   def new
     @budget = Budget.new
+    @category = Category.new
   end
 
   # GET /budgets/1/edit
   def edit
+    @category = Category.find(@budget.category_id)
   end
 
   # POST /budgets or /budgets.json
   def create
-    category = Category.find_or_create_by(name: budget_params[:category_name])
-    
-    @budget = Budget.find_or_initialize_by(category: category, current_month: true)
-    @budget.assign_attributes(budget_params.except(:category_name).merge(category: category, budget_amount_cents: budget_params[:budget_amount_cents].to_i * 100,
-    fact_amount_cents: 0, current_month: true))
+    new_category_name = budget_params[:category_name] == "" ? nil : budget_params[:category_name]
+    # @category = @budget.category.new
+
+    @category = Category.new(name: new_category_name, include_in_budget: true)
+    puts "***"
+    p @category
 
     respond_to do |format|
-      if @budget.save
-        format.html { redirect_to budgets_url, notice: "Category added." }
-        format.json { render :show, status: :created, location: @budget }
-      else
-        format.html { render :index, status: :unprocessable_entity } # Render index on error
-        format.json { render json: @budget.errors, status: :unprocessable_entity }
+      if @category.valid?
+        puts "*** category save"
+        @budget = @category.budgets.find_or_initialize_by(category: @category, current_month: true)
+        @budget.assign_attributes(budget_params.except(:category_name).merge(category_id: @category.id, budget_amount_cents: budget_params[:budget_amount].to_i * 100,
+        fact_amount_cents: 0, current_month: true))
+        p @budget
+        if @budget.save
+          @category.save
+          format.html { redirect_to budget_url(@budget), notice: "Category added." }
+          # format.json { render :show, status: :created, location: @budget }
+        else
+          format.html { render :new, status: :unprocessable_entity } # Render index on error
+          # format.json { render json: @budget.errors, status: :unprocessable_entity }
+          
+        end
+      elsif @category.valid? == false
+        p @category.errors[:name]
+        format.html { render :new, status: :unprocessable_entity }
+        # format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -71,7 +87,9 @@ class BudgetsController < ApplicationController
   # PATCH/PUT /budgets/1 or /budgets/1.json
   def update
     respond_to do |format|
-      if @budget.update(budget_params)
+      @budget.assign_attributes(budget_params.except(:category_name).merge(category_id: @category.id, budget_amount_cents: budget_params[:budget_amount].to_i * 100,
+      fact_amount_cents: 0, current_month: true))
+      if @budget.update
         format.html { redirect_to budgets_url, notice: "Budget category was successfully updated." }
         format.json { render :show, status: :ok, location: @budget }
       else
@@ -99,6 +117,6 @@ class BudgetsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def budget_params
-    params.require(:budget).permit(:category_name, :budget_amount_cents)
+    params.require(:budget).permit([:category_name, :budget_amount])
   end
 end
