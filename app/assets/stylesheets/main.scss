@@ -6,6 +6,24 @@
   flex-direction: column;
   justify-content: center;
   color: rgb(37, 37, 37);
+  font-size: x-large;
+
+  .budget-total {
+    padding-bottom: 5rem;
+  }
+
+  .progress-total {
+    border-radius: 0.8em;
+    background-color: rgb(233, 233, 233);
+    height: 30px;
+    width: 45rem;
+  }
+
+  .progress-bar-total {
+    border-radius: 0.8em;
+    height:30px;
+  }
+
 
   .main-title {
     padding: 2.5rem;
@@ -31,10 +49,12 @@
         padding: 1rem;
       }  
     }
-    
-
+  
 
 }  
 }
 
+.hidden {
+  display: none;
+}
 
