@@ -1,5 +1,6 @@
-<tr>
-  <td><strong><%= name %></strong></td>
+<div>
+<tr >
+  <td> <strong><%= name %></strong></td>
   <td>
     <div class="progress">
       <div class="progress-bar" 
@@ -10,3 +11,20 @@
   </td>
   <td>$<%= number_with_precision(fact, precision: 0) %> / $<%= number_with_precision(budget, precision: 0) %></td>
 </tr>
+
+<tr hidden>
+
+  <td colspan="3">
+    <table>
+      <tr>
+        <td><strong>Date</strong></td>
+        <td><strong>Merchant</strong></td>
+        <td><strong>Amount</strong></td>
+        <td><strong>Account</strong></td>
+        <!--<td><strong>Edit</strong></td> -->
+      </tr>
+    </table>
+
+  </td>
+</tr>
+</div>
