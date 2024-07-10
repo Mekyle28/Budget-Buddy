@@ -1,6 +1,16 @@
 <section class="main-page">
-  <h1 class="main-title"></h1>
+  <h1 class="main-title">Budget Total</h1>
+  
+    <div class="progress">
+      <div class="progress-bar" 
+        style="width: <%= fact == 0 ? '0%' : "#{(fact.to_f / budget) * 100}%" %>;
+        <%= fact > budget ? 'background-color: #FFDF00;' : 'background-color: #0d6efd;' %>">
+      </div>
+    </div>
 
+
+
+  <h1 class="main-title">Budget by Category</h1>
   <table class="budget-progress">
     <tr>
       <td><strong>Categories</strong></td>
