@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_08_232754) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_09_195455) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.string "account_type"
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_232754) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "include_in_budget"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -46,6 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_232754) do
     t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "transaction_type", default: "expense", null: false
     t.index ["account_id"], name: "index_transactions_on_account_id"
     t.index ["category_id"], name: "index_transactions_on_category_id"
   end

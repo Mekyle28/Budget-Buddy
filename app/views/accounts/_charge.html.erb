@@ -7,9 +7,13 @@
   <td>
     <%= charge.merchant %>
   </td>
-  <td>
-    <%= number_to_currency(charge.amount) %>
-  </td>
+<td>
+  <% if charge.transaction_type == 'expense' %>
+    <%= "-#{number_to_currency(charge.amount.abs, format: "%u%n")}" %>
+  <% else %>
+    <%= "+#{number_to_currency(charge.amount, format: "%u%n")}" %>
+  <% end %>
+</td>
   <td>
     <%= charge.category.name %>
   </td>
