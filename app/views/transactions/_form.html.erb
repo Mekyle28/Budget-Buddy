@@ -76,10 +76,10 @@
     
         <div class="row">
       <div class="col my-auto">
-        <%= form.label :transaction_type %>:
+        <%= form.label :transaction_type %>
       </div>
       <div class="col my-auto">
-        <%= form.select :transaction_type, options_for_select([['Expense', 'expense'], ['Income', 'income']], transaction.transaction_type) %>
+        <%= form.select :transaction_type, options_for_select([['Expense', 'expense'], ['Income', 'income']], transaction.transaction_type), { blank: true }, class: form.object.errors[:transaction_type].any? ? 'form-control form-select error' : "form-control form-select" %>
       </div>
     </div>
 
