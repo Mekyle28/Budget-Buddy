@@ -8,12 +8,16 @@
       <%= transaction.merchant %>
     </div>
 
-    <div class="col my-auto">
-      <%= number_to_currency(transaction.amount) %>
-    </div>
+  <div class="col my-auto">
+  <% if transaction.transaction_type == 'expense' %>
+    <%= "-#{number_to_currency(transaction.amount.abs, format: "%u%n")}" %>
+  <% else %>
+    <%= "+#{number_to_currency(transaction.amount, format: "%u%n")}" %>
+  <% end %>
+</div>
 
     <div class="col my-auto">
-      <%= transaction.category.name %>
+      <%= transaction.category.name if transaction.category%>
     </div>
 
     <div class="col my-auto">
