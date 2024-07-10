@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_195455) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.string "account_type"
-    t.integer "current_balance_cents", default: 0
+    t.integer "current_balance_cents"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -66,16 +66,16 @@ class BudgetsController < ApplicationController
         if @budget.save
           @category.save
           format.html { redirect_to budget_url(@budget), notice: "Category added." }
-          # format.json { render :show, status: :created, location: @budget }
+          format.json { render :show, status: :created, location: @budget }
         else
           format.html { render :new, status: :unprocessable_entity } # Render index on error
-          # format.json { render json: @budget.errors, status: :unprocessable_entity }
+          format.json { render json: @budget.errors, status: :unprocessable_entity }
           
         end
-      elsif @category.valid? == false
-        p @category.errors[:name]
+      else
+        p @category.errors
         format.html { render :new, status: :unprocessable_entity }
-        # format.json { render json: @category.errors, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
