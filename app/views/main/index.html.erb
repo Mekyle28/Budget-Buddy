@@ -1,12 +1,13 @@
 <section class="main-page">
   <h1 class="main-title">Budget Total</h1>
-  
-    <div class="progress">
-      <div class="progress-bar" 
-        style="width: <%= fact == 0 ? '0%' : "#{(fact.to_f / budget) * 100}%" %>;
-        <%= fact > budget ? 'background-color: #FFDF00;' : 'background-color: #0d6efd;' %>">
+
+    <div class="progress-total">
+      <div class="progress-bar-total" 
+        style="width: <%= @total_fact == 0 ? '0%' : "#{(@total_fact.to_f / @total_budget) * 100}%" %>;
+        <%= @total_fact > @total_budget ? 'background-color: #FFDF00;' : 'background-color: #0d6efd;' %>">
       </div>
     </div>
+    <span class="budget-total">$<%=number_with_precision(@total_fact, precision: 0) %> / $<%= number_with_precision(@total_budget, precision: 0) %></span>
 
 
 
