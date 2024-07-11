@@ -28,8 +28,10 @@
           <% if form.object.errors[:account_type].any? %>
             <div class="field-error">Please enter an account type.</div>
           <% end %>
-          <%= form.text_field :account_type, 
-          class: form.object.errors[:account_type].any? ? "form-control error" : "form-control" %>
+          <%= form.select :account_type,
+                options_for_select(Account.distinct.pluck(:account_type).sort),
+                { prompt: "Select account type" },
+                class: form.object.errors[:account_type].any? ? "form-control form-select error" : "form-control form-select" %>
         </div>
       </div>
     
