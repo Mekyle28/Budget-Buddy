@@ -62,6 +62,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+
+  gem 'chartkick'
 end
 
 group :test do
