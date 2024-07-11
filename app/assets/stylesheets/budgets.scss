@@ -1,8 +1,7 @@
 .budgets {
   border: 2px solid;
   border-radius: 10px;
-  margin-top: 2em;
-  padding-bottom: 1em;
+  margin-top: 1em;
   
   .row {
     padding: 0.25em 0;
@@ -10,59 +9,66 @@
 
   .budget:nth-of-type(odd) {
     background-color: rgb(220, 220, 220);
-    border-radius: 10px;
+    border-radius: 5px;
   }
 
   .budget:nth-of-type(even) {
     background-color: #f8f9fa;
     border-radius: 10px;
   }
-  
+
   .container {
     padding: 0;
     width: 95%;
     margin: auto;
-    margin-top: auto;
+    margin-top: 1em;
   }
 }
 
-.transactions {
-  border: 2px solid;
-  border-radius: 10px;
-  margin-top: 1em;
-  padding-bottom: 1em;
-  
-  .row {
-    padding: 0.25em 0;
-  }
-  
-  .transaction:nth-of-type(odd) {
-    background-color: rgb(220, 220, 220);
-    border-radius: 10px;
-  }
-
-  .transaction:nth-of-type(even) {
-    background-color: #f8f9fa;
-    border-radius: 10px;
-  }
-  
-  .container {
-    padding: 0;
-    width: 95%;
-    margin: auto;
-    margin-top: auto;
-  }
-}
-
-.transactions-nav {
+.budget-form {
+  width: 40vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  
-  .btn {
-    margin: 0.5em;
+  form {
+    margin: auto;
+    width: 35vw;
+    border: 2px solid;
+    border-radius: 10px;
   }
+  .container {
+    padding: 1em;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+  }
+  .row {
+    padding: .5em 0;
+    margin: auto;
+  }
+  .error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5em;
+    margin-bottom: 0;
+    border: 2px solid red;
+    padding: 0.5em;
+    padding-bottom: 0;
+    border-radius: 10px;
+    background-color: rgb(255, 181, 181);
+  }
+  .error {
+    border: 1px solid red;
+  }
+  .field-error {
+    color: red;
+  }
+}
+
+.form-header {
+  display: flex;
+  justify-content: center;
+  margin: 1em;
 }
 
 .budget-info {
@@ -74,11 +80,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 0.5em;
     border: 2px solid rgb(69, 69, 70);
     font-size: large;
     flex: 1;
-    margin-top: 2em;
+    max-height: auto;
+    margin-top: 1em;
 
     .side-bar-budget {
       border-radius: 0.15em;
@@ -89,7 +96,6 @@
       color: black;
     }
   }
-
   .budgets {
     flex: 4;
   }
