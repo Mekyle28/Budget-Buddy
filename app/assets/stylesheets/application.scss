@@ -28,6 +28,12 @@ main {
   margin: 0 5vw;
 }
 
+.navbar {
+  position: fixed; 
+  top: 0; 
+  width: 100%;
+}
+
 .app-nav {
   display: flex;
   flex-direction: row;
