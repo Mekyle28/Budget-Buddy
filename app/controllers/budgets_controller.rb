@@ -63,8 +63,9 @@ class BudgetsController < ApplicationController
     
     respond_to do |format|
       if @category.save && @budget.save
-        format.html { redirect_to budget_url(@budget), notice: "Category added." }
+        format.html { redirect_to budgets_url, notice: "Category added." }
         format.json { render :show, status: :created, location: @budget }
+
       else
         format.html { render :new, status: :unprocessable_entity } 
         format.json { render json: @budget.errors, status: :unprocessable_entity }
@@ -80,6 +81,7 @@ class BudgetsController < ApplicationController
       if @budget.update(budget_amount_cents: budget_params[:budget_amount].to_i * 100)
         format.html { redirect_to budgets_url, notice: "Budget category was successfully updated." }
         format.json { render :show, status: :ok, location: @budget }
+
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @budget.errors, status: :unprocessable_entity }
