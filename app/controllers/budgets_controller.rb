@@ -34,6 +34,7 @@ class BudgetsController < ApplicationController
 
     @archive_months = Budget.distinct.pluck(:archive_month).compact.sort.reverse.reject { |month| month == Date.today.beginning_of_month }
     @budget = Budget.new
+    @category = Category.new
   end
 
   # GET /budgets/1 or /budgets/1.json
@@ -55,17 +56,18 @@ class BudgetsController < ApplicationController
   # POST /budgets or /budgets.json
   def create
     new_category_name = budget_params[:category_name] == "" ? nil : budget_params[:category_name]
-    @category = Category.new(name: new_category_name, include_in_budget: true)
+    @category = Category.find_or_initialize_by(name: new_category_name, include_in_budget: true)
     @budget = @category.budgets.find_or_initialize_by(category: @category, current_month: true)
     @budget.assign_attributes(budget_params.except(:category_name).merge(category_id: @category.id, budget_amount_cents: budget_params[:budget_amount].to_i * 100,
     fact_amount_cents: 0, current_month: true))
-
+    
     respond_to do |format|
       if @category.save && @budget.save
-        format.html { redirect_to budget_url(@budget), notice: "Category added." }
+        format.html { redirect_to budgets_url, notice: "Category added." }
         format.json { render :show, status: :created, location: @budget }
+
       else
-        format.html { render :new, status: :unprocessable_entity } # Render index on error
+        format.html { render :new, status: :unprocessable_entity } 
         format.json { render json: @budget.errors, status: :unprocessable_entity }
       end
     end
@@ -79,8 +81,9 @@ class BudgetsController < ApplicationController
       if @budget.update(budget_amount_cents: budget_params[:budget_amount].to_i * 100)
         format.html { redirect_to budgets_url, notice: "Budget category was successfully updated." }
         format.json { render :show, status: :ok, location: @budget }
+
       else
-        format.html { render :edit, status: :unprocessable_entity } # Render edit on error
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @budget.errors, status: :unprocessable_entity }
       end
     end
@@ -97,12 +100,10 @@ class BudgetsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_budget
     @budget = Budget.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def budget_params
     params.require(:budget).permit([:category_name, :budget_amount])
   end
