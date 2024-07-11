@@ -12,48 +12,46 @@
           <%= form.label :category_name, "Category name", style: "display: block" %>
         </div>
         <div class="col -my auto">
-        <% if @category && @category.errors[:name] == ["can't be blank"] %>
-          <div class="field-error">
-            Please enter a category name
-          </div>
-        <% end %>
-        <% if @category && @category.errors[:name] == ["has already been taken"] %>
-          <div class="field-error">
-            Category name is taken
-          </div>
-        <% end %>
-          
-            <%= form.text_field :category_name, value: (@category && @category.name) ? @category.name : "", class: (@category && @category.errors[:name].any?) ? "form-control error" : "form-control" %>
-          
+          <% if @category && @category.errors[:name] == ["can't be blank"] %>
+            <div class="field-error">
+              Please enter a category name
+            </div>
+          <% end %>
+          <% if @category && @category.errors[:name] == ["has already been taken"] %>
+            <div class="field-error">
+              Category name is taken
+            </div>
+          <% end %>
+          <%= form.text_field :category_name, value: (@category && @category.name) ? @category.name : "", class: (@category && @category.errors[:name].any?) ? "form-control error" : "form-control" %>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col my-auto">
-      <%= form.label :budget_amount, "Budget Amount", style: "display: block" %>
-      </div>
-      <div class="col my-auto">
-      <% if @budget && @budget.errors[:budget_amount].any? %>
-        <div class="field-error">
-          Please enter a value greater than 0
+      <div class="row">
+        <div class="col my-auto">
+        <%= form.label :budget_amount, "Budget Amount", style: "display: block" %>
         </div>
-      <% end %>
-        <%= form.number_field :budget_amount, step: 0.01,
-        class:
-          if @budget.present?
-            @budget.errors[:budget_amount].any? ? "form-control error" : "form-control"
-          else
-            "form-control"
-          end %> 
+        <div class="col my-auto">
+        <% if @budget && @budget.errors[:budget_amount].any? %>
+          <div class="field-error">
+            Please enter a value greater than 0
+          </div>
+        <% end %>
+          <%= form.number_field :budget_amount, step: 0.01,
+          class:
+            if @budget.present?
+              @budget.errors[:budget_amount].any? ? "form-control error" : "form-control"
+            else
+              "form-control"
+            end %> 
+        </div>
       </div>
 
-    </div>
-    <div class="row">
-      <div class="col"></div>
-      <div class="col">
-        <div class="form-button">
-          <%= form.submit "Save", class: "btn btn-success" %>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">
+          <div class="form-button">
+            <%= form.submit "Save", class: "btn btn-success" %>
+          </div>
         </div>
       </div>
     </div>

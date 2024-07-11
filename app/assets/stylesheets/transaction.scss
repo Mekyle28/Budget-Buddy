@@ -11,17 +11,12 @@
   }
   .container {
     padding: 1em;
+    border-radius: 10px;
+    background-color: #f8f9fa;
   }
   .row {
     padding: .5em 0;
     margin: auto;
-    border-radius: 10px;
-  }
-  .row:nth-of-type(odd) {
-    background-color: rgb(220, 220, 220);
-  }
-  .row:nth-of-type(even) {
-    background-color: #f8f9fa;
   }
   .error-message {
     display: flex;
