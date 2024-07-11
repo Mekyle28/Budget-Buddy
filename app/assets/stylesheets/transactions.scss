@@ -5,7 +5,7 @@
   padding-bottom: 1em;
   
   .row {
-    padding: 0.25em 0;
+    padding: 0.5em 0;
   }
   .transaction:nth-of-type(odd) {
     background-color: rgb(220, 220, 220);
@@ -15,21 +15,58 @@
     background-color: #f8f9fa;
     border-radius: 10px;
   }
+  .transaction:hover {
+    box-shadow: 0 5px 5px rgb(100, 100, 100);
+    transform: scale(1.02);
+  }
   .container {
     padding: 0;
     width: 95%;
     margin: auto;
     margin-top: 1em;
   }
-  
+  .edit-button {
+    width: fit-content;
+    margin: auto;
+  }
+  .edit-button:hover {
+    transform: scale(1.5, 1.5);
+    svg {
+      color: rgb(0, 160, 0);
+    }
+  }
+  .price {
+    padding: 0.25em 0.5em;
+    margin: auto;
+    width: 55%;
+    text-shadow: 2px 1px 2px rgb(220, 220, 220);
+    border-radius: 20px;
+
+  }
+  .plus {
+    background-color: rgb(164, 255, 148);
+    border: 0.5px solid green;
+  }
+  .minus {
+    background-color: rgb(255, 180, 180);
+    border: 0.5px solid red;
+  }
 }
 
 .transactions-nav {
-    display: flex;
-    flex-direction: row;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  form {
+    display: inherit;
     align-items: center;
-    justify-content: space-between;
-    .btn {
-      margin: .5em;
+    #search {
+      height: 2em;
     }
+  }
+  .btn {
+    margin: .5em;
+  }
   }
