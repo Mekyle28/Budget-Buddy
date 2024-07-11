@@ -35,7 +35,7 @@
 
   .edit-account {
     position: absolute;
-    top: 115px;
+    top: 190px;
     right:50px;
   }
 }
@@ -72,6 +72,12 @@
     width: 77%;
     .account-balance {
       padding-bottom: 2.5rem;
+    }
+
+    .account-graph {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+      width: 80%;
     }
     .account-transactions {
       font-size: x-large;
