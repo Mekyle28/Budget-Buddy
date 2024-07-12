@@ -6,7 +6,7 @@
 
 <div class="balance">
   <% if account.credit? %>
-    <%= humanized_money_with_symbol(account.current_balance.abs) %>
+    <%= humanized_money_with_symbol(-account.current_balance) %>
   <% else %>
     <%= humanized_money_with_symbol(account.current_balance) %>
   <% end %>

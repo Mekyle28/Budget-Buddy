@@ -8,14 +8,45 @@
     align-items: center;
     justify-content: space-around;
     padding: 2rem;
+  }
+  .new-account-button {
+    position: absolute;
+    top: 190px;
+    right:60px;
+  }
+  .account-info {
+    display:flex;
+    flex-direction: row;
+  
+    .side-bar {
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 0.5em;
+      border: 3px solid rgb(69, 69, 70);
+      font-size: x-large;
+      width: 15%;
+      max-height: 25rem;
+      
+  
+      .side-bar-account {
+        border-radius: 0.15em;
+        border-bottom: 3px solid rgb(139, 139, 139);
+        text-align: center;
+        padding:.5rem;
+        margin: 0.5rem;
+        color: rgb(22, 22, 22);
+      }
+    }
 
-    .new-account-button {
-      position: absolute;
-      top: 115px;
-      right:50px;
+    .account-contents {
+      .accounts-balance {
+        padding: .8rem;
+        margin: 0;
+        color: rgb(22, 22, 22);
+      }
     }
   }
-
   .display-accounts {
     padding: 3rem;
     display: flex;
@@ -37,4 +68,8 @@
   }
 }
 
+.account-area-graph {
+  width: 85%;
+  padding-bottom: 5rem;
+}
 
