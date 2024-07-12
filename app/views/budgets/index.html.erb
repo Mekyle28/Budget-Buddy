@@ -6,15 +6,20 @@
   <div class="side-bar">
     <div class="budgets-menu">
       <h5 class="side-bar-budget">Archive</h5>
+      <% if @budget_categories.first[:archive_month] %>
+        <%= link_to [:budgets], class: "no-underline" do %>
+          <div class="side-bar-budget hover">Current Budget</div>
+        <% end %>
+      <% end %>
       <% @archive_months.each do |month| %>
         <%= link_to budgets_path(archive_month: month), class: "no-underline" do %>
-          <div class="side-bar-budget"><%= month.strftime('%B %Y') %></div>
+          <div class="side-bar-budget hover"><%= month.strftime('%B %Y') %></div>
         <% end %>
       <% end %>
     </div>
   </div>
 
-  <div class="budgets">
+  <div class="row-container budgets">
     <div class="container text-center">
       <div class="row">
         <div class="col my-auto"><strong>Category:</strong></div>
@@ -22,20 +27,39 @@
         <div class="col my-auto"><strong>Budget Amount:</strong></div>
         <% unless @budget_categories.empty? %>
           <% unless @budget_categories.first[:archive_month] %>
-            <div class="col my-auto"><strong>Actions:</strong></div>
+            <div class="col my-auto"><strong>Edit:</strong></div>
           <% end %>
         <% end %>
       </div>
 
       <% @budget_categories.each do |category| %>
-        <div class="budget">
+        <div class="budget row-hover transaction-row">
           <div class="row">
             <div class="col my-auto"><%= category[:category] %></div>
-            <div class="col my-auto">$<%= number_with_precision(category[:fact_amount], precision: 0) %></div>
-            <div class="col my-auto">$<%= number_with_precision(category[:budget_amount], precision: 0) %></div>
+            <div class="col my-auto">
+              $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
+            </div>
+            <div class="col my-auto">
+              <% if category[:fact_amount] < category[:budget_amount] %>
+                <p class="price plus text-success">
+                  $ <%= number_with_precision(category[:budget_amount], precision: 0) %>
+                </p>
+              <% else %>
+                <p class="price minus text-danger">
+                  $ <%= number_with_precision(category[:budget_amount], precision: 0) %>
+                </p>
+              <% end %>
+            </div>
             <% unless category[:archive_month] %>
               <div class="col my-auto">
-                <%= link_to 'Edit', edit_budget_path(category[:budget_id]), data: { turbo_frame: "modal"}, class: 'btn btn-outline-primary' %>
+                <div class="edit-button">
+                  <%= link_to edit_budget_path(category[:budget_id]), data: { turbo_frame: "modal"} do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                  </svg>
+                  <% end %>
+                </div>
               </div>
             <% end %>
           </div>
