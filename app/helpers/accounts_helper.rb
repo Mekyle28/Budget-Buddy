@@ -43,8 +43,7 @@ module AccountsHelper
     @month = Date.today.month
     @year = Date.today.year
   
-    @balanceCredit = Account.where(account_type: 'CREDIT').pluck(:current_balance_cents)
-    totalBalanceCredit = @balanceCredit.sum { |balance| balance }
+    totalBalanceCredit = @balanceCredit.sum
 
     result = [[Date.today.day, totalBalanceCredit/-100]]
       
@@ -71,50 +70,6 @@ module AccountsHelper
   
     result
   end
-
-  # def areaGraphDataCredit
-  #   @month = Date.today.month
-  #   @year = Date.today.year
-  
-  #   @balanceCredit = Account.where(account_type: 'CREDIT').pluck(:current_balance_cents)
-  #   @balanceAvailable = Account.where.not(account_type: 'CREDIT').pluck(:current_balance_cents)
-    
-  #   totalBalanceCredit = @balanceCredit.sum { |balance| balance }
-  #   totalBalanceAvailable = @balanceAvailable.sum
-
-  #   result = [[Date.today.day, totalBalanceAvailable/100, totalBalanceCredit/-100]]
-      
-  #   (Date.today.day - 1).downto(1) do |day|
-  #     # transactions = Transaction.where(date: Date.new(@year, @month, day + 1)).pluck(:transaction_type, :amount_cents)
-  #     transactions = Transaction.joins(:account)
-  #                         .where(date: Date.new(@year, @month, day + 1))
-  #                         .pluck('transactions.transaction_type', 'transactions.amount_cents', 'accounts.account_type')
-
-  #     transactions.each do |transaction|
-  #       if transactions[2] == "CREDIT"
-  #         if transaction[0] == "expense"
-  #           totalBalanceCredit += transaction[1]
-  #         else
-  #           totalBalanceCredit -= transaction[1]
-  #         end
-  #       else
-  #         if transaction[0] == "expense"
-  #           totalBalanceAvailable += transaction[1]
-  #         else
-  #           totalBalanceAvailable -= transaction[1]
-  #         end
-  #       end
-  #     end
-
-  #     result.push([day, (totalBalanceAvailable/100), (totalBalanceCredit/-100)])
-  #   end
-  #   # Sort result array by day (ascending) 
-  #   result.sort_by! { |entry| entry[0] }
-  
-  #   result
-  # end
-
-
 
   def dataAvailble
     @month = Date.today.month
