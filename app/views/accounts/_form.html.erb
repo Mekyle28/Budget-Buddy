@@ -1,5 +1,5 @@
 <div class="account-form">
-  <%= form_with(model: account) do |form| %>
+  <%= form_with(model: account, local: true) do |form| %>
     <% if account.errors.any? %>
       <div class="error-message">
             <p><strong>Please fill in the required fields:</strong></p>
@@ -49,12 +49,20 @@
           class: form.object.errors[:current_balance].any? ? "form-control error" : "form-control" %>
         </div>
       </div>
+      <script>document.addEventListener("DOMContentLoaded", function() {
+              const form = document.querySelector("form[local='true']");
+              if (form) {
+              form.addEventListener("submit", function() {
+              console.log("Form submitted");
+                  });
+                  }});
+      </script>
     
       <div class="row">
         <div class="col">
         </div>
         <div class="col my-auto">
-          <%= form.submit "Save", class: "btn btn-success" %>
+          <%= form.submit "Save", class: "btn btn-success", data: {turbo_frame: "_top"} %>
         </div>
       </div>
     </div>
