@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div class="row-container">
+  <div class="row-container budgets">
     <div class="container text-center">
       <div class="row">
         <div class="col my-auto"><strong>Category:</strong></div>
@@ -22,7 +22,7 @@
         <div class="col my-auto"><strong>Budget Amount:</strong></div>
         <% unless @budget_categories.empty? %>
           <% unless @budget_categories.first[:archive_month] %>
-            <div class="col my-auto"><strong>Actions:</strong></div>
+            <div class="col my-auto"><strong>Edit:</strong></div>
           <% end %>
         <% end %>
       </div>
