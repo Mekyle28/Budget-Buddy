@@ -1,75 +1,36 @@
-.accounts-page {
+.account-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem;
+  margin-top: 1em;
+
+  .account-button {
+    position: absolute;
+    right:50px;
+  }
+}
+.account-contents {
   display: flex;
   flex-direction: column;
-
-  .accounts-title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 2rem;
+  width: 70vw;
+  .account-balance {
+    padding: 0.8rem;
+    margin: 0;
+    color: rgb(22, 22, 22);
+    padding-bottom: 2.5rem;
   }
-  .new-account-button {
-    position: absolute;
-    top: 190px;
-    right:60px;
-  }
-  .account-info {
-    display:flex;
-    flex-direction: row;
-  
-    .side-bar {
-      display:flex;
-      flex-direction: column;
-      align-items: center;
-      border-radius: 0.5em;
-      border: 3px solid rgb(69, 69, 70);
-      font-size: x-large;
-      width: 15%;
-      max-height: 25rem;
-      
-  
-      .side-bar-account {
-        border-radius: 0.15em;
-        border-bottom: 3px solid rgb(139, 139, 139);
-        text-align: center;
-        padding:.5rem;
-        margin: 0.5rem;
-        color: rgb(22, 22, 22);
-      }
-    }
-
-    .account-contents {
-      .accounts-balance {
-        padding: .8rem;
-        margin: 0;
-        color: rgb(22, 22, 22);
-      }
-    }
-  }
-  .display-accounts {
-    padding: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .accounts-container {
-      display: inline-block;
-      
-      .accounts {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 20px;
-      }  
-    }
-    
+  .account-graph {
+    margin-bottom: 4rem;
   }
 }
 
-.account-area-graph {
-  width: 85%;
-  padding-bottom: 5rem;
+.underline-row {
+  background-color: none;
+  border-radius: 0.5em;
+  border-bottom: 3px solid rgb(161, 162, 163);
 }
+
+
 

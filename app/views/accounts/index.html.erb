@@ -1,40 +1,39 @@
 <p style="color: green"><%= notice %></p>
-<article class="accounts-page">
 
-  <div class="account-title">
-    <h1><strong>Accounts</h1>
-  </div>
 
-  <span class="new-account-button">
+<div class="account-title">
+  <h1><strong>Accounts</strong></h1>
+  <span class="account-button">
     <%= link_to "New account", new_account_path, data: { turbo_frame: "modal"}, class: "btn btn-outline-success" %>
   </span>
+</div>
 
-  <section class="account-info">
+<section class="info">
 
-    <div class="side-bar">
-      <div class="accounts-menu">
-        <h3 class="side-bar-account">Accounts</h3>
-        <% @accounts.each do |account| %>
-          <%= link_to account_path(account), class: "no-underline" do %>
-          <div class="side-bar-account"><%= account.name %></div>
-          <% end %>
+  <div class="side-bar">
+    <div class="accounts-menu">
+      <h3 class="side-bar-content">Accounts</h3>
+      <% @accounts.each do |account| %>
+        <%= link_to account_path(account), class: "no-underline" do %>
+        <div class="side-bar-content hover"><%= account.name %></div>
         <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <article class="account-contents">
+    <div>
+      <div class="account-graph">
+        <%= area_chart areaGraphData(), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance", prefix: "$", thousands: ",", xmin: "#{Date.today.strftime("%B%Y")} 1" %>
       </div>
+      <h3 class="accounts-balance">I have: <%= number_to_currency(@balanceAvailable.sum/100, format: "%u%n")  %> </h3>
+      <h3 class="accounts-balance">I owe: <%= number_to_currency(@balanceCredit.sum/-100, format: "%u%n") %></h3>
+      <h3 class="accounts-balance">
+        Net Balance: <%= number_to_currency((@balanceAvailable.sum/100) - (-@balanceCredit.sum/100), format: "%u%n") %>
+      </h3>
     </div>
 
-    <article class="account-contents">
-      <div>
-        <div class="account-area-graph">
-          <%= area_chart areaGraphData(), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance" %>
-        </div>
-        <h3 class="accounts-balance">I have: <%= number_to_currency(@balanceAvailable.sum/100, format: "%u%n")  %> </h3>
-        <h3 class="accounts-balance">I owe: <%= number_to_currency(-@balanceCredit.sum/100, format: "%u%n") %></h3>
-        <h3 class="accounts-balance">Net Balance: <%= number_to_currency((@balanceAvailable.sum/100) - (-@balanceCredit.sum/100), format: "%u%n") %></h3>
+  </article>
 
-      </div>
-
-    </article>
-
-  </section>
-</article>
+</section>
 

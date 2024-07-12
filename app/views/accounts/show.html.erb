@@ -2,17 +2,22 @@
 
 <div class="account-title">
   <h1><strong><%= @account.name %></strong> - <%= @account.account_type %></h1>
-  <span class="edit-account"><%= link_to "Edit account", edit_account_path(@account), data: { turbo_frame: "modal"}, class:"btn btn-outline-primary" %></span>
+  <span class="account-button">
+    <%= link_to "Edit account", edit_account_path(@account), data: { turbo_frame: "modal"}, class:"btn btn-outline-primary" %>
+  </span>
 </div>
 
-<section class="account-info">
+<section class="info">
 
   <div class="side-bar">
     <div class="accounts-menu">
-      <h3 class="side-bar-account">Accounts</h3>
+      <h3 class="side-bar-content">Accounts</h3>
+      <%= link_to [:accounts], class: "no-underline" do %>
+        <div class="side-bar-content hover">OVERVIEW</div>
+      <% end %>
       <% @accounts.each do |account| %>
         <%= link_to account_path(account), class: "no-underline" do %>
-        <div class="side-bar-account"><%= account.name %></div>
+        <div class="side-bar-content hover"><%= account.name %></div>
         <% end %>
       <% end %>
     </div>
@@ -23,35 +28,37 @@
     <% if @account.credit? %>
       <h2 class="account-balance"><strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(-@account.current_balance_cents)) %></h2>
       <% else %>
-      <h2 class="account-balance"><strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(@account.current_balance_cents)) %></h2>
+        <h2 class="account-balance">
+          <strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(@account.current_balance_cents)) %>
+        </h2>
       <% end %>
 
       <div class="account-graph">
-      <%= line_chart lineGraphData(@account), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance" %>
-      </div>
-
-      <h2><strong>Transactions:</strong></h2>
-      <div>
-
-        <table class="account-transactions">
-          
-          <tr>
-            <td><strong>Date</strong></td>
-            <td><strong>Merchant</strong></td>
-            <td><strong>Amount</strong></td>
-            <td><strong>Category</strong></td>
-            <!--<td><strong>Edit</strong></td> -->
-          </tr>
-        
-
-          <% @account_transactions.each do |charge| %>
-            <%= render partial: 'charge', locals: { charge: charge } %>
-          <% end %>
-
-        </table>
-        
+        <%= line_chart lineGraphData(@account), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance", label: "Balance Available", prefix: "$", thousands: ",", xmin: "#{Date.today.strftime("%B%Y")} 1" %>
       </div>
     </div>
   </article>
+</section>
 
+<section>
+  <h2><strong>Transactions:</strong></h2>
+  <div>
+
+  <div class="row-container">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col my-auto"><strong>Date:</strong></div>
+        <div class="col my-auto"><strong>Merchant:</strong></div>
+        <div class="col my-auto"><strong>Amount:</strong></div>
+        <div class="col my-auto"><strong>Category:</strong></div>
+        <div class="col-1 my-auto"><strong>Edit:</strong></div>
+      </div>
+    
+
+      <% @account_transactions.each do |charge| %>
+        <%= render partial: 'charge', locals: { charge: charge } %>
+      <% end %>
+
+    </div> 
+  </div>
 </section>
