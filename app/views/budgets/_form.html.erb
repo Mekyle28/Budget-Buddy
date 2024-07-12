@@ -1,4 +1,4 @@
-<div class="budget-form">
+<div class="error-form">
   <%= form_with(model: budget) do |form| %>
     <% if (@budget && @budget.errors.any?) || (@category && @category.errors.any?) %>
       <div class="error-message">
