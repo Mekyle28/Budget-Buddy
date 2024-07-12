@@ -37,8 +37,9 @@ class TransactionsController < ApplicationController
         format.html { redirect_to transactions_path, notice: "Transaction was successfully created." }
         format.json { render :show, status: :created, location: @transaction }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        format.html { render :new }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', template: 'transactions/new', locals: { transaction: @transaction }) }
+      
       end
     end
   end
@@ -50,8 +51,8 @@ class TransactionsController < ApplicationController
         format.html { redirect_to transactions_path, notice: "Transaction was successfully updated." }
         format.json { render :show, status: :ok, location: @transaction }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        format.html { render :new }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', template: 'transactions/edit', locals: { transaction: @transaction }) }
       end
     end
   end

@@ -31,9 +31,11 @@ class AccountsController < ApplicationController
       if @account.save
         format.html { redirect_to account_url(@account), notice: "Account was successfully created." }
         format.json { render :show, status: :created, location: @account }
+        puts "saved"
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
+        format.html { render :new }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', template: 'accounts/new', locals: { account: @account }) }
+      
       end
     end
   end
@@ -45,8 +47,8 @@ class AccountsController < ApplicationController
         format.html { redirect_to account_url(@account), notice: "Account was successfully updated." }
         format.json { render :show, status: :ok, location: @account }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
+        format.html { render :new }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', template: 'accounts/edit', locals: { account: @account }) }
       end
     end
   end
