@@ -12,6 +12,9 @@
   <div class="side-bar">
     <div class="accounts-menu">
       <h3 class="side-bar-content">Accounts</h3>
+      <%= link_to [:accounts], class: "no-underline" do %>
+        <div class="side-bar-content hover">OVERVIEW</div>
+      <% end %>
       <% @accounts.each do |account| %>
         <%= link_to account_path(account), class: "no-underline" do %>
         <div class="side-bar-content hover"><%= account.name %></div>
@@ -31,7 +34,7 @@
       <% end %>
 
       <div class="account-graph">
-        <%= line_chart lineGraphData(@account), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance" %>
+        <%= line_chart lineGraphData(@account), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance", label: "Balance Available", prefix: "$", thousands: ",", xmin: "#{Date.today.strftime("%B%Y")} 1" %>
       </div>
     </div>
   </article>

@@ -24,12 +24,13 @@
   <article class="account-contents">
     <div>
       <div class="account-graph">
-        <%= area_chart areaGraphData(), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance" %>
+        <%= area_chart areaGraphData(), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance", prefix: "$", thousands: ",", xmin: "#{Date.today.strftime("%B%Y")} 1" %>
       </div>
       <h3 class="accounts-balance">I have: <%= number_to_currency(@balanceAvailable.sum/100, format: "%u%n")  %> </h3>
-      <h3 class="accounts-balance">I owe: <%= number_to_currency(-@balanceCredit.sum/100, format: "%u%n") %></h3>
-      <h3 class="accounts-balance">Net Balance: <%= number_to_currency((@balanceAvailable.sum/100) - (-@balanceCredit.sum/100), format: "%u%n") %></h3>
-
+      <h3 class="accounts-balance">I owe: <%= number_to_currency(@balanceCredit.sum/-100, format: "%u%n") %></h3>
+      <h3 class="accounts-balance">
+        Net Balance: <%= number_to_currency((@balanceAvailable.sum/100) - (-@balanceCredit.sum/100), format: "%u%n") %>
+      </h3>
     </div>
 
   </article>
