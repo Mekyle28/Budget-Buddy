@@ -18,33 +18,35 @@
     </div>
   </div>
 
-  <atricle class="account-contents">
+  <article class="account-contents">
     <div>
-    <% if @account.credit? %>
-      <h2 class="account-balance"><strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(@account.current_balance_cents.abs)) %></h2>
+      <% if @account.credit? %>
+        <h2 class="account-balance">
+          <strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(@account.current_balance_cents.abs)) %>
+        </h2>
       <% else %>
-      <h2 class="account-balance"><strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(@account.current_balance_cents)) %></h2>
+        <h2 class="account-balance">
+          <strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(@account.current_balance_cents)) %>
+        </h2>
       <% end %>
-      <h2><strong>Transactions:</strong></h2>
-      <div>
+        <h2><strong>Transactions:</strong></h2>
 
-        <table class="account-transactions">
-          
-          <tr>
-            <td><strong>Date</strong></td>
-            <td><strong>Merchant</strong></td>
-            <td><strong>Amount</strong></td>
-            <td><strong>Category</strong></td>
-            <!--<td><strong>Edit</strong></td> -->
-          </tr>
+      <div class="row-container">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col my-auto"><strong>Date:</strong></div>
+            <div class="col my-auto"><strong>Merchant:</strong></div>
+            <div class="col my-auto"><strong>Amount:</strong></div>
+            <div class="col my-auto"><strong>Category:</strong></div>
+            <div class="col-1 my-auto"><strong>Edit:</strong></div>
+          </div>
         
 
           <% @account_transactions.each do |charge| %>
             <%= render partial: 'charge', locals: { charge: charge } %>
           <% end %>
 
-        </table>
-        
+        </div> 
       </div>
     </div>
   </article>

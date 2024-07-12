@@ -68,21 +68,15 @@
   .account-contents {
     display: flex;
     flex-direction: column;
-    padding-left: 8rem;
-    width: 77%;
+    margin-left: 4rem;
+    width: 70vw;
     .account-balance {
       padding-bottom: 2.5rem;
     }
-    .account-transactions {
-      font-size: x-large;
-      tr {
-        border-radius: 0.5em;
-        border-bottom: 3px solid rgb(161, 162, 163);
-
-        td {
-          padding: 1rem;
-        }  
-      }  
+    .underline-row{
+      background-color: none;
+      border-radius: 0.5em;
+      border-bottom: 3px solid rgb(161, 162, 163);
     }
   }
 }
