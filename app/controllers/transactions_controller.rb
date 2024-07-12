@@ -3,18 +3,27 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
+    @transactions = Transaction.joins(:category, :account).order(date: :desc).limit(50)
+
     if params[:search].present?
       amount_in_cents = "@"
       if params[:search].to_money.fractional > 0
         amount_in_cents = params[:search].to_money.fractional
       end
-        @transactions = 
-          Transaction.joins(:category, :account)
-            .where("categories.name LIKE :search OR accounts.name LIKE :search OR merchant LIKE :search OR amount_cents LIKE :amount_in_cents",
-            search: "%#{params[:search]}%", amount_in_cents: amount_in_cents).limit(50)
-            .order(date: :desc)
-    else
-      @transactions = Transaction.all.order(date: :desc).limit(50)
+      @transactions = @transactions.where(
+        "categories.name LIKE :search OR accounts.name LIKE :search OR merchant LIKE :search OR amount_cents LIKE :amount_in_cents",
+        search: "%#{params[:search]}%", amount_in_cents: amount_in_cents
+      )
+    end
+
+    if params[:from_date].present?
+      from_date = Date.parse(params[:from_date])
+      @transactions = @transactions.where("date >= ?", from_date)
+    end
+
+    if params[:to_date].present?
+      to_date = Date.parse(params[:to_date])
+      @transactions = @transactions.where("date <= ?", to_date)
     end
   end
 

@@ -8,9 +8,9 @@ module AccountsHelper
     balance = Account.where(name: account.name).pluck(:current_balance_cents).first
   
     if account.account_type == "CREDIT"
-      result = [[Date.today.day, balance/-100]]
+      result = [[Date.today.strftime("%B%d"), balance/-100]]
     else
-      result = [[Date.today.day, balance/100]]
+      result = [[Date.today.strftime("%B%d"), balance/100]]
     end
 
   
@@ -26,14 +26,14 @@ module AccountsHelper
       end
       
       if account.account_type == "CREDIT"
-        result.push([day, balance/-100])
+        result.unshift(["#{Date.today.strftime("%B%Y")} #{day}", balance/-100])
       else
-        result.push([day, balance/100])
+        result.unshift(["#{Date.today.strftime("%B%Y")} #{day}", balance/100])
       end
     end
   
     # Sort result array by day (ascending) 
-    result.sort_by! { |day, _balance| day }
+    # result.sort_by! { |day, _balance| day }
   
     result
   end
@@ -45,7 +45,7 @@ module AccountsHelper
   
     totalBalanceCredit = @balanceCredit.sum
 
-    result = [[Date.today.day, totalBalanceCredit/-100]]
+    result = [[Date.today.strftime("%B%d"), totalBalanceCredit/-100]]
       
       # transactions = Transaction.where(date: Date.new(@year, @month, day + 1)).pluck(:transaction_type, :amount_cents)
     (Date.today.day - 1).downto(1) do |day|
@@ -63,11 +63,9 @@ module AccountsHelper
         end
       end
 
-      result.push([day, totalBalanceCredit/-100])
+      result.unshift(["#{Date.today.strftime("%B%Y")} #{day}", totalBalanceCredit/-100])
     end
-    # Sort result array by day (ascending) 
-    result.sort_by! { |entry| entry[0] }
-  
+    
     result
   end
 
@@ -80,7 +78,7 @@ module AccountsHelper
     
     totalBalanceAvailable = @balanceAvailable.sum
 
-    result = [[Date.today.day, totalBalanceAvailable/100]]
+    result = [[Date.today.strftime("%B%d"), totalBalanceAvailable/100]]
       
     (Date.today.day - 1).downto(1) do |day|
       transactions = Transaction.joins(:account)
@@ -96,18 +94,16 @@ module AccountsHelper
         end
       end
 
-      result.push([day, (totalBalanceAvailable/100)])
+      result.unshift(["#{Date.today.strftime("%B%Y")} #{day}", (totalBalanceAvailable/100)])
     end
-    # Sort result array by day (ascending) 
-    result.sort_by! { |entry| entry[0] }
-  
+
     result
   end
 
   def areaGraphData()
     data = [
-      { label: "Account Balance Availible", data: dataAvailble },
-      { label: "Account Balance Credit", data: dataCredit }
+      { name: "Account Balance Available", data: dataAvailble },
+      { name: "Account Balance Credit", data: dataCredit },
     ]
     return data
   end

@@ -2,18 +2,18 @@
 
 <h1>Budgets</h1>
 <%= link_to "New category", new_budget_path, data: { turbo_frame: "modal"}, class:"btn btn-outline-success" %>
-<div class="budget-info">
+<div class="info">
   <div class="side-bar">
     <div class="budgets-menu">
-      <h5 class="side-bar-budget">Archive</h5>
+      <h5 class="side-bar-content">Archive</h5>
       <% if @budget_categories.first[:archive_month] %>
         <%= link_to [:budgets], class: "no-underline" do %>
-          <div class="side-bar-budget hover">Current Budget</div>
+          <div class="side-bar-content hover">Current Budget</div>
         <% end %>
       <% end %>
       <% @archive_months.each do |month| %>
         <%= link_to budgets_path(archive_month: month), class: "no-underline" do %>
-          <div class="side-bar-budget hover"><%= month.strftime('%B %Y') %></div>
+          <div class="side-bar-content hover"><%= month.strftime('%B %Y') %></div>
         <% end %>
       <% end %>
     </div>
@@ -37,18 +37,20 @@
           <div class="row">
             <div class="col my-auto"><%= category[:category] %></div>
             <div class="col my-auto">
-              $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
-            </div>
-            <div class="col my-auto">
               <% if category[:fact_amount] < category[:budget_amount] %>
                 <p class="price plus text-success">
-                  $ <%= number_with_precision(category[:budget_amount], precision: 0) %>
+                  $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
                 </p>
               <% else %>
                 <p class="price minus text-danger">
-                  $ <%= number_with_precision(category[:budget_amount], precision: 0) %>
+                  $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
                 </p>
               <% end %>
+            </div>
+            <div class="col my-auto">
+              <p>
+                $ <%= number_with_precision(category[:budget_amount], precision: 0) %>
+              </p>
             </div>
             <% unless category[:archive_month] %>
               <div class="col my-auto">
