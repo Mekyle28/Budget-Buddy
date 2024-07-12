@@ -47,38 +47,3 @@
   justify-content: center;
   margin: 1em;
 }
-
-.budget-info {
-  display: flex;
-  flex-direction: row;
-  gap: 1em;
-
-  .side-bar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 0.5em;
-    border: 2px solid rgb(69, 69, 70);
-    font-size: large;
-    flex: 1;
-    height: fit-content;
-    margin-top: 1em;
-    padding-bottom: 1em;
-
-    .side-bar-budget {
-      border-radius: 0.15em;
-      border-bottom: 3px solid rgb(101, 101, 102);
-      text-align: center;
-      padding: 0.5rem;
-      margin: 0.5rem;
-      color: black;
-    }
-    .hover:hover {
-      transform: scale(1.25);
-      text-shadow: 2px 2px 5px rgb(100, 100, 100);
-    }
-  }
-  .budgets {
-    flex: 4;
-  }
-}
