@@ -106,8 +106,8 @@ module AccountsHelper
 
   def areaGraphData()
     data = [
-      { label: "Account Balance Availible", data: dataAvailble },
-      { label: "Account Balance Credit", data: dataCredit }
+      { name: "Account Balance Available", data: dataAvailble },
+      { name: "Account Balance Credit", data: dataCredit },
     ]
     return data
   end
