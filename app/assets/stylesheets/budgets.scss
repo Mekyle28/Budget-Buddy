@@ -72,6 +72,10 @@
       margin: 0.5rem;
       color: black;
     }
+    .hover:hover {
+      transform: scale(1.25);
+      text-shadow: 2px 2px 5px rgb(100, 100, 100);
+    }
   }
   .budgets {
     flex: 4;

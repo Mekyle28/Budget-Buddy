@@ -6,9 +6,14 @@
   <div class="side-bar">
     <div class="budgets-menu">
       <h5 class="side-bar-budget">Archive</h5>
+      <% if @budget_categories.first[:archive_month] %>
+        <%= link_to [:budgets], class: "no-underline" do %>
+          <div class="side-bar-budget hover">Current Budget</div>
+        <% end %>
+      <% end %>
       <% @archive_months.each do |month| %>
         <%= link_to budgets_path(archive_month: month), class: "no-underline" do %>
-          <div class="side-bar-budget"><%= month.strftime('%B %Y') %></div>
+          <div class="side-bar-budget hover"><%= month.strftime('%B %Y') %></div>
         <% end %>
       <% end %>
     </div>
