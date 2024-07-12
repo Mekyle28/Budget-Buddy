@@ -21,7 +21,7 @@
   <article class="account-contents">
     <div>
     <% if @account.credit? %>
-      <h2 class="account-balance"><strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(@account.current_balance_cents.abs)) %></h2>
+      <h2 class="account-balance"><strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(-@account.current_balance_cents)) %></h2>
       <% else %>
       <h2 class="account-balance"><strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(@account.current_balance_cents)) %></h2>
       <% end %>

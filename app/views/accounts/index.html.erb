@@ -1,20 +1,37 @@
 <p style="color: green"><%= notice %></p>
 <article class="accounts-page">
 
-    <h1>Accounts</h1>
-    <span class="new-account-button">
+<div class="account-title">
+  <h1><strong>Accounts</h1>
+  <span class="new-account-button">
     <%= link_to "New account", new_account_path, data: { turbo_frame: "modal"}, class: "btn btn-outline-success" %>
-    </span>
+  </span>
+</div>
 
-    <% AreaGraphData() %>
+<section class="account-info">
 
-  <section class="display-accounts">
-    <div class="accounts-container">
-      <span id="accounts" class="accounts">
-        <% @accounts.each do |account| %>
-          <%= render account %>
+  <div class="side-bar">
+    <div class="accounts-menu">
+      <h3 class="side-bar-account">Accounts</h3>
+      <% @accounts.each do |account| %>
+        <%= link_to account_path(account), class: "no-underline" do %>
+        <div class="side-bar-account"><%= account.name %></div>
         <% end %>
-      </span>
+      <% end %>
     </div>
-  </section>
-</article>
+  </div>
+
+  <article class="account-contents">
+    <div>
+      <div class="account-graph">
+        <%= area_chart areaGraphData(), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance" %>
+      </div>
+      <h3 class="account-balance">Avalible Balance: </h3>
+      <h3 class="account-balance">Credit Balance: </h3>
+      <h3 class="account-balance">Net Balance: </h3>
+
+    </div>
+  </article>
+
+</section>
+
