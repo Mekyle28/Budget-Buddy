@@ -1,28 +1,5 @@
 .budgets {
-  border: 2px solid;
-  border-radius: 10px;
-  margin-top: 1em;
-  
-  .row {
-    padding: 0.25em 0;
-  }
-
-  .budget:nth-of-type(odd) {
-    background-color: rgb(220, 220, 220);
-    border-radius: 5px;
-  }
-
-  .budget:nth-of-type(even) {
-    background-color: #f8f9fa;
-    border-radius: 10px;
-  }
-
-  .container {
-    padding: 0;
-    width: 95%;
-    margin: auto;
-    margin-top: 1em;
-  }
+  width: 70vw;
 }
 
 .budget-form {
@@ -94,6 +71,10 @@
       padding: 0.5rem;
       margin: 0.5rem;
       color: black;
+    }
+    .hover:hover {
+      transform: scale(1.25);
+      text-shadow: 2px 2px 5px rgb(100, 100, 100);
     }
   }
   .budgets {
