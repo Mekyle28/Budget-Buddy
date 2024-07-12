@@ -8,16 +8,21 @@
   </div>
   <div class="transactions-nav">
     <%= form_with(url: transactions_path, method: :get) do %>
-    <%= text_field_tag :search, params[:search], placeholder:"Search" %>
-    <%= submit_tag "Search", class:"btn btn-success" %>
-    <% end %>
-  
-    <% if params[:search].present? %>
-      <%= link_to "Clear", [:transactions], class:"btn btn-warning" %>
-    <% end %>
 
+      <div class="date-filters">
+      From:&nbsp;&nbsp;
+        <%= date_field_tag :from_date, params[:from_date], placeholder: "From Date", class: "form-control" %>
+        To:&nbsp;&nbsp;
+        <%= date_field_tag :to_date, params[:to_date], placeholder: "To Date", class: "form-control" %>
+      </div>
+
+      <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control"%>
+      <%= submit_tag "Search", class:"btn btn-success" %>
+      <% if params[:search].present? || params[:from_date].present? || params[:to_date].present? %>
+        <%= link_to "Clear", [:transactions], class:"btn btn-warning" %>
+      <% end %>
+    <% end %>
   </div>
-
 </div>
 
 <div class="row-container">

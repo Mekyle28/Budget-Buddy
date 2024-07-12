@@ -14,3 +14,24 @@
     margin: .5em;
   }
   }
+
+  .transactions-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .btn {
+      margin: .5em;
+    }
+  }
+  
+  .date-filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 1em;
+  
+    input[type="date"] {
+      margin-right: 0.5em;
+    }
+  }
