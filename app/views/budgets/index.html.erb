@@ -37,18 +37,20 @@
           <div class="row">
             <div class="col my-auto"><%= category[:category] %></div>
             <div class="col my-auto">
-              $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
-            </div>
-            <div class="col my-auto">
               <% if category[:fact_amount] < category[:budget_amount] %>
                 <p class="price plus text-success">
-                  $ <%= number_with_precision(category[:budget_amount], precision: 0) %>
+                  $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
                 </p>
               <% else %>
                 <p class="price minus text-danger">
-                  $ <%= number_with_precision(category[:budget_amount], precision: 0) %>
+                  $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
                 </p>
               <% end %>
+            </div>
+            <div class="col my-auto">
+              <p>
+                $ <%= number_with_precision(category[:budget_amount], precision: 0) %>
+              </p>
             </div>
             <% unless category[:archive_month] %>
               <div class="col my-auto">
