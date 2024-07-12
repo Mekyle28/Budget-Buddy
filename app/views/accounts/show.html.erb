@@ -20,16 +20,20 @@
 
   <article class="account-contents">
     <div>
-      <% if @account.credit? %>
-        <h2 class="account-balance">
-          <strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(@account.current_balance_cents.abs)) %>
-        </h2>
+    <% if @account.credit? %>
+      <h2 class="account-balance"><strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(-@account.current_balance_cents)) %></h2>
       <% else %>
         <h2 class="account-balance">
           <strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(@account.current_balance_cents)) %>
         </h2>
       <% end %>
-        <h2><strong>Transactions:</strong></h2>
+
+      <div class="account-graph">
+      <%= line_chart lineGraphData(@account), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance" %>
+      </div>
+
+      <h2><strong>Transactions:</strong></h2>
+      <div>
 
       <div class="row-container">
         <div class="container text-center">
