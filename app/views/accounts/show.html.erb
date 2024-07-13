@@ -2,10 +2,10 @@
 
 <div class="account-title">
   <h1><strong><%= @account.name %></strong> - <%= @account.account_type %></h1>
-  <span class="account-button">
-    <%= link_to "Edit account", edit_account_path(@account), data: { turbo_frame: "modal"}, class:"btn btn-outline-primary" %>
-  </span>
 </div>
+<span class="account-button">
+  <%= link_to "Edit account", edit_account_path(@account), data: { turbo_frame: "modal"}, class:"btn btn-primary" %>
+</span>
 
 <section class="info">
 
@@ -24,7 +24,7 @@
   </div>
 
   <article class="account-contents">
-    <div>
+    <div class="account-color">
     <% if @account.credit? %>
       <h2 class="account-balance"><strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(-@account.current_balance_cents)) %></h2>
       <% else %>
