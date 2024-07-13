@@ -1,0 +1,15 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="bob">
+
+    <div>
+    <%= link_to "X", "#", data: { controller: "modals", action: "modals#close" }, class: "cancel-button" %>
+    </div>
+
+    <h1>Editing budget</h1>
+
+    <%= render "form", budget: @budget %>
+
+  </div>
+
+<% end %> 
+    
