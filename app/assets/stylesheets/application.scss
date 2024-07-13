@@ -25,7 +25,8 @@ body {
   margin: 0;
   padding-top: 85px;
   margin-bottom: 5vw;
-  background-image: linear-gradient(rgb(127, 127,127), rgb(200, 200, 200));
+  background: url(image_path("brushed-alum.png")),
+    linear-gradient(to bottom right, rgb(175, 180, 255), rgb(120, 120, 255));
 }
 
 main {
@@ -48,11 +49,11 @@ main {
     padding: 0 1em;
     li {
       padding: 0.5em;
-      p {
-        margin: 0;
-      }
     }
   }
+}
+p {
+  margin: 0;
 }
 
 .btn:hover {
@@ -61,7 +62,7 @@ main {
 }
 
 .row-hover:hover {
-  box-shadow: 0 5px 5px rgb(100, 100, 100);
+  box-shadow: 0 5px 5px rgb(175, 180, 255);
   transform: scale(1.02);
 }
 
@@ -94,19 +95,12 @@ main {
     color: rgb(0, 160, 0);
   }
 }
-.transaction-row:nth-of-type(odd) {
-  background-color: rgb(220, 220, 220);
-  border-radius: 10px;
-}
-.transaction-row:nth-of-type(even) {
-  background-color: #f8f9fa;
-  border-radius: 10px;
-}
 .row-container {
   border: 2px solid rgb(80, 80, 80);
   border-radius: 10px;
   margin-top: 1em;
   padding-bottom: 1em;
+  background-color: #f8f9fa;
   
   .row {
     padding: 0.5em 0;
@@ -120,7 +114,7 @@ main {
 }
 .hover:hover {
   transform: scale(1.25);
-  text-shadow: 2px 2px 5px rgb(100, 100, 100);
+  text-shadow: 2px 2px 5px rgb(120, 120, 255);
 }
 .info {
   display: flex;
@@ -135,7 +129,8 @@ main {
     font-size: large;
     height: fit-content;
     flex: 1;
-    margin-top: 1rem;
+    margin: 1rem 0;
+    background-color: #f8f9fa;
     
     .side-bar-content {
       border-radius: 0.15em;
@@ -147,6 +142,10 @@ main {
     }
   }
 }
+.underline-row {
+  border-radius: 5px;
+  border-bottom: 3px solid rgb(160, 160, 160);
+}
 .no-underline {
   text-decoration: none;
 }
@@ -156,7 +155,9 @@ main {
   z-index: 1000;
   padding: 4em;
   
-  
+  background: url(image_path("brushed-alum.png")),
+    linear-gradient(to bottom right, rgb(175, 180, 255), rgb(120, 120, 255));
+    
   /* Centering */
   left: 50%;
   top: 50%;
