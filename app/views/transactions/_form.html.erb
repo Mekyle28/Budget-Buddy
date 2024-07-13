@@ -86,7 +86,7 @@
     <div class="row">
       <div class="col"></div>
       <div class="col my-auto">
-        <%= form.submit "Save", class: "btn btn-success" %>
+        <%= form.submit "Save", class: "btn btn-success", data: {turbo_frame: "_top"} %>
       </div>
     </div>
   <% end %>
