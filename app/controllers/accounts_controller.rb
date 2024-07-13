@@ -47,7 +47,7 @@ class AccountsController < ApplicationController
         format.html { redirect_to account_url(@account), notice: "Account was successfully updated." }
         format.json { render :show, status: :ok, location: @account }
       else
-        format.html { render :new }
+        format.html { render :edit }
         format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', template: 'accounts/edit', locals: { account: @account }) }
       end
     end

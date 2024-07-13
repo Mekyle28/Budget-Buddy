@@ -60,7 +60,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to transactions_path, notice: "Transaction was successfully updated." }
         format.json { render :show, status: :ok, location: @transaction }
       else
-        format.html { render :new }
+        format.html { render :edit }
         format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', template: 'transactions/edit', locals: { transaction: @transaction }) }
       end
     end
