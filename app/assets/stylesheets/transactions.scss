@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-top: 2rem;
   form {
     display: inherit;
     align-items: center;
@@ -11,20 +12,12 @@
     }
   }
   .btn {
-    margin: .5em;
+    margin: 0.5rem;
   }
+}
+  .search-bar {
+    display: inherit;
   }
-
-  .transactions-nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    .btn {
-      margin: .5em;
-    }
-  }
-  
   .date-filters {
     display: flex;
     flex-direction: row;

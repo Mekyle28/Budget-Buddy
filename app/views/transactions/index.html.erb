@@ -6,7 +6,7 @@
   <div>
     <%= link_to "New transaction", new_transaction_path, data: { turbo_frame: "modal"}, class:"btn btn-outline-success" %>
   </div>
-  <div class="transactions-nav">
+  <div class="search-bar">
     <%= form_with(url: transactions_path, method: :get) do %>
 
       <div class="date-filters">
