@@ -67,8 +67,8 @@ class BudgetsController < ApplicationController
         format.json { render :show, status: :created, location: @budget }
 
       else
-        format.html { render :new, status: :unprocessable_entity } 
-        format.json { render json: @budget.errors, status: :unprocessable_entity }
+        format.html { render :new }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', template: 'budgets/new', locals: { budget: @budget, category: @category }) }
       end
     end
   end
@@ -83,8 +83,8 @@ class BudgetsController < ApplicationController
         format.json { render :show, status: :ok, location: @budget }
 
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @budget.errors, status: :unprocessable_entity }
+        format.html { render :new }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', template: 'budgets/edit', locals: { budget: @budget, category: @category }) }
       end
     end
   end
