@@ -15,7 +15,7 @@
       <h3 class="side-bar-content">Accounts</h3>
       <% @accounts.each do |account| %>
         <%= link_to account_path(account), class: "no-underline" do %>
-        <div class="side-bar-content hover"><%= account.name %></div>
+        <div class="side-bar-content hover row-hover"><%= account.name %></div>
         <% end %>
       <% end %>
     </div>

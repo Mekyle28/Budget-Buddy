@@ -82,7 +82,7 @@ p {
   background-color: rgb(255, 180, 180);
 }
 .even {
-  background-color: rgb(255, 255, 70);
+  background-color: rgb(255, 255, 150);
 }
 
 .edit-button {
@@ -133,8 +133,8 @@ p {
     background-color: #f8f9fa;
     
     .side-bar-content {
-      border-radius: 0.15em;
-      border-bottom: 3px solid rgb(140, 140, 140);
+      border-radius: 5px;
+      border-bottom: 2px solid rgb(140, 140, 140);
       text-align: center;
       padding: 0.5rem;
       margin: 0.5rem;
@@ -144,7 +144,7 @@ p {
 }
 .underline-row {
   border-radius: 5px;
-  border-bottom: 3px solid rgb(160, 160, 160);
+  border-bottom: 2px solid rgb(160, 160, 160);
 }
 .no-underline {
   text-decoration: none;
