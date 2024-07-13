@@ -8,19 +8,20 @@
       </div>
     </div>
     <span class="budget-total">$<%=number_with_precision(@total_fact, precision: 0) %> / $<%= number_with_precision(@total_budget, precision: 0) %></span>
+  <div class="main-color">
+    <table class="budget-progress">
+      <tr>
+        <td><strong>Categories</strong></td>
+        <td><strong></strong></td>
+        <td><strong></strong></td>
+      </tr>
 
-  <table class="budget-progress">
-    <tr>
-      <td><strong>Categories</strong></td>
-      <td><strong></strong></td>
-      <td><strong></strong></td>
-    </tr>
-
-    <% @budget_categories.each do |category| %>
-      <% budget_amount = category.budget_amount.to_f %>
-      <% fact_amount = category.fact_amount.to_f %>
-            
-      <%= render 'category', name: category.category.name, budget: budget_amount, fact: fact_amount %>
-    <% end %>
-  </table>
+      <% @budget_categories.each do |category| %>
+        <% budget_amount = category.budget_amount.to_f %>
+        <% fact_amount = category.fact_amount.to_f %>
+              
+        <%= render 'category', name: category.category.name, budget: budget_amount, fact: fact_amount %>
+      <% end %>
+    </table>
+  </div>
 </section>

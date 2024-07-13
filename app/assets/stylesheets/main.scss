@@ -9,7 +9,7 @@
   font-size: x-large;
 
   .budget-total {
-    padding-bottom: 5rem;
+    padding-bottom: 3rem;
   }
 
   .progress-total {
@@ -28,7 +28,12 @@
   .main-title {
     padding: 2.5rem;
   }
-
+  .main-color {
+    border: 2px solid rgb(80, 80, 80);
+    border-radius: 10px;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+  }
   .budget-progress {
     font-size: x-large;
 
