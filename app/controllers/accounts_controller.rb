@@ -11,7 +11,6 @@ class AccountsController < ApplicationController
   def show
     @accounts = Account.all
     @account_transactions = Transaction.where(account_id: @account.id).order(date: :desc)
-        # Transaction.where(account_id: params[:account_id])
   end
 
   # GET /accounts/new

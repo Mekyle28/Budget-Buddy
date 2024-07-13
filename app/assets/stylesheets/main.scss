@@ -31,6 +31,12 @@
 
   .budget-progress {
     font-size: x-large;
+    width: 80%;
+    padding-bottom: 3rem;
+
+    .row-main{
+      padding-bottom: 2rem;
+    }
 
     .progress {
       height: 20px;
@@ -41,14 +47,6 @@
       height:20px;
     }
 
-    tr {
-      border-radius: 0.5em;
-      border-bottom: 3px solid rgb(161, 162, 163);
-
-      td {
-        padding: 1rem;
-      }  
-    }
   
 
 }  
