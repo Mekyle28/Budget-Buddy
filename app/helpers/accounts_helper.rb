@@ -14,7 +14,7 @@ module AccountsHelper
     end
 
   
-    (Date.today.day - 1).downto(1) do |day|
+    (Date.today.day).downto(1) do |day|
       transactions = Transaction.where(date: Date.new(@year, @month, day + 1), account_id: account.id).pluck(:transaction_type, :amount_cents)
   
       transactions.each do |transaction|
@@ -80,7 +80,7 @@ module AccountsHelper
 
     result = [[Date.today.strftime("%B%d"), totalBalanceAvailable/100]]
       
-    (Date.today.day - 1).downto(1) do |day|
+    (Date.today.day).downto(1) do |day|
       transactions = Transaction.joins(:account)
                           .where(date: Date.new(@year, @month, day + 1))
                           .where.not(accounts: { account_type: 'CREDIT' })
