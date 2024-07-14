@@ -1,6 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Budgets</h1>
+<div class="d-flex align-items-center" style="margin-bottom: 8px;">
+  <h1 class="mb-0">Budgets&nbsp;-&nbsp;</h1>
+  <h3 class="mb-0">
+    <% if params[:archive_month].present? %>
+      <%= Date.parse(params[:archive_month]).strftime('%B %Y') %>
+    <% else %>
+      <%= Date.today.strftime('%B %Y') %>
+    <% end %>
+  </h3>
+</div>
+
 <%= link_to "New category", new_budget_path, data: { turbo_frame: "modal"}, class:"btn btn-outline-success" %>
 <div class="info">
   <div class="side-bar">
