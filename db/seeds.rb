@@ -90,8 +90,8 @@ transactions = [
   { date: Date.new(2024, 7, 13), merchant: "CINEPLEX", amount_cents: 2200, category_id: 2, account_id: 3, transaction_type: 'expense' },
   { date: Date.new(2024, 7, 14), merchant: "WINNERS", amount_cents: 7900, category_id: 18, account_id: 2, transaction_type: 'expense' },
   { date: Date.new(2024, 7, 15), merchant: "HOME DEPOT", amount_cents: 3800, category_id: 16, account_id: 2, transaction_type: 'expense' },
-  { date: Date.new(2024, 7, 1), merchant: "PAD INVEST", amount_cents: 10000, category_id: 8, account_id: 1, transaction_type: 'expense' },
-  { date: Date.new(2024, 7, 1), merchant: "PAD INVEST", amount_cents: 10000, category_id: 22, account_id: 4, transaction_type: 'income' },
+  { date: Date.new(2024, 7, 16), merchant: "PAD INVEST", amount_cents: 10000, category_id: 8, account_id: 1, transaction_type: 'expense' },
+  { date: Date.new(2024, 7, 17), merchant: "PAD INVEST", amount_cents: 10000, category_id: 22, account_id: 4, transaction_type: 'income' },
   { date: Date.new(2024, 7, 2), merchant: "FIDO MOBILE", amount_cents: 6500, category_id: 3, account_id: 1, transaction_type: 'expense' },
   { date: Date.new(2024, 7, 3), merchant: "INSTALLMENT PLAN", amount_cents: 45000, category_id: 15, account_id: 1, transaction_type: 'expense' },
   { date: Date.new(2024, 7, 4), merchant: "TD INSURANCE", amount_cents: 33300, category_id: 6, account_id: 1, transaction_type: 'expense' },
@@ -122,15 +122,15 @@ transactions = [
   { date: Date.new(2024, 7, 15), merchant: "LONGO'S REFUND", amount_cents: 7650, category_id: 1, account_id: 3, transaction_type: 'income' },
   { date: Date.new(2024, 7, 17), merchant: "NETFLIX", amount_cents: 2400, category_id: 11, account_id: 2, transaction_type: 'expense' },
   { date: Date.new(2024, 7, 18), merchant: "BEST BUY", amount_cents: 5500, category_id: 16, account_id: 2, transaction_type: 'expense' },
-  { date: Date.new(2024, 7, 19), merchant: "WHOLE FOODS", amount_cents: 8900, category_id: 1, account_id: 2, transaction_type: 'expense' },
-  { date: Date.new(2024, 7, 19), merchant: "WAL-MART FOODS", amount_cents: 6490, category_id: 1, account_id: 2, transaction_type: 'expense' },
-  { date: Date.new(2024, 7, 21), merchant: "HOA MONTHLY", amount_cents: 5400, category_id: 3, account_id: 1, transaction_type: 'expense' },
-  { date: Date.new(2024, 7, 22), merchant: "WAL-MART", amount_cents: 5898, category_id: 1, account_id: 2, transaction_type: 'expense' },
-  { date: Date.new(2024, 7, 24), merchant: "PINK!", amount_cents: 1200, category_id: 10, account_id: 3, transaction_type: 'expense' },
-  { date: Date.new(2024, 7, 25), merchant: "WAL-MART REFUND", amount_cents: 5475, category_id: 1, account_id: 2, transaction_type: 'income' },
-  { date: Date.new(2024, 7, 25), merchant: "PRESTO MOBIL", amount_cents: 2000, category_id: 5, account_id: 1, transaction_type: 'expense' },
-  { date: Date.new(2024, 7, 25), merchant: "CIBC MUTUAL FUND", amount_cents: 10000, category_id: 14, account_id: 1, transaction_type: 'expense' },
-  { date: Date.new(2024, 7, 25), merchant: "CAR LOAN", amount_cents: 75500, category_id: 5, account_id: 1, transaction_type: 'expense' }
+  { date: Date.new(2024, 7, 1), merchant: "WHOLE FOODS", amount_cents: 8900, category_id: 1, account_id: 2, transaction_type: 'expense' },
+  { date: Date.new(2024, 7, 2), merchant: "WAL-MART FOODS", amount_cents: 6490, category_id: 1, account_id: 2, transaction_type: 'expense' },
+  { date: Date.new(2024, 7, 3), merchant: "HOA MONTHLY", amount_cents: 5400, category_id: 3, account_id: 1, transaction_type: 'expense' },
+  { date: Date.new(2024, 7, 4), merchant: "WAL-MART", amount_cents: 5898, category_id: 1, account_id: 2, transaction_type: 'expense' },
+  { date: Date.new(2024, 7, 5), merchant: "PINK!", amount_cents: 1200, category_id: 10, account_id: 3, transaction_type: 'expense' },
+  { date: Date.new(2024, 7, 5), merchant: "WAL-MART REFUND", amount_cents: 5475, category_id: 1, account_id: 2, transaction_type: 'income' },
+  { date: Date.new(2024, 7, 6), merchant: "PRESTO MOBIL", amount_cents: 2000, category_id: 5, account_id: 1, transaction_type: 'expense' },
+  { date: Date.new(2024, 7, 7), merchant: "CIBC MUTUAL FUND", amount_cents: 10000, category_id: 14, account_id: 1, transaction_type: 'expense' },
+  { date: Date.new(2024, 7, 18), merchant: "CAR LOAN", amount_cents: 75500, category_id: 5, account_id: 1, transaction_type: 'expense' }
 ]
 
 transactions.each do |transaction|
