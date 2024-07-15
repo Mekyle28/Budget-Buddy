@@ -1,12 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-
-<div class="account-title">
-  <h1><strong>Accounts</strong></h1>
-  <span class="account-button">
-    <%= link_to "New account", new_account_path, data: { turbo_frame: "modal"}, class: "btn btn-outline-success" %>
-  </span>
+<div class="page-title">
+  <h1>Accounts</h1>
 </div>
+<span class="account-button">
+  <%= link_to "New account", new_account_path, data: { turbo_frame: "modal"}, class: "btn btn-success" %>
+</span>
 
 <section class="info">
 
@@ -15,14 +14,14 @@
       <h3 class="side-bar-content">Accounts</h3>
       <% @accounts.each do |account| %>
         <%= link_to account_path(account), class: "no-underline" do %>
-        <div class="side-bar-content hover"><%= account.name %></div>
+        <div class="side-bar-content hover row-hover"><%= account.name %></div>
         <% end %>
       <% end %>
     </div>
   </div>
 
   <article class="account-contents">
-    <div>
+    <div class="account-color">
       <div class="account-graph">
         <%= area_chart areaGraphData(), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance", prefix: "$", thousands: ",", xmin: "#{Date.today.strftime("%B%Y")} 1" %>
       </div>

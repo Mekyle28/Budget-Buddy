@@ -23,8 +23,10 @@ html {
 
 body {
   margin: 0;
-  padding-top: 85px;
+  padding-top: 120px;
   margin-bottom: 5vw;
+  background: url(image_path("brushed-alum.png")),
+    linear-gradient(to bottom right, rgb(100, 214, 180), rgb(0, 160, 165)); // 20, 190, 165
 }
 
 main {
@@ -36,22 +38,42 @@ main {
   top: 0;
   z-index: 1000;
   width: 100%;
-}
-
-.app-nav {
-  display: flex;
-  flex-direction: row;
-  ul {
+  background: #f8f9fa;
+  border-bottom: 1px solid;
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    font-size: x-large;
+    gap: 1.5rem;
+    h1 {
+      background-color: rgb(20, 190, 165);
+      margin-bottom: 0;
+      padding: 0.75rem;
+      border: 1px solid;
+      border-radius: 50px;
+    }
+  }
+  .app-nav {
     display: flex;
     flex-direction: row;
-    padding: 0 1em;
-    li {
-      padding: 0.5em;
-      p {
-        margin: 0;
+    ul {
+      display: flex;
+      flex-direction: row;
+      padding: 0 1em;
+      li {
+        padding: 0.5em;
       }
     }
   }
+}
+  p {
+  margin: 0;
+}
+
+.page-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .btn:hover {
@@ -60,7 +82,7 @@ main {
 }
 
 .row-hover:hover {
-  box-shadow: 0 5px 5px rgb(100, 100, 100);
+  box-shadow: 0 5px 5px rgb(20, 190, 165);
   transform: scale(1.02);
 }
 
@@ -70,15 +92,17 @@ main {
   width: 55%;
   text-shadow: 2px 1px 2px rgb(220, 220, 220);
   border-radius: 20px;
+  border: 0.5px solid;
 
 }
 .plus {
-  background-color: rgb(164, 255, 148);
-  border: 0.5px solid green;
+  background-color: rgb(160, 255, 160);
 }
 .minus {
   background-color: rgb(255, 180, 180);
-  border: 0.5px solid red;
+}
+.even {
+  background-color: rgb(255, 255, 175);
 }
 
 .edit-button {
@@ -91,19 +115,12 @@ main {
     color: rgb(0, 160, 0);
   }
 }
-.transaction-row:nth-of-type(odd) {
-  background-color: rgb(220, 220, 220);
-  border-radius: 10px;
-}
-.transaction-row:nth-of-type(even) {
-  background-color: #f8f9fa;
-  border-radius: 10px;
-}
 .row-container {
   border: 2px solid rgb(80, 80, 80);
   border-radius: 10px;
   margin-top: 1em;
   padding-bottom: 1em;
+  background-color: #f8f9fa;
   
   .row {
     padding: 0.5em 0;
@@ -116,8 +133,9 @@ main {
   }
 }
 .hover:hover {
+  cursor: pointer;
   transform: scale(1.25);
-  text-shadow: 2px 2px 5px rgb(100, 100, 100);
+  text-shadow: 2px 2px 5px rgb(20, 190, 165);
 }
 .info {
   display: flex;
@@ -132,17 +150,22 @@ main {
     font-size: large;
     height: fit-content;
     flex: 1;
-    margin-top: 1rem;
+    margin: 1rem 0;
+    background-color: #f8f9fa;
     
     .side-bar-content {
-      border-radius: 0.15em;
-      border-bottom: 3px solid rgb(140, 140, 140);
+      border-radius: 5px;
+      border-bottom: 2px solid rgb(140, 140, 140);
       text-align: center;
       padding: 0.5rem;
       margin: 0.5rem;
       color: rgb(22, 22, 22);
     }
   }
+}
+.underline-row {
+  border-radius: 5px;
+  border-bottom: 2px solid rgb(160, 160, 160);
 }
 .no-underline {
   text-decoration: none;
@@ -153,7 +176,9 @@ main {
   z-index: 1000;
   padding: 4em;
   
-  
+  background: url(image_path("brushed-alum.png")),
+    linear-gradient(to bottom right, rgb(130, 255, 218), rgb(0, 160, 165));
+    
   /* Centering */
   left: 50%;
   top: 50%;
@@ -220,11 +245,11 @@ form {
     width: 35vw;
     border: 2px solid;
     border-radius: 10px;
+    background-color: #f8f9fa;
   }
   .container {
     padding: 1em;
     border-radius: 10px;
-    background-color: #f8f9fa;
   }
   .row {
     padding: .5em 0;
@@ -238,7 +263,6 @@ form {
     margin-bottom: 0;
     border: 2px solid red;
     padding: 0.5em;
-    padding-bottom: 0;
     border-radius: 10px;
     background-color: rgb(255, 181, 181);
   }

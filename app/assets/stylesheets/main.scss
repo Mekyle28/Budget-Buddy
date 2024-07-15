@@ -36,9 +36,13 @@
     padding: 0.5rem;
 
   }
-
+  .main-color {
+    border: 2px solid rgb(80, 80, 80);
+    border-radius: 10px;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+  }
   .budget-progress {
-    font-size: x-large;
     width: 80%;
     padding-top: 1em;
 
@@ -56,8 +60,10 @@
       height:20px;
       border-radius: 0.8em;
     }
-
-}  
+    .account-transactions {
+      font-size: medium;
+    }
+  }  
 }
 
 .text {

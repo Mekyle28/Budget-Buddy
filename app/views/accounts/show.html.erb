@@ -1,11 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="account-title">
+<div class="page-title">
   <h1><strong><%= @account.name %></strong> - <%= @account.account_type %></h1>
-  <span class="account-button">
-    <%= link_to "Edit account", edit_account_path(@account), data: { turbo_frame: "modal"}, class:"btn btn-outline-primary" %>
-  </span>
 </div>
+<span class="account-button">
+  <%= link_to "Edit account", edit_account_path(@account), data: { turbo_frame: "modal"}, class:"btn btn-primary" %>
+</span>
 
 <section class="info">
 
@@ -13,18 +13,18 @@
     <div class="accounts-menu">
       <h3 class="side-bar-content">Accounts</h3>
       <%= link_to [:accounts], class: "no-underline" do %>
-        <div class="side-bar-content hover">OVERVIEW</div>
+        <div class="side-bar-content hover row-hover">OVERVIEW</div>
       <% end %>
       <% @accounts.each do |account| %>
         <%= link_to account_path(account), class: "no-underline" do %>
-        <div class="side-bar-content hover"><%= account.name %></div>
+          <div class="side-bar-content hover row-hover"><%= account.name %></div>
         <% end %>
       <% end %>
     </div>
   </div>
 
   <article class="account-contents">
-    <div>
+    <div class="account-color">
     <% if @account.credit? %>
       <h2 class="account-balance"><strong>Balance:</strong> <%= humanized_money_with_symbol(Money.new(-@account.current_balance_cents)) %></h2>
       <% else %>
@@ -46,7 +46,7 @@
 
   <div class="row-container">
     <div class="container text-center">
-      <div class="row">
+      <div class="row underline-row">
         <div class="col my-auto"><strong>Date:</strong></div>
         <div class="col my-auto"><strong>Merchant:</strong></div>
         <div class="col my-auto"><strong>Amount:</strong></div>

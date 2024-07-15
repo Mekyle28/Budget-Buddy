@@ -1,29 +1,32 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="d-flex align-items-center" style="margin-bottom: 8px;">
-  <h1 class="mb-0">Budgets&nbsp;-&nbsp;</h1>
-  <h3 class="mb-0">
-    <% if params[:archive_month].present? %>
-      <%= Date.parse(params[:archive_month]).strftime('%B %Y') %>
-    <% else %>
-      <%= Date.today.strftime('%B %Y') %>
-    <% end %>
-  </h3>
+<div class="page-title">
+  <div class="d-flex align-items-center">
+    <h1 class="mb-0">Budgets&nbsp;-&nbsp;</h1>
+    <h3 class="mb-0">
+      <% if params[:archive_month].present? %>
+        <%= Date.parse(params[:archive_month]).strftime('%B %Y') %>
+      <% else %>
+        <%= Date.today.strftime('%B %Y') %>
+      <% end %>
+    </h3>
+  </div>
 </div>
 
-<%= link_to "New category", new_budget_path, data: { turbo_frame: "modal"}, class:"btn btn-outline-success" %>
+<%= link_to "New category", new_budget_path, data: { turbo_frame: "modal"}, class:"btn btn-success" %>
+
 <div class="info">
   <div class="side-bar">
     <div class="budgets-menu">
       <h5 class="side-bar-content">Archive</h5>
       <% if @budget_categories.first[:archive_month] %>
         <%= link_to [:budgets], class: "no-underline" do %>
-          <div class="side-bar-content hover">Current Budget</div>
+          <div class="side-bar-content hover row-hover">Current Budget</div>
         <% end %>
       <% end %>
       <% @archive_months.each do |month| %>
         <%= link_to budgets_path(archive_month: month), class: "no-underline" do %>
-          <div class="side-bar-content hover"><%= month.strftime('%B %Y') %></div>
+          <div class="side-bar-content hover row-hover"><%= month.strftime('%B %Y') %></div>
         <% end %>
       <% end %>
     </div>
@@ -31,50 +34,52 @@
 
   <div class="row-container budgets">
     <div class="container text-center">
-      <div class="row">
+      <div class="row underline-row">
         <div class="col my-auto"><strong>Category:</strong></div>
         <div class="col my-auto"><strong>Fact Amount:</strong></div>
         <div class="col my-auto"><strong>Budget Amount:</strong></div>
         <% unless @budget_categories.empty? %>
           <% unless @budget_categories.first[:archive_month] %>
-            <div class="col my-auto"><strong>Edit:</strong></div>
+            <div class="col-1 my-auto"><strong>Edit:</strong></div>
           <% end %>
         <% end %>
       </div>
 
       <% @budget_categories.each do |category| %>
-        <div class="budget row-hover transaction-row">
-          <div class="row">
-            <div class="col my-auto"><%= category[:category] %></div>
-            <div class="col my-auto">
-              <% if category[:fact_amount] < category[:budget_amount] %>
-                <p class="price plus text-success">
-                  $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
-                </p>
-              <% else %>
-                <p class="price minus text-danger">
-                  $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
-                </p>
-              <% end %>
-            </div>
-            <div class="col my-auto">
-              <p>
-                $ <%= number_with_precision(category[:budget_amount], precision: 0) %>
+        <div class="row row-hover underline-row">
+          <div class="col my-auto"><%= category[:category] %></div>
+          <div class="col my-auto">
+            <% if category[:fact_amount] < category[:budget_amount] %>
+              <p class="price plus text-success">
+                $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
               </p>
-            </div>
-            <% unless category[:archive_month] %>
-              <div class="col my-auto">
-                <div class="edit-button">
-                  <%= link_to edit_budget_path(category[:budget_id]), data: { turbo_frame: "modal"} do %>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                  </svg>
-                  <% end %>
-                </div>
-              </div>
+            <% elsif category[:fact_amount] > category[:budget_amount] %>
+              <p class="price minus text-danger">
+                $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
+              </p>
+            <% else %>
+              <p class="price even text-warning">
+                $ <%= number_with_precision(category[:fact_amount], precision: 0) %>
+              </p>
             <% end %>
           </div>
+          <div class="col my-auto">
+            <p>
+              $ <%= number_with_precision(category[:budget_amount], precision: 0) %>
+            </p>
+          </div>
+          <% unless category[:archive_month] %>
+            <div class="col-1 my-auto">
+              <div class="edit-button">
+                <%= link_to edit_budget_path(category[:budget_id]), data: { turbo_frame: "modal"} do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                </svg>
+                <% end %>
+              </div>
+            </div>
+            <% end %>
         </div>
       <% end %>
     </div>

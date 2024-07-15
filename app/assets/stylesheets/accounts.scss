@@ -3,34 +3,21 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 5rem;
+  margin: 2rem;
   margin-top: 1em;
-
-  .account-button {
-    position: absolute;
-    right:50px;
-  }
 }
 .account-contents {
   display: flex;
   flex-direction: column;
   width: 70vw;
+  margin-top: 1rem;
+  .account-color {
+    padding: 1rem;
+    border: 2px solid rgb(80, 80, 80);
+    border-radius: 10px;
+    background-color: #f8f9fa;
+  }
   .account-balance {
-    padding: 0.8rem;
-    margin: 0;
-    color: rgb(22, 22, 22);
-    padding-bottom: 2.5rem;
-  }
-  .account-graph {
-    margin-bottom: 4rem;
+    margin: 1rem;
   }
 }
-
-.underline-row {
-  background-color: none;
-  border-radius: 0.5em;
-  border-bottom: 3px solid rgb(161, 162, 163);
-}
-
-
-

@@ -83,7 +83,7 @@ class BudgetsController < ApplicationController
         format.json { render :show, status: :ok, location: @budget }
 
       else
-        format.html { render :new }
+        format.html { render :edit }
         format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', template: 'budgets/edit', locals: { budget: @budget, category: @category }) }
       end
     end
