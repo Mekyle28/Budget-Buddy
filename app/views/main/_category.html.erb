@@ -29,7 +29,7 @@
 
     
     
-    <% account_transactions = Transaction.where(category_id: category.category.id).order(date: :desc)  %>
+    <% account_transactions = Transaction.where(category_id: category.category.id).where('date >= ?', Date.today.beginning_of_month).order(date: :desc) %>
     
         
       <% account_transactions.each do |charge| %>
