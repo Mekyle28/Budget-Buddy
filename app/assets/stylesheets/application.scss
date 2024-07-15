@@ -133,6 +133,7 @@ main {
   }
 }
 .hover:hover {
+  cursor: pointer;
   transform: scale(1.25);
   text-shadow: 2px 2px 5px rgb(20, 190, 165);
 }
