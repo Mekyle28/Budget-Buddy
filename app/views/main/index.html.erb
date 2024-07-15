@@ -2,20 +2,8 @@
 
   <h3 class="main-title">Total Budget:</h3>
   <span class="budget-total">$<%=number_with_precision(@total_fact, precision: 0) %> of $<%= number_with_precision(@total_budget, precision: 0) %></span>
-    <div class="progress-total">
-      <div class="progress-bar-total" 
-        style="width: <%= @total_fact == 0 ? '0%' : "#{(@total_fact.to_f / @total_budget) * 100}%" %>;
-        <%= @total_fact > @total_budget ? 'background-color: #FFDF00;' : 'background-color: #0d6efd;' %>">
-      </div>
-    </div>
     
-
   <div class="budget-progress">
-    <div class="row-main">
-      <div class="col my-auto"><strong>Categories:</strong></div>
-      <div class="col my-auto"><strong></strong></div>
-      <div class="col my-auto"><strong></strong></div>
-    </div>
 
     <div class="row">
     <% @budget_categories.each do |category| %>

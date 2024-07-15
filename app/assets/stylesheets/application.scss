@@ -38,7 +38,7 @@ main {
   top: 0;
   z-index: 1000;
   width: 100%;
-  background: #f8f9fa;
+  background: rgb(199, 233, 228);
   border-bottom: 1px solid;
   .brand {
     display: inline-flex;
@@ -97,12 +97,15 @@ main {
 }
 .plus {
   background-color: rgb(160, 255, 160);
+  border-color: green;
 }
 .minus {
   background-color: rgb(255, 180, 180);
+  border-color: red;
 }
 .even {
   background-color: rgb(255, 255, 175);
+  border-color: rgb(225, 225, 11);
 }
 
 .edit-button {
@@ -120,7 +123,7 @@ main {
   border-radius: 10px;
   margin-top: 1em;
   padding-bottom: 1em;
-  background-color: #f8f9fa;
+  background-color: rgba(250, 250, 250, 0.7);
   
   .row {
     padding: 0.5em 0;
@@ -151,7 +154,7 @@ main {
     height: fit-content;
     flex: 1;
     margin: 1rem 0;
-    background-color: #f8f9fa;
+    background-color: rgba(250, 250, 250, 0.7);
     
     .side-bar-content {
       border-radius: 5px;
@@ -245,7 +248,7 @@ form {
     width: 35vw;
     border: 2px solid;
     border-radius: 10px;
-    background-color: #f8f9fa;
+    background-color: rgba(250, 250, 250, 0.7);
   }
   .container {
     padding: 1em;
