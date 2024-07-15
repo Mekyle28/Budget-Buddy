@@ -8,9 +8,9 @@
     </div>
     <div class="col my-auto">
       <% if charge.transaction_type == 'expense' %>
-        <p class="price minus text-danger"><%= "- #{number_to_currency(charge.amount.abs, format: "%u%n")}" %></p>
+        <p class="price minus"><%= "- #{number_to_currency(charge.amount.abs, format: "%u%n")}" %></p>
       <% else %>
-        <p class="price plus text-success"><%= "+ #{number_to_currency(charge.amount, format: "%u%n")}" %></p>
+        <p class="price plus"><%= "+ #{number_to_currency(charge.amount, format: "%u%n")}" %></p>
       <% end %>
     </div>
     <div class="col my-auto">
