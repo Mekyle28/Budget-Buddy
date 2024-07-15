@@ -1,27 +1,29 @@
 <section class="main-page">
-  <h1 class="main-title">Budget Total</h1>
 
+  <h3 class="main-title">Total Budget:</h3>
+  <span class="budget-total">$<%=number_with_precision(@total_fact, precision: 0) %> of $<%= number_with_precision(@total_budget, precision: 0) %></span>
     <div class="progress-total">
       <div class="progress-bar-total" 
         style="width: <%= @total_fact == 0 ? '0%' : "#{(@total_fact.to_f / @total_budget) * 100}%" %>;
         <%= @total_fact > @total_budget ? 'background-color: #FFDF00;' : 'background-color: #0d6efd;' %>">
       </div>
     </div>
-    <span class="budget-total">$<%=number_with_precision(@total_fact, precision: 0) %> / $<%= number_with_precision(@total_budget, precision: 0) %></span>
-  <div class="main-color">
-    <table class="budget-progress">
-      <tr>
-        <td><strong>Categories</strong></td>
-        <td><strong></strong></td>
-        <td><strong></strong></td>
-      </tr>
+    
 
-      <% @budget_categories.each do |category| %>
-        <% budget_amount = category.budget_amount.to_f %>
-        <% fact_amount = category.fact_amount.to_f %>
-              
-        <%= render 'category', name: category.category.name, budget: budget_amount, fact: fact_amount %>
-      <% end %>
-    </table>
+  <div class="budget-progress">
+    <div class="row-main">
+      <div class="col my-auto"><strong>Categories</strong></div>
+      <div class="col my-auto"><strong></strong></div>
+      <div class="col my-auto"><strong></strong></div>
+    </div>
+
+    <div class="row">
+    <% @budget_categories.each do |category| %>
+      <% budget_amount = category.budget_amount.to_f %>
+      <% fact_amount = category.fact_amount.to_f %>
+            
+      <%= render 'category', name: category.category.name, budget: budget_amount, fact: fact_amount, category: category %>
+    <% end %>
+    </div>
   </div>
 </section>
