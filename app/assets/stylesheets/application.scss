@@ -23,10 +23,10 @@ html {
 
 body {
   margin: 0;
-  padding-top: 85px;
+  padding-top: 120px;
   margin-bottom: 5vw;
   background: url(image_path("brushed-alum.png")),
-    linear-gradient(to bottom right, rgb(175, 180, 255), rgb(120, 120, 255));
+    linear-gradient(to bottom right, rgb(100, 214, 180), rgb(0, 160, 165)); // 20, 190, 165
 }
 
 main {
@@ -38,22 +38,42 @@ main {
   top: 0;
   z-index: 1000;
   width: 100%;
-}
-
-.app-nav {
-  display: flex;
-  flex-direction: row;
-  ul {
+  background: #f8f9fa;
+  border-bottom: 1px solid;
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    font-size: x-large;
+    gap: 1.5rem;
+    h1 {
+      background-color: rgb(20, 190, 165);
+      margin-bottom: 0;
+      padding: 0.75rem;
+      border: 1px solid;
+      border-radius: 50px;
+    }
+  }
+  .app-nav {
     display: flex;
     flex-direction: row;
-    padding: 0 1em;
-    li {
-      padding: 0.5em;
+    ul {
+      display: flex;
+      flex-direction: row;
+      padding: 0 1em;
+      li {
+        padding: 0.5em;
+      }
     }
   }
 }
-p {
+  p {
   margin: 0;
+}
+
+.page-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .btn:hover {
@@ -62,7 +82,7 @@ p {
 }
 
 .row-hover:hover {
-  box-shadow: 0 5px 5px rgb(175, 180, 255);
+  box-shadow: 0 5px 5px rgb(20, 190, 165);
   transform: scale(1.02);
 }
 
@@ -82,7 +102,7 @@ p {
   background-color: rgb(255, 180, 180);
 }
 .even {
-  background-color: rgb(255, 255, 150);
+  background-color: rgb(255, 255, 175);
 }
 
 .edit-button {
@@ -114,7 +134,7 @@ p {
 }
 .hover:hover {
   transform: scale(1.25);
-  text-shadow: 2px 2px 5px rgb(120, 120, 255);
+  text-shadow: 2px 2px 5px rgb(20, 190, 165);
 }
 .info {
   display: flex;
@@ -156,7 +176,7 @@ p {
   padding: 4em;
   
   background: url(image_path("brushed-alum.png")),
-    linear-gradient(to bottom right, rgb(175, 180, 255), rgb(120, 120, 255));
+    linear-gradient(to bottom right, rgb(130, 255, 218), rgb(0, 160, 165));
     
   /* Centering */
   left: 50%;
@@ -224,11 +244,11 @@ form {
     width: 35vw;
     border: 2px solid;
     border-radius: 10px;
+    background-color: #f8f9fa;
   }
   .container {
     padding: 1em;
     border-radius: 10px;
-    background-color: #f8f9fa;
   }
   .row {
     padding: .5em 0;
@@ -242,7 +262,6 @@ form {
     margin-bottom: 0;
     border: 2px solid red;
     padding: 0.5em;
-    padding-bottom: 0;
     border-radius: 10px;
     background-color: rgb(255, 181, 181);
   }
