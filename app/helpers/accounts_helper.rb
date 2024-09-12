@@ -72,10 +72,7 @@ module AccountsHelper
   def dataAvailble
     @month = Date.today.month
     @year = Date.today.year
-  
-    @balanceAvailable = Account.where.not(account_type: 'CREDIT').pluck(:current_balance_cents)
-    
-    
+      
     totalBalanceAvailable = @balanceAvailable.sum
 
     result = [[Date.today.strftime("%B%d"), totalBalanceAvailable/100]]
@@ -108,6 +105,4 @@ module AccountsHelper
     return data
   end
   
-
-
 end

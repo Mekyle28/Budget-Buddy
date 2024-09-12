@@ -22,16 +22,23 @@
 
   <article class="account-contents">
     <div class="account-color">
-      <div class="account-graph">
-        <%= area_chart areaGraphData(), xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance", prefix: "$", thousands: ",", xmin: "#{Date.today.strftime("%B%Y")} 1" %>
+      
+      <div class="account-net-balance">
+        <h3 class="accounts-balance"> <%= number_to_currency(@balanceAvailable.sum/100, format: "%u%n") %></h3>
+        <h3 class="accounts-balance"> - </h3>
+        <h3 class="accounts-balance"> <%= number_to_currency(@balanceCredit.sum/-100, format: "%u%n")  %></h3>
+        <h3 class="accounts-balance"> = </h3>
+        <h3 class="accounts-balance">
+          Net Balance: <%= number_to_currency((@balanceAvailable.sum/100) - (-@balanceCredit.sum/100), format: "%u%n") %>
+        </h3>
       </div>
-      <h3 class="accounts-balance">I have: <%= number_to_currency(@balanceAvailable.sum/100, format: "%u%n")  %> </h3>
-      <h3 class="accounts-balance">I owe: <%= number_to_currency(@balanceCredit.sum/-100, format: "%u%n") %></h3>
-      <h3 class="accounts-balance">
-        Net Balance: <%= number_to_currency((@balanceAvailable.sum/100) - (-@balanceCredit.sum/100), format: "%u%n") %>
-      </h3>
-    </div>
 
+      <div>
+        <div class="account-graph">
+        <%= area_chart areaGraphData(), colors: ["#bdf6fc", "#07407b"], xtitle: "Days in #{Date.today.strftime("%B")}", ytitle: "Balance", prefix: "$", thousands: ",", xmin: "#{Date.today.strftime("%B%Y")} 1" %>
+      </div>
+      
+    </div>
   </article>
 
 </section>

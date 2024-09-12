@@ -25,28 +25,31 @@ body {
   margin: 0;
   padding-top: 120px;
   margin-bottom: 5vw;
-  background: url(image_path("brushed-alum.png")),
-    linear-gradient(to bottom right, rgb(100, 214, 180), rgb(0, 160, 165)); // 20, 190, 165
-}
+  background-color: white;
+//     url(image_path("brushed-alum.png")),
+//     linear-gradient(to bottom right, rgb(255, 255, 255), rgb(255, 255, 255)); // 20, 190, 165
+  }
 
 main {
   margin: 0 5vw;
 }
 
 .navbar {
+  color: #ff8007;
   position: fixed; 
   top: 0;
   z-index: 1000;
   width: 100%;
-  background: rgb(199, 233, 228);
-  border-bottom: 1px solid;
+  background: #07407b;
+  //border-bottom: 1px solid;
   .brand {
     display: inline-flex;
     align-items: center;
-    font-size: x-large;
+    font-size:xx-large;
     gap: 1.5rem;
     h1 {
-      background-color: rgb(20, 190, 165);
+      background-color: rgb(6, 1, 59);
+      color: white;
       margin-bottom: 0;
       padding: 0.75rem;
       border: 1px solid;
@@ -54,6 +57,7 @@ main {
     }
   }
   .app-nav {
+    color: #ff8007;
     display: flex;
     flex-direction: row;
     ul {
@@ -62,6 +66,12 @@ main {
       padding: 0 1em;
       li {
         padding: 0.5em;
+        text-decoration: none;
+
+        .nav-link {
+          color: white;
+          font-size: large;
+        }
       }
     }
   }
@@ -82,30 +92,30 @@ main {
 }
 
 .row-hover:hover {
-  box-shadow: 0 5px 5px rgb(20, 190, 165);
+  box-shadow: 0 5px 5px rgb(77, 78, 77);
   transform: scale(1.02);
 }
 
 .price {
-  padding: 0.25em 0.5em;
+  padding: 0.5em 0.75em;
   margin: auto;
-  width: 55%;
-  text-shadow: 2px 1px 2px rgb(220, 220, 220);
+  width:fit-content;
+  text-shadow: .2px .2px .2px rgb(28, 28, 28);
   border-radius: 20px;
   border: 0.5px solid;
 
 }
 .plus {
-  background-color: rgb(160, 255, 160);
-  border-color: green;
+  background-color: #05b9dda8;
+  // border-color: green;
 }
 .minus {
-  background-color: rgb(255, 180, 180);
-  border-color: red;
+  background-color: #fe8d23
+  // border-color: red;
 }
 .even {
-  background-color: rgb(255, 255, 175);
-  border-color: rgb(225, 225, 11);
+  background-color:#05b9dda8;
+  // border-color: rgb(225, 225, 11);
 }
 
 .edit-button {
@@ -115,7 +125,7 @@ main {
 .edit-button:hover {
   transform: scale(1.5, 1.5);
   svg {
-    color: rgb(0, 160, 0);
+    color: #fe8d23;
   }
 }
 .row-container {
@@ -138,7 +148,7 @@ main {
 .hover:hover {
   cursor: pointer;
   transform: scale(1.25);
-  text-shadow: 2px 2px 5px rgb(20, 190, 165);
+  text-shadow: 2px 2px 5px rgb(172, 173, 173);
 }
 .info {
   display: flex;
@@ -179,8 +189,9 @@ main {
   z-index: 1000;
   padding: 4em;
   
-  background: url(image_path("brushed-alum.png")),
-    linear-gradient(to bottom right, rgb(130, 255, 218), rgb(0, 160, 165));
+  background-color: white;
+  //url(image_path("brushed-alum.png")),
+  //   linear-gradient(to bottom right, rgb(130, 255, 218), rgb(0, 160, 165));
     
   /* Centering */
   left: 50%;
@@ -267,7 +278,7 @@ form {
     border: 2px solid red;
     padding: 0.5em;
     border-radius: 10px;
-    background-color: rgb(255, 181, 181);
+    background-color: whit;
   }
   .error {
     border: 1px solid red;

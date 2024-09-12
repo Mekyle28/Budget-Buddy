@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
   def index
     @accounts = Account.all
     @balanceCredit = Account.where(account_type: 'CREDIT').pluck(:current_balance_cents)
+    @balanceAvailable = Account.where.not(account_type: 'CREDIT').pluck(:current_balance_cents)
   end
 
   # GET /accounts/1 or /accounts/1.json

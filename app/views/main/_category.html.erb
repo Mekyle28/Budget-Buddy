@@ -10,11 +10,11 @@
         <div class="progress-bar"
           style="width: <%= fact == 0 ? '0%' : "#{(fact.to_f / budget) * 100}%" %>;
           <%= if fact > budget
-           'background-color: rgb(255, 180, 180);' 
+           'background-color: #fe8d23;' 
            elsif fact < budget
-           'background-color: rgb(134, 212, 134);' 
+           'background-color: #05b9dda8;' 
            else 
-           'background-color: rgb(255, 255, 175);' 
+           'background-color: #05b9dda8;' 
            end %>">
         </div>
       </div>

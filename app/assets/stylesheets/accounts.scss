@@ -13,12 +13,25 @@
   margin-top: 1rem;
   .account-color {
     padding: 1rem;
-    border: 2px solid rgb(80, 80, 80);
+    // border: 2px solid rgb(80, 80, 80);
     border-radius: 10px;
     background-color: rgba(250, 250, 250, 0.7);
+    
+    .account-net-balance {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      .accounts-balance {
+      padding-right: .2rem;
+      margin: 1rem;
+      }
+    }
+
+  
   }
-  .account-balance {
-    margin: 1rem;
+  .account-graph {
+    padding-top: 5rem;
   }
 }
 .progress {
